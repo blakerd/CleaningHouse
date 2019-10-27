@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     //private ImageView puroLogo;
+    //blake changed the code here
     private ImageView login;
     private ImageView signin;
 
