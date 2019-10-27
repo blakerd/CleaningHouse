@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-    //blake changed the code here, for BlakesBranch
+    //blake changed the code here, for BlakesBranch (should be merge conflict)
     private ImageView login;
     private ImageView signin;
 
