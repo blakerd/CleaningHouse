@@ -15,7 +15,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SignUpCleanersScreen"></activity>
+        <activity android:name=".PropertyListAdapter"></activity>
+        <activity android:name=".CleanersHomeScreen" />
+        <activity android:name=".SignUpCleanersScreen" />
         <activity android:name=".SignUpScreen" />
         <activity
             android:name=".MessageScreen"

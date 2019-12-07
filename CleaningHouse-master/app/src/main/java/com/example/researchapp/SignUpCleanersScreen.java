@@ -64,15 +64,21 @@ public class SignUpCleanersScreen extends AppCompatActivity {
                                         Log.d("SignUpFail", "createUserWithEmail:failure", task.getException());
                                         Toast.makeText(SignUpCleanersScreen.this, "Account Creation Failed",
                                                 Toast.LENGTH_SHORT).show();
-                                        //updateUI(null);
                                         nextScreen();
+                                        //updateUI(null);
+
                                     }
                                 }
                             });
                 }
-                else {
-                    Toast.makeText(SignUpCleanersScreen.this, "Usernames or passwords do not match",
+                /*else {
+                    Toast.makeText(SignUpScreen.this, "Usernames or passwords do not match",
                             Toast.LENGTH_SHORT).show();
+                }*/
+                switch (v.getId()) {
+                    case R.id.button:
+                        nextScreen();
+                        break;
                 }
 
             }
@@ -83,8 +89,8 @@ public class SignUpCleanersScreen extends AppCompatActivity {
 
     private void nextScreen() {
 
-        //Intent i = new Intent(this, CleanersHomeScreen.class);
-        //startActivity(i);
+        Intent i = new Intent(this, CleanersHomeScreen.class);
+        startActivity(i);
 
     }
 

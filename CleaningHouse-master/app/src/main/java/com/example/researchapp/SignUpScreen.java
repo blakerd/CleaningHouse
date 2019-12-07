@@ -48,7 +48,7 @@ public class SignUpScreen extends AppCompatActivity {
                 email = emailInput.getText().toString();
                 passWord = passWordInput.getText().toString();
                 confirm = confirmInput.getText().toString();
-                if (userName.equals(email) && passWord.equals(confirm)) {
+                if (!userName.equals(null) && passWord.equals(confirm)) {
                     mAuth.createUserWithEmailAndPassword(userName, passWord)
                             .addOnCompleteListener(SignUpScreen.this, new OnCompleteListener<AuthResult>() {
                                 @Override
