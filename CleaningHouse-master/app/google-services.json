@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "471784586393",
+    "firebase_url": "https://cleaninghouse-b9d43.firebaseio.com",
+    "project_id": "cleaninghouse-b9d43",
+    "storage_bucket": "cleaninghouse-b9d43.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:471784586393:android:50591704505afba9534c08",
+        "android_client_info": {
+          "package_name": "com.example.researchapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "471784586393-qirsp8vjnkbqj354hjt37j1293ht6vtd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.researchapp",
+            "certificate_hash": "3c0f7941314aec91eebca692f1a08898c289763a"
+          }
+        },
+        {
+          "client_id": "471784586393-0eev3uevhf0s4p3ktar6mo2otnac710h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC1uJovDigKGWILCQxYbDm7TwlzBJVKcoc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "471784586393-0eev3uevhf0s4p3ktar6mo2otnac710h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

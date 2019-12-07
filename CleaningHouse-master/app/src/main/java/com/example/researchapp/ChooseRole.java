@@ -24,16 +24,22 @@ public class ChooseRole extends AppCompatActivity implements View.OnClickListene
     public void onClick(View v) {
         switch(v.getId()){
             case R.id.cleanerBtn:
-                nextPage();
+                nextPageCleaner();
                 break;
             case R.id.hostBtn:
-                nextPage();
+                nextPageHost();
                 break;
         }
     }
-    private void nextPage() {
+    private void nextPageHost() {
 
-       Intent i = new Intent(this, HomeScreenHost.class);
+       Intent i = new Intent(this, SignUpScreen.class);
+        startActivity(i);
+
+    }
+    private void nextPageCleaner() {
+
+        Intent i = new Intent(this, SignUpCleanersScreen.class);
         startActivity(i);
 
     }

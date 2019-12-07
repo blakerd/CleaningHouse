@@ -22,11 +22,11 @@
 15-->/Users/lydiaahrens/AndroidStudioProjects/CleaningHouse-master/app/src/main/AndroidManifest.xml:9:9-37
 16
 17    <application
-17-->/Users/lydiaahrens/AndroidStudioProjects/CleaningHouse-master/app/src/main/AndroidManifest.xml:11:5-46:19
+17-->/Users/lydiaahrens/AndroidStudioProjects/CleaningHouse-master/app/src/main/AndroidManifest.xml:11:5-47:19
 18        android:allowBackup="true"
 18-->/Users/lydiaahrens/AndroidStudioProjects/CleaningHouse-master/app/src/main/AndroidManifest.xml:12:9-35
 19        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-19-->[androidx.core:core:1.0.1] /Users/lydiaahrens/.gradle/caches/transforms-2/files-2.1/46da25c3e2ae6308b2227b660caa604d/core-1.0.1/AndroidManifest.xml:22:18-86
+19-->[androidx.core:core:1.0.1] /Users/lydiaahrens/.gradle/caches/transforms-2/files-2.1/7af9464903b8a503017df0a97e0258a2/core-1.0.1/AndroidManifest.xml:22:18-86
 20        android:debuggable="true"
 21        android:icon="@mipmap/ic_launcher"
 21-->/Users/lydiaahrens/AndroidStudioProjects/CleaningHouse-master/app/src/main/AndroidManifest.xml:13:9-43
@@ -39,67 +39,125 @@
 25        android:testOnly="true"
 26        android:theme="@style/AppTheme" >
 26-->/Users/lydiaahrens/AndroidStudioProjects/CleaningHouse-master/app/src/main/AndroidManifest.xml:17:9-40
-27        <activity android:name="com.example.researchapp.SignUpScreen" />
-27-->/Users/lydiaahrens/AndroidStudioProjects/CleaningHouse-master/app/src/main/AndroidManifest.xml:18:9-59
-27-->/Users/lydiaahrens/AndroidStudioProjects/CleaningHouse-master/app/src/main/AndroidManifest.xml:18:19-47
-28        <activity
-28-->/Users/lydiaahrens/AndroidStudioProjects/CleaningHouse-master/app/src/main/AndroidManifest.xml:19:9-22:59
-29            android:name="com.example.researchapp.MessageScreen"
-29-->/Users/lydiaahrens/AndroidStudioProjects/CleaningHouse-master/app/src/main/AndroidManifest.xml:20:13-42
-30            android:label="@string/title_activity_message_screen"
-30-->/Users/lydiaahrens/AndroidStudioProjects/CleaningHouse-master/app/src/main/AndroidManifest.xml:21:13-66
-31            android:theme="@style/AppTheme.NoActionBar" />
-31-->/Users/lydiaahrens/AndroidStudioProjects/CleaningHouse-master/app/src/main/AndroidManifest.xml:22:13-56
-32        <activity
-32-->/Users/lydiaahrens/AndroidStudioProjects/CleaningHouse-master/app/src/main/AndroidManifest.xml:23:9-26:59
-33            android:name="com.example.researchapp.BillingScreen"
-33-->/Users/lydiaahrens/AndroidStudioProjects/CleaningHouse-master/app/src/main/AndroidManifest.xml:24:13-42
-34            android:label="@string/title_activity_billing_screen"
-34-->/Users/lydiaahrens/AndroidStudioProjects/CleaningHouse-master/app/src/main/AndroidManifest.xml:25:13-66
-35            android:theme="@style/AppTheme.NoActionBar" />
-35-->/Users/lydiaahrens/AndroidStudioProjects/CleaningHouse-master/app/src/main/AndroidManifest.xml:26:13-56
-36        <activity
-36-->/Users/lydiaahrens/AndroidStudioProjects/CleaningHouse-master/app/src/main/AndroidManifest.xml:27:9-30:59
-37            android:name="com.example.researchapp.ScheduleScreen"
-37-->/Users/lydiaahrens/AndroidStudioProjects/CleaningHouse-master/app/src/main/AndroidManifest.xml:28:13-43
-38            android:label="@string/title_activity_schedule_screen"
-38-->/Users/lydiaahrens/AndroidStudioProjects/CleaningHouse-master/app/src/main/AndroidManifest.xml:29:13-67
-39            android:theme="@style/AppTheme.NoActionBar" />
-39-->/Users/lydiaahrens/AndroidStudioProjects/CleaningHouse-master/app/src/main/AndroidManifest.xml:30:13-56
-40        <activity
-40-->/Users/lydiaahrens/AndroidStudioProjects/CleaningHouse-master/app/src/main/AndroidManifest.xml:31:9-34:59
-41            android:name="com.example.researchapp.PropertiesScreen"
-41-->/Users/lydiaahrens/AndroidStudioProjects/CleaningHouse-master/app/src/main/AndroidManifest.xml:32:13-45
-42            android:label="@string/title_activity_properties_screen"
-42-->/Users/lydiaahrens/AndroidStudioProjects/CleaningHouse-master/app/src/main/AndroidManifest.xml:33:13-69
-43            android:theme="@style/AppTheme.NoActionBar" />
-43-->/Users/lydiaahrens/AndroidStudioProjects/CleaningHouse-master/app/src/main/AndroidManifest.xml:34:13-56
-44        <activity android:name="com.example.researchapp.HomeScreenHost" />
-44-->/Users/lydiaahrens/AndroidStudioProjects/CleaningHouse-master/app/src/main/AndroidManifest.xml:35:9-52
-44-->/Users/lydiaahrens/AndroidStudioProjects/CleaningHouse-master/app/src/main/AndroidManifest.xml:35:19-49
-45        <activity android:name="com.example.researchapp.ChooseRole" />
-45-->/Users/lydiaahrens/AndroidStudioProjects/CleaningHouse-master/app/src/main/AndroidManifest.xml:36:9-48
-45-->/Users/lydiaahrens/AndroidStudioProjects/CleaningHouse-master/app/src/main/AndroidManifest.xml:36:19-45
-46        <activity android:name="com.example.researchapp.LoginScreen" />
-46-->/Users/lydiaahrens/AndroidStudioProjects/CleaningHouse-master/app/src/main/AndroidManifest.xml:37:9-49
-46-->/Users/lydiaahrens/AndroidStudioProjects/CleaningHouse-master/app/src/main/AndroidManifest.xml:37:19-46
-47        <activity android:name="com.example.researchapp.Main2Activity" />
-47-->/Users/lydiaahrens/AndroidStudioProjects/CleaningHouse-master/app/src/main/AndroidManifest.xml:38:9-51
-47-->/Users/lydiaahrens/AndroidStudioProjects/CleaningHouse-master/app/src/main/AndroidManifest.xml:38:19-48
-48        <activity android:name="com.example.researchapp.OpeningScreen" >
-48-->/Users/lydiaahrens/AndroidStudioProjects/CleaningHouse-master/app/src/main/AndroidManifest.xml:39:9-45:20
+27        <activity android:name="com.example.researchapp.SignUpCleanersScreen" />
+27-->/Users/lydiaahrens/AndroidStudioProjects/CleaningHouse-master/app/src/main/AndroidManifest.xml:18:9-67
+27-->/Users/lydiaahrens/AndroidStudioProjects/CleaningHouse-master/app/src/main/AndroidManifest.xml:18:19-55
+28        <activity android:name="com.example.researchapp.SignUpScreen" />
+28-->/Users/lydiaahrens/AndroidStudioProjects/CleaningHouse-master/app/src/main/AndroidManifest.xml:19:9-50
+28-->/Users/lydiaahrens/AndroidStudioProjects/CleaningHouse-master/app/src/main/AndroidManifest.xml:19:19-47
+29        <activity
+29-->/Users/lydiaahrens/AndroidStudioProjects/CleaningHouse-master/app/src/main/AndroidManifest.xml:20:9-23:59
+30            android:name="com.example.researchapp.MessageScreen"
+30-->/Users/lydiaahrens/AndroidStudioProjects/CleaningHouse-master/app/src/main/AndroidManifest.xml:21:13-42
+31            android:label="@string/title_activity_message_screen"
+31-->/Users/lydiaahrens/AndroidStudioProjects/CleaningHouse-master/app/src/main/AndroidManifest.xml:22:13-66
+32            android:theme="@style/AppTheme.NoActionBar" />
+32-->/Users/lydiaahrens/AndroidStudioProjects/CleaningHouse-master/app/src/main/AndroidManifest.xml:23:13-56
+33        <activity
+33-->/Users/lydiaahrens/AndroidStudioProjects/CleaningHouse-master/app/src/main/AndroidManifest.xml:24:9-27:59
+34            android:name="com.example.researchapp.BillingScreen"
+34-->/Users/lydiaahrens/AndroidStudioProjects/CleaningHouse-master/app/src/main/AndroidManifest.xml:25:13-42
+35            android:label="@string/title_activity_billing_screen"
+35-->/Users/lydiaahrens/AndroidStudioProjects/CleaningHouse-master/app/src/main/AndroidManifest.xml:26:13-66
+36            android:theme="@style/AppTheme.NoActionBar" />
+36-->/Users/lydiaahrens/AndroidStudioProjects/CleaningHouse-master/app/src/main/AndroidManifest.xml:27:13-56
+37        <activity
+37-->/Users/lydiaahrens/AndroidStudioProjects/CleaningHouse-master/app/src/main/AndroidManifest.xml:28:9-31:59
+38            android:name="com.example.researchapp.ScheduleScreen"
+38-->/Users/lydiaahrens/AndroidStudioProjects/CleaningHouse-master/app/src/main/AndroidManifest.xml:29:13-43
+39            android:label="@string/title_activity_schedule_screen"
+39-->/Users/lydiaahrens/AndroidStudioProjects/CleaningHouse-master/app/src/main/AndroidManifest.xml:30:13-67
+40            android:theme="@style/AppTheme.NoActionBar" />
+40-->/Users/lydiaahrens/AndroidStudioProjects/CleaningHouse-master/app/src/main/AndroidManifest.xml:31:13-56
+41        <activity
+41-->/Users/lydiaahrens/AndroidStudioProjects/CleaningHouse-master/app/src/main/AndroidManifest.xml:32:9-35:59
+42            android:name="com.example.researchapp.PropertiesScreen"
+42-->/Users/lydiaahrens/AndroidStudioProjects/CleaningHouse-master/app/src/main/AndroidManifest.xml:33:13-45
+43            android:label="@string/title_activity_properties_screen"
+43-->/Users/lydiaahrens/AndroidStudioProjects/CleaningHouse-master/app/src/main/AndroidManifest.xml:34:13-69
+44            android:theme="@style/AppTheme.NoActionBar" />
+44-->/Users/lydiaahrens/AndroidStudioProjects/CleaningHouse-master/app/src/main/AndroidManifest.xml:35:13-56
+45        <activity android:name="com.example.researchapp.HomeScreenHost" />
+45-->/Users/lydiaahrens/AndroidStudioProjects/CleaningHouse-master/app/src/main/AndroidManifest.xml:36:9-52
+45-->/Users/lydiaahrens/AndroidStudioProjects/CleaningHouse-master/app/src/main/AndroidManifest.xml:36:19-49
+46        <activity android:name="com.example.researchapp.ChooseRole" />
+46-->/Users/lydiaahrens/AndroidStudioProjects/CleaningHouse-master/app/src/main/AndroidManifest.xml:37:9-48
+46-->/Users/lydiaahrens/AndroidStudioProjects/CleaningHouse-master/app/src/main/AndroidManifest.xml:37:19-45
+47        <activity android:name="com.example.researchapp.LoginScreen" />
+47-->/Users/lydiaahrens/AndroidStudioProjects/CleaningHouse-master/app/src/main/AndroidManifest.xml:38:9-49
+47-->/Users/lydiaahrens/AndroidStudioProjects/CleaningHouse-master/app/src/main/AndroidManifest.xml:38:19-46
+48        <activity android:name="com.example.researchapp.Main2Activity" />
+48-->/Users/lydiaahrens/AndroidStudioProjects/CleaningHouse-master/app/src/main/AndroidManifest.xml:39:9-51
 48-->/Users/lydiaahrens/AndroidStudioProjects/CleaningHouse-master/app/src/main/AndroidManifest.xml:39:19-48
-49            <intent-filter>
-49-->/Users/lydiaahrens/AndroidStudioProjects/CleaningHouse-master/app/src/main/AndroidManifest.xml:40:13-44:29
-50                <action android:name="android.intent.action.MAIN" />
-50-->/Users/lydiaahrens/AndroidStudioProjects/CleaningHouse-master/app/src/main/AndroidManifest.xml:41:17-69
-50-->/Users/lydiaahrens/AndroidStudioProjects/CleaningHouse-master/app/src/main/AndroidManifest.xml:41:25-66
-51
-52                <category android:name="android.intent.category.LAUNCHER" />
-52-->/Users/lydiaahrens/AndroidStudioProjects/CleaningHouse-master/app/src/main/AndroidManifest.xml:43:17-77
-52-->/Users/lydiaahrens/AndroidStudioProjects/CleaningHouse-master/app/src/main/AndroidManifest.xml:43:27-74
-53            </intent-filter>
-54        </activity>
-55    </application>
-56
-57</manifest>
+49        <activity android:name="com.example.researchapp.OpeningScreen" >
+49-->/Users/lydiaahrens/AndroidStudioProjects/CleaningHouse-master/app/src/main/AndroidManifest.xml:40:9-46:20
+49-->/Users/lydiaahrens/AndroidStudioProjects/CleaningHouse-master/app/src/main/AndroidManifest.xml:40:19-48
+50            <intent-filter>
+50-->/Users/lydiaahrens/AndroidStudioProjects/CleaningHouse-master/app/src/main/AndroidManifest.xml:41:13-45:29
+51                <action android:name="android.intent.action.MAIN" />
+51-->/Users/lydiaahrens/AndroidStudioProjects/CleaningHouse-master/app/src/main/AndroidManifest.xml:42:17-69
+51-->/Users/lydiaahrens/AndroidStudioProjects/CleaningHouse-master/app/src/main/AndroidManifest.xml:42:25-66
+52
+53                <category android:name="android.intent.category.LAUNCHER" />
+53-->/Users/lydiaahrens/AndroidStudioProjects/CleaningHouse-master/app/src/main/AndroidManifest.xml:44:17-77
+53-->/Users/lydiaahrens/AndroidStudioProjects/CleaningHouse-master/app/src/main/AndroidManifest.xml:44:27-74
+54            </intent-filter>
+55        </activity>
+56        <activity
+56-->[com.google.firebase:firebase-auth:16.0.5] /Users/lydiaahrens/.gradle/caches/transforms-2/files-2.1/80de9a2b2c90366f50cfa4b8466e20eb/jetified-firebase-auth-16.0.5/AndroidManifest.xml:24:9-31:50
+57            android:name="com.google.firebase.auth.internal.FederatedSignInActivity"
+57-->[com.google.firebase:firebase-auth:16.0.5] /Users/lydiaahrens/.gradle/caches/transforms-2/files-2.1/80de9a2b2c90366f50cfa4b8466e20eb/jetified-firebase-auth-16.0.5/AndroidManifest.xml:25:13-85
+58            android:excludeFromRecents="true"
+58-->[com.google.firebase:firebase-auth:16.0.5] /Users/lydiaahrens/.gradle/caches/transforms-2/files-2.1/80de9a2b2c90366f50cfa4b8466e20eb/jetified-firebase-auth-16.0.5/AndroidManifest.xml:26:13-46
+59            android:exported="true"
+59-->[com.google.firebase:firebase-auth:16.0.5] /Users/lydiaahrens/.gradle/caches/transforms-2/files-2.1/80de9a2b2c90366f50cfa4b8466e20eb/jetified-firebase-auth-16.0.5/AndroidManifest.xml:27:13-36
+60            android:launchMode="singleTask"
+60-->[com.google.firebase:firebase-auth:16.0.5] /Users/lydiaahrens/.gradle/caches/transforms-2/files-2.1/80de9a2b2c90366f50cfa4b8466e20eb/jetified-firebase-auth-16.0.5/AndroidManifest.xml:28:13-44
+61            android:permission="com.google.firebase.auth.api.gms.permission.LAUNCH_FEDERATED_SIGN_IN"
+61-->[com.google.firebase:firebase-auth:16.0.5] /Users/lydiaahrens/.gradle/caches/transforms-2/files-2.1/80de9a2b2c90366f50cfa4b8466e20eb/jetified-firebase-auth-16.0.5/AndroidManifest.xml:29:13-102
+62            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+62-->[com.google.firebase:firebase-auth:16.0.5] /Users/lydiaahrens/.gradle/caches/transforms-2/files-2.1/80de9a2b2c90366f50cfa4b8466e20eb/jetified-firebase-auth-16.0.5/AndroidManifest.xml:30:13-72
+63
+64        <service
+64-->[com.google.firebase:firebase-auth:16.0.5] /Users/lydiaahrens/.gradle/caches/transforms-2/files-2.1/80de9a2b2c90366f50cfa4b8466e20eb/jetified-firebase-auth-16.0.5/AndroidManifest.xml:33:9-39:19
+65            android:name="com.google.firebase.components.ComponentDiscoveryService"
+65-->[com.google.firebase:firebase-auth:16.0.5] /Users/lydiaahrens/.gradle/caches/transforms-2/files-2.1/80de9a2b2c90366f50cfa4b8466e20eb/jetified-firebase-auth-16.0.5/AndroidManifest.xml:34:13-84
+66            android:exported="false" >
+66-->[com.google.firebase:firebase-auth:16.0.5] /Users/lydiaahrens/.gradle/caches/transforms-2/files-2.1/80de9a2b2c90366f50cfa4b8466e20eb/jetified-firebase-auth-16.0.5/AndroidManifest.xml:35:13-37
+67            <meta-data
+67-->[com.google.firebase:firebase-auth:16.0.5] /Users/lydiaahrens/.gradle/caches/transforms-2/files-2.1/80de9a2b2c90366f50cfa4b8466e20eb/jetified-firebase-auth-16.0.5/AndroidManifest.xml:36:13-38:85
+68                android:name="com.google.firebase.components:com.google.firebase.auth.FirebaseAuthRegistrar"
+68-->[com.google.firebase:firebase-auth:16.0.5] /Users/lydiaahrens/.gradle/caches/transforms-2/files-2.1/80de9a2b2c90366f50cfa4b8466e20eb/jetified-firebase-auth-16.0.5/AndroidManifest.xml:37:17-109
+69                android:value="com.google.firebase.components.ComponentRegistrar" />
+69-->[com.google.firebase:firebase-auth:16.0.5] /Users/lydiaahrens/.gradle/caches/transforms-2/files-2.1/80de9a2b2c90366f50cfa4b8466e20eb/jetified-firebase-auth-16.0.5/AndroidManifest.xml:38:17-82
+70        </service>
+71
+72        <activity
+72-->[com.google.android.gms:play-services-base:16.0.1] /Users/lydiaahrens/.gradle/caches/transforms-2/files-2.1/7d8e0ddb7f98a6aacc529ce14402b40f/jetified-play-services-base-16.0.1/AndroidManifest.xml:23:9-26:75
+73            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+73-->[com.google.android.gms:play-services-base:16.0.1] /Users/lydiaahrens/.gradle/caches/transforms-2/files-2.1/7d8e0ddb7f98a6aacc529ce14402b40f/jetified-play-services-base-16.0.1/AndroidManifest.xml:24:13-79
+74            android:exported="false"
+74-->[com.google.android.gms:play-services-base:16.0.1] /Users/lydiaahrens/.gradle/caches/transforms-2/files-2.1/7d8e0ddb7f98a6aacc529ce14402b40f/jetified-play-services-base-16.0.1/AndroidManifest.xml:25:13-37
+75            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+75-->[com.google.android.gms:play-services-base:16.0.1] /Users/lydiaahrens/.gradle/caches/transforms-2/files-2.1/7d8e0ddb7f98a6aacc529ce14402b40f/jetified-play-services-base-16.0.1/AndroidManifest.xml:26:13-72
+76
+77        <provider
+77-->[com.google.firebase:firebase-common:16.0.3] /Users/lydiaahrens/.gradle/caches/transforms-2/files-2.1/a6c1902588a77ee389d3adb69579cd35/jetified-firebase-common-16.0.3/AndroidManifest.xml:10:9-14:39
+78            android:name="com.google.firebase.provider.FirebaseInitProvider"
+78-->[com.google.firebase:firebase-common:16.0.3] /Users/lydiaahrens/.gradle/caches/transforms-2/files-2.1/a6c1902588a77ee389d3adb69579cd35/jetified-firebase-common-16.0.3/AndroidManifest.xml:11:13-77
+79            android:authorities="com.example.researchapp.firebaseinitprovider"
+79-->[com.google.firebase:firebase-common:16.0.3] /Users/lydiaahrens/.gradle/caches/transforms-2/files-2.1/a6c1902588a77ee389d3adb69579cd35/jetified-firebase-common-16.0.3/AndroidManifest.xml:12:13-72
+80            android:exported="false"
+80-->[com.google.firebase:firebase-common:16.0.3] /Users/lydiaahrens/.gradle/caches/transforms-2/files-2.1/a6c1902588a77ee389d3adb69579cd35/jetified-firebase-common-16.0.3/AndroidManifest.xml:13:13-37
+81            android:initOrder="100" />
+81-->[com.google.firebase:firebase-common:16.0.3] /Users/lydiaahrens/.gradle/caches/transforms-2/files-2.1/a6c1902588a77ee389d3adb69579cd35/jetified-firebase-common-16.0.3/AndroidManifest.xml:14:13-36
+82
+83        <meta-data
+83-->[com.google.android.gms:play-services-basement:16.1.0] /Users/lydiaahrens/.gradle/caches/transforms-2/files-2.1/b52709e66fee82a05c94e7c96c0a6de8/jetified-play-services-basement-16.1.0/AndroidManifest.xml:23:9-25:69
+84            android:name="com.google.android.gms.version"
+84-->[com.google.android.gms:play-services-basement:16.1.0] /Users/lydiaahrens/.gradle/caches/transforms-2/files-2.1/b52709e66fee82a05c94e7c96c0a6de8/jetified-play-services-basement-16.1.0/AndroidManifest.xml:24:13-58
+85            android:value="@integer/google_play_services_version" />
+85-->[com.google.android.gms:play-services-basement:16.1.0] /Users/lydiaahrens/.gradle/caches/transforms-2/files-2.1/b52709e66fee82a05c94e7c96c0a6de8/jetified-play-services-basement-16.1.0/AndroidManifest.xml:25:13-66
+86    </application>
+87
+88</manifest>
