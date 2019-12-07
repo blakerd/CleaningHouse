@@ -1,93 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<androidx.drawerlayout.widget.DrawerLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/relativelayout"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent" >
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:id="@+id/drawer_layout"
+    android:fitsSystemWindows="true"
+    tools:context="com.example.researchapp.HomeScreenHost"
+    tools:openDrawer="start">
+    <RelativeLayout
+        android:id="@+id/relativelayout"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/colorPrimary"
+                android:elevation="4dp"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                app:subtitleTextColor="#000000" />
+            <FrameLayout
+                android:id="@+id/fragment_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:alpha="0.1"
-        android:background="@drawable/flower"
-        android:src="@drawable/flower" />
+            </FrameLayout>
+        </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="85dp"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="2dp"
+            android:layout_marginVertical="40dp"
+            android:text="HOME"
+            android:textAllCaps="true"
+            android:textColor="#000000"
+            android:textSize="50sp"
+            android:textStyle="bold" />
 
-    <TextView
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:alpha="0.1"
+            android:background="@drawable/flower"
+            android:src="@drawable/flower" />
+
+        <Button
+            android:id="@+id/currentProperties"
+            android:layout_width="236dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="2dp"
+            android:layout_marginVertical="90dp"
+            android:background="@android:color/transparent"
+            android:text="Current Properties"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:textStyle="bold"
+
+
+            />
+
+        <Button
+            android:id="@+id/viewMessages"
+            android:layout_width="236dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="70dp"
+            android:layout_marginVertical="180dp"
+            android:background="@android:color/transparent"
+            android:text="View Messages"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:textStyle="bold"
+
+
+            />
+
+        <Button
+            android:id="@+id/upcomingCleanings"
+            android:layout_width="234dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="70dp"
+            android:layout_marginVertical="240dp"
+            android:background="@android:color/transparent"
+            android:text="Upcoming Cleanings"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:textStyle="bold"
+
+
+            />
+
+        <Button
+            android:id="@+id/billsReceipts"
+            android:layout_width="234dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="70dp"
+            android:layout_marginVertical="300dp"
+            android:background="@android:color/transparent"
+            android:text="Billings and Receipts"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:textStyle="bold"
+
+
+            />
+    </RelativeLayout>
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
         android:layout_width="wrap_content"
-        android:layout_height="85dp"
-        android:layout_gravity="center"
-        android:layout_marginHorizontal="6dp"
-        android:layout_marginVertical="10dp"
-        android:text="HOME"
-        android:textAllCaps="true"
-        android:textColor="#000000"
-        android:textSize="50sp"
-        android:textStyle="bold" />
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:headerLayout="@layout/nav_header"
+        app:menu="@menu/drawer_menu" />
 
-    <Button
-        android:id="@+id/currentProperties"
-        android:layout_width="236dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="left"
-        android:layout_marginHorizontal="2dp"
-        android:layout_marginVertical="60dp"
-        android:background="@android:color/transparent"
-        android:text="Current Properties"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        android:textStyle="bold"
-
-
-        />
-
-    <Button
-        android:id="@+id/viewMessages"
-        android:layout_width="236dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginHorizontal="80dp"
-        android:layout_marginVertical="100dp"
-        android:background="@android:color/transparent"
-        android:text="View Messages"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        android:textStyle="bold"
-
-
-        />
-
-    <Button
-        android:id="@+id/upcomingCleanings"
-        android:layout_width="236dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginHorizontal="100dp"
-        android:layout_marginVertical="180sp"
-        android:background="@android:color/transparent"
-        android:text="Upcoming Cleanings"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        android:textStyle="bold"
-
-
-        />
-
-    <Button
-        android:id="@+id/billsReceipts"
-        android:layout_width="234dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginHorizontal="120dp"
-        android:layout_marginVertical="280dp"
-        android:background="@android:color/transparent"
-        android:text="Billings and Receipts"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        android:textStyle="bold"
-
-
-        />
-
-    ]>
-</RelativeLayout>
+    </androidx.drawerlayout.widget.DrawerLayout>

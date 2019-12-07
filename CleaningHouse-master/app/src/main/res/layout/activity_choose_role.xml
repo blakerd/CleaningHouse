@@ -14,10 +14,11 @@
         android:src="@drawable/tiles" />
 
     <TextView
-        android:layout_width="wrap_content"
+
         android:layout_height="wrap_content"
+        android:layout_width="280dp"
         android:layout_marginHorizontal="80dp"
-        android:layout_marginVertical="60dp"
+        android:layout_marginVertical="20dp"
         android:layout_gravity="center_vertical"
         android:text="Who are you?"
         android:textSize="40sp"

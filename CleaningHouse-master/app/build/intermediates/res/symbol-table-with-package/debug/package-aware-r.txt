@@ -1148,6 +1148,7 @@ id design_navigation_view
 id dimensions
 id direct
 id disableHome
+id drawer_layout
 id edit_query
 id email
 id end
@@ -1164,6 +1165,7 @@ id fill_vertical
 id filled
 id fixed
 id forever
+id fragment_container
 id ghost_view
 id gone
 id group_divider
@@ -1188,6 +1190,7 @@ id line1
 id line3
 id listMode
 id list_item
+id listings
 id masked
 id media_actions
 id message
@@ -1199,6 +1202,7 @@ id multiply
 id nav_message
 id nav_profile
 id nav_schedule
+id nav_view
 id navigation_header_container
 id never
 id none
@@ -1217,6 +1221,7 @@ id percent
 id pin
 id progress_circular
 id progress_horizontal
+id property
 id radio
 id relativelayout
 id right
@@ -1286,6 +1291,7 @@ id toolbar
 id top
 id topPanel
 id touch_outside
+id transactions
 id transition_current_scene
 id transition_layout_save
 id transition_position
@@ -1383,6 +1389,7 @@ layout design_navigation_menu_item
 layout design_text_input_password_icon
 layout mtrl_layout_snackbar
 layout mtrl_layout_snackbar_include
+layout nav_header
 layout notification_action
 layout notification_action_tombstone
 layout notification_media_action
@@ -1478,6 +1485,8 @@ string google_crash_reporting_api_key
 string google_storage_bucket
 string hide_bottom_view_on_scroll_behavior
 string mtrl_chip_close_icon_content_description
+string navigation_drawer_close
+string navigation_drawer_open
 string password_toggle_content_description
 string path_password_eye
 string path_password_eye_mask_strike_through
