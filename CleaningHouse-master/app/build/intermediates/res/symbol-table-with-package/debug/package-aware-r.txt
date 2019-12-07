@@ -1129,6 +1129,7 @@ id clip_horizontal
 id clip_vertical
 id collapseActionView
 id confirmpassWord
+id contacts
 id container
 id content
 id contentPanel
@@ -1274,6 +1275,7 @@ id tabMode
 id tag_transition_group
 id tag_unhandled_key_event_manager
 id tag_unhandled_key_listeners
+id termsOfService
 id text
 id text2
 id textSpacerNoButtons
