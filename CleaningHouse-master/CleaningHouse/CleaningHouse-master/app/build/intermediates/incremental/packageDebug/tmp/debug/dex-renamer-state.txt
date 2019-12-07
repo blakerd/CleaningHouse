@@ -1,4 +1,0 @@
-#Mon Nov 25 11:42:02 EST 2019
-base.0=/Users/lydiaahrens/AndroidStudioProjects/CleaningHouse-master/CleaningHouse-master/app/build/intermediates/dex/debug/mergeDexDebug/out/classes.dex
-path.0=classes.dex
-renamed.0=classes.dex
