@@ -5,7 +5,7 @@ Views of the app can be seen here at [Sign-In](https://github.com/SCCapstone/Cle
 In order to build this project you will need to install
 - Java
 - Android Studio
-- Before running in Android Studio, must delete gradke folder, and the two other items that contain -gradlew
+- Before running in Android Studio, must delete gradle folder, and the two other items that contain -gradlew
 ## Running
 To install the app in the emulator in debug mode click on "Run -> Debug Mode" in Android Studio.
 ## Deployment
