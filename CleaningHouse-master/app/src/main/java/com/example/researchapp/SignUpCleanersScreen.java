@@ -24,7 +24,6 @@ public class SignUpCleanersScreen extends AppCompatActivity {
     String email;
     String confirm;
     String passWord;
-    String testString;
     EditText userNameInput;
     EditText emailInput;
     EditText confirmInput;
@@ -49,7 +48,7 @@ public class SignUpCleanersScreen extends AppCompatActivity {
                 passWord = passWordInput.getText().toString();
                 confirm = confirmInput.getText().toString();
                 if (!userName.equals(null) && passWord.equals(confirm)) {
-                    mAuth.createUserWithEmailAndPassword(userName, passWord)
+                    mAuth.createUserWithEmailAndPassword(email, passWord)
                             .addOnCompleteListener(SignUpCleanersScreen.this, new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
