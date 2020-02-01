@@ -52,7 +52,7 @@ public class LoginScreen extends AppCompatActivity {
                                     FirebaseUser user = mAuth.getCurrentUser();
                                     Toast.makeText(LoginScreen.this, "Authentication success.",
                                             Toast.LENGTH_SHORT).show();
-                                    //nextScreen();
+                                    nextScreen();
                                     //updateUI(user);
                                 } else {
                                     // If sign in fails, display a message to the user.
@@ -67,7 +67,7 @@ public class LoginScreen extends AppCompatActivity {
                         });
                 switch (v.getId()) {
                     case R.id.button:
-                        nextScreen();
+                       // nextScreen();
                         break;
                 }
             }
