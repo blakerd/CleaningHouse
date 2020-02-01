@@ -24,7 +24,7 @@ public class SignUpCleanersScreen extends AppCompatActivity {
     String email;
     String confirm;
     String passWord;
-
+    String testString;
     EditText userNameInput;
     EditText emailInput;
     EditText confirmInput;
