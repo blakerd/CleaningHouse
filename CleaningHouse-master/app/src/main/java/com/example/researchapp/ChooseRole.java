@@ -43,4 +43,9 @@ public class ChooseRole extends AppCompatActivity implements View.OnClickListene
         startActivity(i);
 
     }
+    private Intent intentForComparison()
+    {
+        Intent i = new Intent(this, SignUpScreen.class);
+        return i;
+    }
 }
