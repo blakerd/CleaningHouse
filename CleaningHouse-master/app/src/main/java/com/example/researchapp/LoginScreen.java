@@ -21,6 +21,7 @@ import android.app.Activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class LoginScreen extends AppCompatActivity {
+    int check;
     String userName;
     String passWord;
     EditText userNameInput;
@@ -67,7 +68,7 @@ public class LoginScreen extends AppCompatActivity {
                         });
                 switch (v.getId()) {
                     case R.id.button:
-                       // nextScreen();
+                       nextScreen();
                         break;
                 }
             }
@@ -80,12 +81,11 @@ public class LoginScreen extends AppCompatActivity {
 
 
 
-    private void nextScreen() {
-
+    public void nextScreen() {
+        check = 1;
         Intent i = new Intent(this, HomeScreenHost.class);
         startActivity(i);
 
     }
-
 
 }
