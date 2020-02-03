@@ -15,5 +15,6 @@ public class ChooseRoleTest {
        //attempting to compare nextPageHost()'s Intent to the expected intent
         //not sure how to get the actual returned Intent to compare to the expected Intent
         //may need to utilize Espresso-intents or Mockito
+        //this might not work
     }
 }
