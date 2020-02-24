@@ -1,17 +1,17 @@
 package com.example.researchapp;
-
+//tonys comment
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
-import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import androidx.annotation.NonNull;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.AuthResult;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,71 +21,78 @@ import android.app.Activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class LoginScreen extends AppCompatActivity {
-    int check;
-    String userName;
-    String passWord;
-    EditText userNameInput;
-    EditText passWordInput;
-    Button btn;
-    private FirebaseAuth mAuth;
+    Button signUpBtn;
+    EditText emailId, password;
+    TextView tvSignIn;
+    FirebaseAuth mFirebaseAuth;
+    private FirebaseAuth.AuthStateListener mAuthStateListener;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_screen);
+        mFirebaseAuth = FirebaseAuth.getInstance();
+        signUpBtn = (Button) findViewById(R.id.signUpButton);
+        emailId = (EditText) findViewById(R.id.emailButton);
+        password = (EditText) findViewById(R.id.passWordButton);
+        tvSignIn = (TextView) findViewById(R.id.textView);
 
-
-        mAuth = FirebaseAuth.getInstance();
-        userNameInput = (EditText) findViewById(R.id.userName);
-        passWordInput= (EditText) findViewById(R.id.passWord);
-        btn = (Button) findViewById(R.id.button);
-        btn.setOnClickListener(new View.OnClickListener() {
+        mAuthStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
-            public void onClick (View v) {
-                userName = userNameInput.getText().toString();
-                passWord = passWordInput.getText().toString();
-                mAuth.signInWithEmailAndPassword(userName, passWord)
-                        .addOnCompleteListener(LoginScreen.this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()) {
-                                    // Sign in success, update UI with the signed-in user's information
-                                    Log.d("SignInSuccess", "signInWithEmail:success");
-                                    FirebaseUser user = mAuth.getCurrentUser();
-                                    Toast.makeText(LoginScreen.this, "Authentication success.",
-                                            Toast.LENGTH_SHORT).show();
-                                    nextScreen();
-                                    //updateUI(user);
-                                } else {
-                                    // If sign in fails, display a message to the user.
-                                    Log.w("SignInFail", "signInWithEmail:failure", task.getException());
-                                    Toast.makeText(LoginScreen.this, "Authentication failed.",
-                                            Toast.LENGTH_SHORT).show();
-                                    //updateUI(null);
-                                }
 
-                                // ...
-                            }
-                        });
-                switch (v.getId()) {
-                    case R.id.button:
-                       nextScreen();
-                        break;
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser mFirebaseUser = mFirebaseAuth.getCurrentUser();
+                if (mFirebaseUser != null) {
+                    Toast.makeText(LoginScreen.this, "You are logged in.", Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(LoginScreen.this, HomeScreenHost.class);
+                    startActivity(i);
+                } else {
+                    Toast.makeText(LoginScreen.this, "Please login.", Toast.LENGTH_SHORT).show();
                 }
             }
-            });
+        };
+        signUpBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String email = emailId.getText().toString();
+                String pad = password.getText().toString();
+                if (email.isEmpty()) {
+                    emailId.setError("Please enter an email-id.");
+                    emailId.requestFocus();
 
+                } else if (pad.isEmpty()) {
+                    password.setError("Please enter a password.");
+                    password.requestFocus();
+                } else if (email.isEmpty() && pad.isEmpty()) {
+                    Toast.makeText(LoginScreen.this, "Fields are empty.", Toast.LENGTH_SHORT).show();
+                } else if (!(email.isEmpty() && pad.isEmpty())) {
+                    mFirebaseAuth.signInWithEmailAndPassword(email, pad).addOnCompleteListener(LoginScreen.this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (!task.isSuccessful()) {
+                                Toast.makeText(LoginScreen.this, "Login Un-Successful. Please try again", Toast.LENGTH_SHORT).show();
+                            } else {
+                                startActivity(new Intent(LoginScreen.this, HomeScreenHost.class));
+                            }
+
+                        }
+                    });
+                } else {
+                    Toast.makeText(LoginScreen.this, "Error Occurred!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        tvSignIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intoSignUp = new Intent(LoginScreen.this, OpeningScreen.class);
+                startActivity(intoSignUp);
+            }
+        });
     }
-
-
-
-
-
-
-    public void nextScreen() {
-        check = 1;
-        Intent i = new Intent(this, HomeScreenHost.class);
-        startActivity(i);
-
+    protected void onStart() {
+        super.onStart();
+        mFirebaseAuth.addAuthStateListener(mAuthStateListener);
     }
-
 }
