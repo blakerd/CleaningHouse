@@ -15,12 +15,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.core.view.GravityCompat;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class HomeScreenHost extends AppCompatActivity implements View.OnClickListener {
+    Button logOutBtn;
+    FirebaseAuth mFirebaseAuth;
     Button currentProperties;
     Button viewMessages;
     Button upcomingCleanings;
     Button billsReceipts;
     DrawerLayout drawer;
+    private FirebaseAuth.AuthStateListener mAuthStateListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +47,7 @@ public class HomeScreenHost extends AppCompatActivity implements View.OnClickLis
         }*/
 
 
+        logOutBtn= findViewById(R.id.logOut);
         currentProperties = (Button) findViewById(R.id.currentProperties);
         viewMessages = (Button) findViewById(R.id.viewMessages);
         upcomingCleanings = (Button) findViewById(R.id.upcomingCleanings);
@@ -50,6 +56,15 @@ public class HomeScreenHost extends AppCompatActivity implements View.OnClickLis
         viewMessages.setOnClickListener(this);
         upcomingCleanings.setOnClickListener(this);
         billsReceipts.setOnClickListener(this);
+
+        logOutBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+                Intent backToHome = new Intent(HomeScreenHost.this, OpeningScreen.class);
+                startActivity(backToHome);
+            }
+        });
     }
     @Override
     public void onBackPressed(){
