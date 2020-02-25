@@ -1,5 +1,6 @@
 package com.example.researchapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -28,5 +29,18 @@ public class PropertiesScreen extends AppCompatActivity {
             }
         });
     }
+    @Override
+    public void onClick(View v) {
+        switch(v.getId()){
+            case R.id.cleanerBtn:
+                nextScreen();
+                break;
+        }
+    }
+    private void nextScreen() {
 
+        Intent i = new Intent(this, CleanersHomeScreen.class);
+        startActivity(i);
+
+    }
 }
