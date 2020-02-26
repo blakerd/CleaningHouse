@@ -21,15 +21,8 @@ public class PropertiesScreen extends AppCompatActivity implements View.OnClickL
         Toolbar toolbar = findViewById(R.id.toolbar);
         uploadNewPropertyButton = (Button) findViewById(R.id.uploadNewPropertyButton);
         setSupportActionBar(toolbar);
+        uploadNewPropertyButton.setOnClickListener(this);
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
     }
     @Override
     public void onClick(View v) {
