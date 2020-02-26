@@ -34,18 +34,18 @@ public class UploadNewPropertyScreen extends AppCompatActivity implements View.O
         squareFootageInput = (EditText) findViewById(R.id.squareFootage);
         cleaningPriceInput = (EditText) findViewById(R.id.cleaningPrice);
 
-        selectImageButton = (Button) findViewById(R.id.selectImageButton);
+        //selectImageButton = (Button) findViewById(R.id.selectImageButton);
         uploadButton = (Button) findViewById(R.id.uploadButton);
-        selectImageButton.setOnClickListener(this);
+       // selectImageButton.setOnClickListener(this);
         uploadButton.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         switch(v.getId()){
-            case R.id.selectImageButton:
+            //case R.id.selectImageButton:
                 // uploadNewPropertyPage();
-                break;
+               // break;
             case R.id.uploadButton:
                 propertyName = propertyNameInput.getText().toString();
                 propertyAddress = propertyAddressInput.getText().toString();
