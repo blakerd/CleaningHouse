@@ -9,6 +9,14 @@
     android:fitsSystemWindows="true"
     tools:context="com.example.researchapp.HomeScreenHost"
     tools:openDrawer="start">
+    <LinearLayout
+        android:id="@+id/content_frame"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+    </LinearLayout>
     <RelativeLayout
         android:id="@+id/relativelayout"
         android:layout_width="fill_parent"
@@ -27,13 +35,7 @@
                 android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
                 app:subtitleTextColor="#000000" />
-            <FrameLayout
-                android:id="@+id/fragment_container"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
 
-
-            </FrameLayout>
         </LinearLayout>
         <TextView
             android:layout_width="wrap_content"
