@@ -87,7 +87,6 @@ public class SignUpScreen extends AppCompatActivity {
 
 
     private void nextScreen() {
-
         Intent i = new Intent(this, HomeScreenHost.class);
         startActivity(i);
 

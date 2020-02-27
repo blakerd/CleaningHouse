@@ -4,10 +4,13 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.widget.Toolbar;
 
@@ -15,7 +18,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.core.view.GravityCompat;
 
-public class CleanersHomeScreen extends AppCompatActivity implements View.OnClickListener {
+import com.google.android.material.navigation.NavigationView;
+
+public class CleanersHomeScreen extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
     Button currentProperties;
     Button viewMessages;
     Button upcomingCleanings;
@@ -31,10 +36,13 @@ public class CleanersHomeScreen extends AppCompatActivity implements View.OnClic
 
         drawer = findViewById(R.id.drawer_layout);
 
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
+
         currentProperties = (Button) findViewById(R.id.currentListings);
         viewMessages = (Button) findViewById(R.id.viewMessages);
         upcomingCleanings = (Button) findViewById(R.id.upcomingCleanings);
@@ -43,7 +51,23 @@ public class CleanersHomeScreen extends AppCompatActivity implements View.OnClic
         viewMessages.setOnClickListener(this);
         upcomingCleanings.setOnClickListener(this);
         billsReceipts.setOnClickListener(this);
+
     }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch(item.getItemId())
+        {
+            case R.id.nav_profile:
+            {
+                Log.d("test","testing");
+                break;
+            }
+        }
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
     @Override
     public void onBackPressed(){
         if (drawer.isDrawerOpen(GravityCompat.START)){

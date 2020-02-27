@@ -71,9 +71,11 @@ public class UploadNewPropertyScreen extends AppCompatActivity implements View.O
         cityInput = (EditText) findViewById(R.id.city);
         cleaningPriceInput = (EditText) findViewById(R.id.cleaningPrice);
 
+
        // selectImageButton = (Button) findViewById(R.id.selectImageButton);
         uploadButton = (Button) findViewById(R.id.uploadButton);
       //  selectImageButton.setOnClickListener(this);
+
         uploadButton.setOnClickListener(this);
         //mStorageRef = FirebaseStorage.getInstance().getReference();
     }
@@ -81,9 +83,11 @@ public class UploadNewPropertyScreen extends AppCompatActivity implements View.O
     @Override
     public void onClick(View v) {
         switch(v.getId()){
+
            // case R.id.selectImageButton:
                 // uploadNewPropertyPage();
               //  break;
+
             case R.id.uploadButton:
                 propertyName = propertyNameInput.getText().toString();
                 propertyAddress = propertyAddressInput.getText().toString();

@@ -4,10 +4,11 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
+import android.util.Log;
+import android.view.*;
+import android.widget.*;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.widget.Toolbar;
 
@@ -15,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.core.view.GravityCompat;
 
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class HomeScreenHost extends AppCompatActivity implements View.OnClickListener {
@@ -25,6 +27,7 @@ public class HomeScreenHost extends AppCompatActivity implements View.OnClickLis
     Button upcomingCleanings;
     Button billsReceipts;
     DrawerLayout drawer;
+    NavigationView navigationView;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
 
     @Override
@@ -35,6 +38,7 @@ public class HomeScreenHost extends AppCompatActivity implements View.OnClickLis
         setSupportActionBar(toolbar);
 
         drawer = findViewById(R.id.drawer_layout);
+        navigationView = findViewById(R.id.nav_view);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -46,8 +50,8 @@ public class HomeScreenHost extends AppCompatActivity implements View.OnClickLis
             drawer.openDrawer(GravityCompat.START);
         }*/
 
-
-        logOutBtn= findViewById(R.id.logOut);
+        setupDrawerContent(navigationView);
+        logOutBtn = findViewById(R.id.logOut);
         currentProperties = (Button) findViewById(R.id.currentProperties);
         viewMessages = (Button) findViewById(R.id.viewMessages);
         upcomingCleanings = (Button) findViewById(R.id.upcomingCleanings);
@@ -60,12 +64,49 @@ public class HomeScreenHost extends AppCompatActivity implements View.OnClickLis
         logOutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
+                mFirebaseAuth.getInstance().signOut();
                 Intent backToHome = new Intent(HomeScreenHost.this, OpeningScreen.class);
                 startActivity(backToHome);
             }
         });
     }
+
+    private void setupDrawerContent(NavigationView navigationView) {
+        navigationView.setNavigationItemSelectedListener(
+                new NavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(MenuItem menuItem) {
+                        selectDrawerItem(menuItem);
+                        return true;
+                    }
+                });
+    }
+
+    public void selectDrawerItem(MenuItem menuItem) {
+        switch (menuItem.getItemId()) {
+            case R.id.nav_profile:
+
+                break;
+            case R.id.nav_schedule:
+
+                break;
+            case R.id.property:
+
+                break;
+            default:
+
+        }
+        LayoutInflater inflater = getLayoutInflater();
+        LinearLayout container = (LinearLayout) findViewById(R.id.content_frame);
+        inflater.inflate(R.layout.activity_home_screen_host, container);
+        // Highlight the selected item has been done by NavigationView
+        menuItem.setChecked(true);
+        // Set action bar title
+        setTitle(menuItem.getTitle());
+        // Close the navigation drawer
+        drawer.closeDrawers();
+    }
+
     @Override
     public void onBackPressed(){
         if (drawer.isDrawerOpen(GravityCompat.START)){

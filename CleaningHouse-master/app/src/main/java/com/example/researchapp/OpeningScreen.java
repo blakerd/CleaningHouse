@@ -57,7 +57,7 @@ public class OpeningScreen extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (!task.isSuccessful()) {
-                                        Toast.makeText(OpeningScreen.this, "SignUp Un-Successful. Please try again", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(OpeningScreen.this, "SignUp Unsuccessful. Please try again", Toast.LENGTH_SHORT).show();
                                     } else {
                                         startActivity(new Intent(OpeningScreen.this, HomeScreenHost.class));
                                     }
@@ -85,5 +85,7 @@ public class OpeningScreen extends AppCompatActivity {
             }
         });
     }
+    @Override
+    public void onBackPressed(){ }
 
 }
