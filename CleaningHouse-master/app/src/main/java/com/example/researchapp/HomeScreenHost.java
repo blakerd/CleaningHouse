@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -60,7 +61,7 @@ public class HomeScreenHost extends AppCompatActivity implements View.OnClickLis
         logOutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
+                mFirebaseAuth.getInstance().signOut();
                 Intent backToHome = new Intent(HomeScreenHost.this, OpeningScreen.class);
                 startActivity(backToHome);
             }
@@ -93,10 +94,12 @@ public class HomeScreenHost extends AppCompatActivity implements View.OnClickLis
         }
     }
     public void propertiesPage(){
+        Log.d("test","testing");
         Intent i = new Intent(this, PropertiesScreen.class);
         startActivity(i);
     }
     public void schedulePage() {
+        Log.d("test","testing");
         Intent i = new Intent(this, ScheduleScreen.class);
         startActivity(i);
     }

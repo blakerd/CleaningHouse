@@ -85,5 +85,7 @@ public class OpeningScreen extends AppCompatActivity {
             }
         });
     }
+    @Override
+    public void onBackPressed(){ }
 
 }
