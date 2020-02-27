@@ -22,18 +22,18 @@
         android:layout_gravity="center"
         android:layout_marginTop="40dp"
         android:ems="10"
-        android:hint="Property Address:"
+        android:hint="Street Address:"
         android:inputType="textPersonName"
         android:textColor="#000000" />
 
     <EditText
-        android:id="@+id/squareFootage"
+        android:id="@+id/city"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="68dp"
         android:ems="10"
-        android:hint="Square Footage:"
+        android:hint="City:"
         android:inputType="textPersonName"
         android:textColor="#000000" />
 
