@@ -43,6 +43,7 @@
         <activity android:name=".ChooseRole" />
         <activity android:name=".LoginScreen" />
         <activity android:name=".Main2Activity" />
+        <activity android:name=".UploadNewPropertyScreen" />
         <activity android:name=".OpeningScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
