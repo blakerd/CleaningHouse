@@ -92,9 +92,28 @@ public class HomeScreenHost extends AppCompatActivity implements View.OnClickLis
                 startActivity(i);
                 break;
             case R.id.property:
+                Intent j = new Intent(this, PropertiesScreen.class);
+                startActivity(j);
+                break;
+            case R.id.listings:
 
                 break;
-            default:
+            case R.id.nav_message:
+                Intent l = new Intent(this, MessageScreen.class);
+                startActivity(l);
+                break;
+            case R.id.transactions:
+                Intent m = new Intent(this, BillingScreen.class);
+                startActivity(m);
+                break;
+            case R.id.contacts:
+
+                break;
+            case R.id.termsOfService:
+                Intent o = new Intent(this, terms_and_conditions_page.class);
+                startActivity(o);
+                break;
+                default:
 
         }
         LayoutInflater inflater = getLayoutInflater();
