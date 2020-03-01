@@ -16,13 +16,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".CleanersProperties"
-            android:label="@string/title_activity_cleaners_properties"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity
             android:name=".terms_and_conditions_page"
             android:label="@string/title_activity_terms_and_conditions_page"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".PropertyListAdapter" />
         <activity android:name=".CleanersHomeScreen" />
         <activity android:name=".SignUpCleanersScreen" />
