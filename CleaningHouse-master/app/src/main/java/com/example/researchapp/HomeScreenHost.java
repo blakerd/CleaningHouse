@@ -88,7 +88,8 @@ public class HomeScreenHost extends AppCompatActivity implements View.OnClickLis
 
                 break;
             case R.id.nav_schedule:
-
+                Intent i = new Intent(this, ScheduleScreen.class);
+                startActivity(i);
                 break;
             case R.id.property:
 
