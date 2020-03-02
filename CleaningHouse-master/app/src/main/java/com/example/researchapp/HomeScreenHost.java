@@ -18,6 +18,7 @@ import androidx.core.view.GravityCompat;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class HomeScreenHost extends AppCompatActivity implements View.OnClickListener {
     Button logOutBtn;
@@ -60,6 +61,8 @@ public class HomeScreenHost extends AppCompatActivity implements View.OnClickLis
         viewMessages.setOnClickListener(this);
         upcomingCleanings.setOnClickListener(this);
         billsReceipts.setOnClickListener(this);
+      
+        Toast.makeText(HomeScreenHost.this, "Welcome" , Toast.LENGTH_SHORT).show();
 
         logOutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,7 +88,8 @@ public class HomeScreenHost extends AppCompatActivity implements View.OnClickLis
     public void selectDrawerItem(MenuItem menuItem) {
         switch (menuItem.getItemId()) {
             case R.id.nav_profile:
-
+                Intent h = new Intent(this, Profile.class);
+                startActivity(h);
                 break;
             case R.id.nav_schedule:
                 Intent i = new Intent(this, ScheduleScreen.class);

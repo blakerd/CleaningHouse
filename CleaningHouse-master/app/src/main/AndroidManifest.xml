@@ -15,10 +15,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".Profile"></activity>
         <activity
             android:name=".terms_and_conditions_page"
             android:label="@string/title_activity_terms_and_conditions_page"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".PropertyListAdapter" />
         <activity android:name=".CleanersHomeScreen" />
         <activity android:name=".SignUpCleanersScreen" />

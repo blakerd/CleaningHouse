@@ -29,12 +29,16 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.inputmethod.InputMethodManager;
 import android.app.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.HashMap;
 
 public class LoginScreen extends AppCompatActivity {
     private static final int RC_SIGN_IN = 100 ;
@@ -219,10 +223,26 @@ private void signIn() {
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
+                        FirebaseUser user = mFirebaseAuth.getCurrentUser();
+                        if(task.getResult().getAdditionalUserInfo().isNewUser()) {
+                            String email = user.getEmail();
+                            String uid = user.getUid();
+
+                            HashMap<Object, String> hashMap = new HashMap<>();
+                            hashMap.put("email", email);
+                            hashMap.put("uid", uid);
+                            hashMap.put("name", "");
+                            hashMap.put("status", "");
+                            hashMap.put("image", "");
+                            FirebaseDatabase database = FirebaseDatabase.getInstance();
+                            DatabaseReference reference = database.getReference("Users");
+                            reference.child(uid).setValue(hashMap);
+                        }
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
 
-                            FirebaseUser user = mFirebaseAuth.getCurrentUser();
+
+
                             Toast.makeText(LoginScreen.this, ""+user.getEmail(),Toast.LENGTH_SHORT).show();
 
                             startActivity(new Intent(LoginScreen.this,  HomeScreenHost.class));
