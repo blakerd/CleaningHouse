@@ -9,6 +9,14 @@
     android:fitsSystemWindows="true"
     tools:context="com.example.researchapp.HomeScreenHost"
     tools:openDrawer="start">
+    <LinearLayout
+        android:id="@+id/content_frame"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+    </LinearLayout>
     <RelativeLayout
         android:id="@+id/relativelayout"
         android:layout_width="fill_parent"
@@ -27,13 +35,7 @@
                 android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
                 app:subtitleTextColor="#000000" />
-            <FrameLayout
-                android:id="@+id/fragment_container"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
 
-
-            </FrameLayout>
         </LinearLayout>
         <TextView
             android:layout_width="wrap_content"
@@ -111,6 +113,22 @@
             android:layout_marginVertical="300dp"
             android:background="@android:color/transparent"
             android:text="Billings and Receipts"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:textStyle="bold"
+
+
+            />
+
+        <Button
+            android:id="@+id/logOut"
+            android:layout_width="234dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="70dp"
+            android:layout_marginVertical="400dp"
+            android:background="@android:color/transparent"
+            android:text="Log Out"
             android:textColor="#000000"
             android:textSize="20sp"
             android:textStyle="bold"

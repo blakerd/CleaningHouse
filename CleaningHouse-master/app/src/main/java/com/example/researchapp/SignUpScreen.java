@@ -49,7 +49,7 @@ public class SignUpScreen extends AppCompatActivity {
                 passWord = passWordInput.getText().toString();
                 confirm = confirmInput.getText().toString();
                 if (!userName.equals(null) && passWord.equals(confirm)) {
-                    mAuth.createUserWithEmailAndPassword(userName, passWord)
+                    mAuth.createUserWithEmailAndPassword(email, passWord)
                             .addOnCompleteListener(SignUpScreen.this, new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
@@ -87,10 +87,8 @@ public class SignUpScreen extends AppCompatActivity {
 
 
     private void nextScreen() {
-
         Intent i = new Intent(this, HomeScreenHost.class);
         startActivity(i);
 
     }
-
 }
