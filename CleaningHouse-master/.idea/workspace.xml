@@ -6,6 +6,7 @@
     </shared>
   </component>
   <component name="ChangeListManager">
+
     <list default="true" id="f298e65a-a80f-403d-8594-6fbb517f8e30" name="Default Changelist" comment="">
       <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/researchapp/Property.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/researchapp/UploadNewPropertyScreen.java" afterDir="false" />
@@ -94,6 +95,7 @@
       <change beforePath="$PROJECT_DIR$/local.properties" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/build/classes/" />
+
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -142,25 +144,30 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
+
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/researchapp/OpeningScreen.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="210">
               <caret line="30" column="43" selection-start-line="30" selection-start-column="43" selection-end-line="30" selection-end-column="43" />
+
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_opening_screen.xml">
           <provider editor-type-id="android-designer2" />
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="150">
               <caret line="10" column="43" selection-start-line="10" selection-start-column="43" selection-end-line="10" selection-end-column="43" />
+
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/researchapp/LoginScreen.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="480">
@@ -173,11 +180,13 @@
                 <element signature="e#6790#6791#0" expanded="true" />
                 <element signature="e#6837#6838#0" expanded="true" />
               </folding>
+
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_login_screen.xml">
           <provider editor-type-id="android-designer2" />
           <provider selected="true" editor-type-id="text-editor">
@@ -201,6 +210,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="393">
               <caret line="161" column="9" selection-start-line="161" selection-start-column="9" selection-end-line="161" selection-end-column="9" />
+
             </state>
           </provider>
         </entry>
@@ -234,6 +244,7 @@
       <pane id="PackagesPane" />
       <pane id="ProjectPane" />
       <pane id="AndroidView" />
+
     </panes>
   </component>
   <component name="RunDashboard">
@@ -321,10 +332,12 @@
       <option name="presentableId" value="Default" />
       <updated>1583033370331</updated>
     </task>
+
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="804" extended-state="0" />
+
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" visible="true" weight="0.3297568" />
@@ -354,6 +367,7 @@
       <window_info anchor="right" id="Palette&#9;" />
     </layout>
   </component>
+
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/researchapp/OpeningScreen.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -365,8 +379,10 @@
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_opening_screen.xml">
       <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
+
         <state relative-caret-position="150">
           <caret line="10" column="43" selection-start-line="10" selection-start-column="43" selection-end-line="10" selection-end-column="43" />
+
         </state>
       </provider>
     </entry>
