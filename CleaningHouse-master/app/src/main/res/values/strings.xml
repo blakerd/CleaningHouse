@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ResearchApp</string>
+    <string name="app_name">Puro</string>
     <string name="title_activity_properties_screen">PropertiesScreen</string>
     <string name="title_activity_schedule_screen">ScheduleScreen</string>
     <string name="title_activity_billing_screen">BillingScreen</string>
