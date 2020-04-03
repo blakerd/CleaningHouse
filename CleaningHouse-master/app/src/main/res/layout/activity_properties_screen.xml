@@ -22,6 +22,66 @@
 
     <include layout="@layout/content_properties_screen" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <Button
+            android:id="@+id/uploadNewPropertyButton"
+            android:layout_width="137dp"
+            android:layout_height="125dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginHorizontal="125dp"
+            android:layout_marginVertical="100dp"
+            android:text="Upload New Property"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            />
+
+
+        <EditText
+            android:id="@+id/propertyNickname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="40dp"
+            android:layout_marginHorizontal="0dp"
+            android:layout_marginVertical="0dp"
+            android:ems="10"
+            android:hint="Enter your property nickname"
+            android:inputType="textPersonName"
+            android:textColor="#000000" />
+        <TextView
+            android:id="@+id/Property"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="0dp"
+            android:layout_marginVertical="0dp"
+            android:text="HOME"
+            android:textAllCaps="true"
+            android:textColor="#000000"
+            android:textSize="50sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/displayPropertyButton"
+            android:layout_width="137dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginHorizontal="125dp"
+            android:layout_marginVertical="0dp"
+            android:text="Display Street Address"
+            android:textSize="20sp"
+            android:textStyle="bold"
+
+
+            />
+
+
+    </LinearLayout>
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
