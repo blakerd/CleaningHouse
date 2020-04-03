@@ -5,6 +5,10 @@ import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -13,6 +17,11 @@ import android.view.View;
 
 public class PropertiesScreen extends AppCompatActivity implements View.OnClickListener {
 
+    String userID;
+    FirebaseAuth mFirebaseAuth;
+    private FirebaseAuth.AuthStateListener mAuthStateListener;
+    private FirebaseDatabase mFirebaseDatabase;
+    private DatabaseReference myRef;
     Button uploadNewPropertyButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +31,11 @@ public class PropertiesScreen extends AppCompatActivity implements View.OnClickL
         uploadNewPropertyButton = (Button) findViewById(R.id.uploadNewPropertyButton);
         setSupportActionBar(toolbar);
         uploadNewPropertyButton.setOnClickListener(this);
+        mFirebaseAuth = FirebaseAuth.getInstance();
+        FirebaseUser mFirebaseUser = mFirebaseAuth.getCurrentUser();
+        userID = mFirebaseUser.getUid();
+        mFirebaseDatabase = FirebaseDatabase.getInstance();
+        myRef = mFirebaseDatabase.getReference();
 
     }
     @Override
