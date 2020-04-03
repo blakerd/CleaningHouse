@@ -82,6 +82,7 @@ public class OpeningScreen extends AppCompatActivity {
                 //Intent openFrom = new Intent(OpeningScreen.this, LoginScreen.class);
                 //startActivity(openFrom);
                 startActivity(new Intent(OpeningScreen.this, LoginScreen.class));
+                finish();
             }
         });
     }

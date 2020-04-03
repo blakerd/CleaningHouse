@@ -18,6 +18,7 @@ import androidx.core.view.GravityCompat;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class HomeScreenHost extends AppCompatActivity implements View.OnClickListener {
     Button logOutBtn;
@@ -60,6 +61,8 @@ public class HomeScreenHost extends AppCompatActivity implements View.OnClickLis
         viewMessages.setOnClickListener(this);
         upcomingCleanings.setOnClickListener(this);
         billsReceipts.setOnClickListener(this);
+      
+        Toast.makeText(HomeScreenHost.this, "Welcome" , Toast.LENGTH_SHORT).show();
 
         logOutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,15 +88,36 @@ public class HomeScreenHost extends AppCompatActivity implements View.OnClickLis
     public void selectDrawerItem(MenuItem menuItem) {
         switch (menuItem.getItemId()) {
             case R.id.nav_profile:
-
+                Intent h = new Intent(this, Profile.class);
+                startActivity(h);
                 break;
             case R.id.nav_schedule:
-
+                Intent i = new Intent(this, ScheduleScreen.class);
+                startActivity(i);
                 break;
             case R.id.property:
+                Intent j = new Intent(this, PropertiesScreen.class);
+                startActivity(j);
+                break;
+            case R.id.listings:
 
                 break;
-            default:
+            case R.id.nav_message:
+                Intent l = new Intent(this, MessageScreen.class);
+                startActivity(l);
+                break;
+            case R.id.transactions:
+                Intent m = new Intent(this, BillingScreen.class);
+                startActivity(m);
+                break;
+            case R.id.contacts:
+
+                break;
+            case R.id.termsOfService:
+                Intent o = new Intent(this, terms_and_conditions_page.class);
+                startActivity(o);
+                break;
+                default:
 
         }
         LayoutInflater inflater = getLayoutInflater();

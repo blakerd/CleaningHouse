@@ -10,17 +10,22 @@
             android:icon="@drawable/ic_schedule"
             android:title="Schedule" />
         <item android:id="@+id/property"
+            android:icon="@drawable/ic_property"
             android:title="Properties" />
         <item android:id="@+id/listings"
+            android:icon="@drawable/ic_list"
             android:title="Listings" />
         <item android:id="@+id/nav_message"
             android:icon="@drawable/ic_message"
             android:title="Message" />
         <item android:id="@+id/transactions"
+            android:icon="@drawable/ic_transaction"
             android:title="Transactions" />
         <item android:id="@+id/contacts"
+            android:icon="@drawable/ic_contact"
             android:title="Contact Us" />
         <item android:id="@+id/termsOfService"
+            android:icon="@drawable/ic_tos"
             android:title="Terms of Service" />
 
     </group>
