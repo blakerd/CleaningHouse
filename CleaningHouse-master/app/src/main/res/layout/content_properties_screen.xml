@@ -8,53 +8,5 @@
     tools:context=".PropertiesScreen"
     tools:showIn="@layout/activity_properties_screen">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" >
-
-    <Button
-        android:id="@+id/uploadNewPropertyButton"
-        android:layout_width="137dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:layout_marginHorizontal="125dp"
-        android:layout_marginVertical="175dp"
-        android:text="Upload New Property"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintVertical_bias="0.72"
-
-
-        />
-    </LinearLayout>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:layout_marginHorizontal="2dp"
-        android:layout_marginVertical="40dp"
-        android:text="Property"
-        android:textAllCaps="true"
-        android:textColor="#000000"
-        android:textSize="50sp"
-        android:textStyle="bold" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:layout_marginHorizontal="2dp"
-        android:layout_marginVertical="90dp"
-        android:text="HOME"
-        android:textAllCaps="true"
-        android:textColor="#000000"
-        android:textSize="50sp"
-        android:textStyle="bold" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
