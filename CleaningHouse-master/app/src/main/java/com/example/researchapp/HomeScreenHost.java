@@ -45,12 +45,6 @@ public class HomeScreenHost extends AppCompatActivity implements View.OnClickLis
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-        /*if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            drawer.openDrawer(GravityCompat.START);
-        }*/
-
         setupDrawerContent(navigationView);
         logOutBtn = findViewById(R.id.logOut);
         currentProperties = (Button) findViewById(R.id.currentProperties);
