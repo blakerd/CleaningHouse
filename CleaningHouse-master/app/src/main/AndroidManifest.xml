@@ -15,18 +15,15 @@
         android:roundIcon="@mipmap/app_icon_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Profile"></activity>
+        <activity android:name=".new_user"></activity>
+        <activity android:name=".MessageScreen" />
+        <activity android:name=".Profile" />
         <activity
             android:name=".terms_and_conditions_page"
             android:label="@string/title_activity_terms_and_conditions_page"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".CleanersHomeScreen" />
-        <activity android:name=".SignUpCleanersScreen" />
         <activity android:name=".SignUpScreen" />
-        <activity
-            android:name=".MessageScreen"
-            android:label="@string/title_activity_message_screen"
-            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".BillingScreen"
             android:label="@string/title_activity_billing_screen"
@@ -40,7 +37,6 @@
             android:label="@string/title_activity_properties_screen"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".HomeScreenHost" />
-        <activity android:name=".ChooseRole" />
         <activity android:name=".LoginScreen" />
         <activity android:name=".UploadNewPropertyScreen" />
         <activity android:name=".OpeningScreen">
