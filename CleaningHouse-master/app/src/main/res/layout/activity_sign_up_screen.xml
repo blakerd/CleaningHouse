@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="10dp"
     android:orientation="vertical"
     tools:context=".OpeningScreen">
 
@@ -12,12 +13,13 @@
         android:id="@+id/imageview_account_profile"
         android:layout_width="150dp"
         android:layout_height="150dp"
+        android:layout_marginTop="30dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
         app:layout_constraintBottom_toTopOf="@id/name"
         android:src="@mipmap/ic_launcher_foreground"
-        app:civ_border_color="@color/colorPrimaryDark"
+        app:civ_border_color="@android:color/black"
         app:civ_border_width="1dp" />
 
     <EditText
@@ -41,13 +43,14 @@
         android:hint="City, State:"
         />
 
+
     <Switch
-        android:id="@+id/switch1"
+        android:id="@+id/roleToggle"
         android:layout_width="wrap_content"
         android:layout_height="79dp"
+        android:textColorHighlight="@color/colorPrimary"
         android:layout_gravity="center"
-
-        android:text="" />
+        />
 
 
     <Button
@@ -57,15 +60,22 @@
         android:layout_gravity="center"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="68dp"
+        android:layout_marginTop="20dp"
+        android:background="@android:color/transparent"
         android:layout_marginEnd="8dp"
-        android:text="MAKE ACCOUNT"
+        android:text="Create"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/textView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <![CDATA[/>
+
+    <![CDATA[
+
+
+
+    />
+
+
 ]]>
 </LinearLayout>

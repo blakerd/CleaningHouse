@@ -1,7 +1,9 @@
 package com.example.researchapp;
 //tonys comment
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,12 +21,15 @@ import android.app.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class SignUpScreen extends AppCompatActivity {
+import de.hdodenhof.circleimageview.CircleImageView;
+
+public class SignUpScreen extends AppCompatActivity implements View.OnClickListener {
+    private static final int IMAGE = 1;
     EditText fullName;
     EditText location;
+    CircleImageView profilePic;
 
-
-    Button btn;
+    Button makeAccBtn;
     private FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,59 +38,33 @@ public class SignUpScreen extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         fullName =  (EditText) findViewById(R.id.name);
         location = (EditText) findViewById(R.id.cityState);
+        profilePic = (CircleImageView) findViewById(R.id.imageview_account_profile);
+        makeAccBtn = (Button) findViewById(R.id.makeAccBtn);
 
-        btn = (Button) findViewById(R.id.makeAccBtn);
-
-
+        profilePic.setOnClickListener(this);
+        makeAccBtn.setOnClickListener(this);
     }
-    private void nextScreen() {
-        Intent i = new Intent(this, HomeScreenHost.class);
-        startActivity(i);
+    @Override
+    public void onClick(View v) {
+        switch(v.getId()) {
+            case R.id.imageview_account_profile:
+                Intent p = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(p, IMAGE);
+                break;
+            case R.id.makeAccBtn:
+                Intent i = new Intent(this, HomeScreenHost.class);
+                startActivity(i);
+                break;
 
-}
-                /*userName = userNameInput.getText().toString();
-                email = emailInput.getText().toString();
-                passWord = passWordInput.getText().toString();
-                confirm = confirmInput.getText().toString();
-                if (!userName.equals(null) && passWord.equals(confirm)) {
-                    mAuth.createUserWithEmailAndPassword(email, passWord)
-                            .addOnCompleteListener(SignUpScreen.this, new OnCompleteListener<AuthResult>() {
-                                @Override
-                                public void onComplete(@NonNull Task<AuthResult> task) {
-                                    if (task.isSuccessful()) {
-                                        Log.d("SignUpSuccess", "createUserWithEmail:success");
-                                        FirebaseUser user = mAuth.getCurrentUser();
-                                        Toast.makeText(SignUpScreen.this, "Account Successfully Created",
-                                                Toast.LENGTH_SHORT).show();
-                                        nextScreen();
-                                        //updateUI(user);
-                                    } else {
-                                        Log.d("SignUpFail", "createUserWithEmail:failure", task.getException());
-                                        Toast.makeText(SignUpScreen.this, "Account Creation Failed",
-                                                Toast.LENGTH_SHORT).show();
-                                        //updateUI(null);
-                                        nextScreen();
-                                    }
-                                }
-                            });*/
-
-
-                /*else {
-                    Toast.makeText(SignUpScreen.this, "Usernames or passwords do not match",
-                            Toast.LENGTH_SHORT).show();
-                }*/
-                /*switch (v.getId()) {
-                    case R.id.button:
-                        nextScreen();
-                        break;
-                }
-            }
-        });
-
-    }*/
-
-
-
+        }
+    }
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == IMAGE && resultCode == RESULT_OK && data !=null) {
+            Uri selectedImage = data.getData();
+            profilePic.setImageURI(selectedImage);
+        }
+    }
 
 
 }
