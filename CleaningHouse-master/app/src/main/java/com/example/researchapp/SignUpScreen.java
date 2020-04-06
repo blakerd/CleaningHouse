@@ -51,54 +51,31 @@ public class SignUpScreen extends AppCompatActivity implements View.OnClickListe
 
         userID = mFirebaseUser.getUid();
         mFirebaseDatabase = FirebaseDatabase.getInstance();
-        reference = mFirebaseDatabase.getReference("Users");
+        reference = mFirebaseDatabase.getReference();
+
 
         fullName =  (EditText) findViewById(R.id.name);
         location = (EditText) findViewById(R.id.cityState);
         profilePic = (CircleImageView) findViewById(R.id.imageview_account_profile);
         makeAccBtn = (Button) findViewById(R.id.makeAccBtn);
 
-        user = new Users();
+
 
         profilePic.setOnClickListener(this);
         makeAccBtn.setOnClickListener(this);
     }
 
-    private void getValues() {
-        user.setUserName(fullName.getText().toString());
-        user.setLocation(location.getText().toString());
-    }
+
+
+
+
     @Override
     public void onClick(View v) {
-        switch(v.getId()) {
-            case R.id.imageview_account_profile:
-                Intent p = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(p, IMAGE);
-                break;
-            case R.id.makeAccBtn:
 
-                fName = fullName.getText().toString();
-                loc = location.getText().toString();
-                reference.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        getValues();
-                        reference.child(userID).setValue(user);
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
-
-                //reference.child("Users").child(userID).child("Name").child(fName).child("Location").setValue(location);
-                //reference.child("Users").child(userID).child("Name").setValue(fName);
                 Intent i = new Intent(SignUpScreen.this, HomeScreenHost.class);
                 startActivity(i);
-                break;
 
-        }
+
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

@@ -21,17 +21,10 @@ public class Users {
         this.Location = Location;
     }
 
-    /*public String getImageURL() {
-        return imageURL;
-    }
 
-    public void setImageURL(String imageURL) {
-        this.imageURL = imageURL;
-    }*/
-
-    public Users(String userName, String Location /*, String imageURL*/) {
-        this.userName = userName;
-        this.Location = Location;
+    public Users(String userName, String Location) {
+        this.userName = "Sally Mae";
+        this.Location = "San Jose, California";
         //this.imageURL = imageURL;
     }
 
