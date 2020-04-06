@@ -20,15 +20,10 @@ import android.app.Activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class SignUpScreen extends AppCompatActivity {
-    String userName;
-    String email;
-    String confirm;
-    String passWord;
+    EditText fullName;
+    EditText location;
 
-    EditText userNameInput;
-    EditText emailInput;
-    EditText confirmInput;
-    EditText passWordInput;
+
     Button btn;
     private FirebaseAuth mAuth;
     @Override
@@ -36,15 +31,19 @@ public class SignUpScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up_screen);
         mAuth = FirebaseAuth.getInstance();
-        emailInput =  (EditText) findViewById(R.id.email);
-        userNameInput = (EditText) findViewById(R.id.userName);
-        passWordInput= (EditText) findViewById(R.id.passWord);
-        confirmInput = (EditText) findViewById(R.id.confirmpassWord);
-        btn = (Button) findViewById(R.id.button);
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick (View v) {
-                userName = userNameInput.getText().toString();
+        fullName =  (EditText) findViewById(R.id.name);
+        location = (EditText) findViewById(R.id.cityState);
+
+        btn = (Button) findViewById(R.id.makeAccBtn);
+
+
+    }
+    private void nextScreen() {
+        Intent i = new Intent(this, HomeScreenHost.class);
+        startActivity(i);
+
+}
+                /*userName = userNameInput.getText().toString();
                 email = emailInput.getText().toString();
                 passWord = passWordInput.getText().toString();
                 confirm = confirmInput.getText().toString();
@@ -68,14 +67,14 @@ public class SignUpScreen extends AppCompatActivity {
                                         nextScreen();
                                     }
                                 }
-                            });
-                }
+                            });*/
+
 
                 /*else {
                     Toast.makeText(SignUpScreen.this, "Usernames or passwords do not match",
                             Toast.LENGTH_SHORT).show();
                 }*/
-                switch (v.getId()) {
+                /*switch (v.getId()) {
                     case R.id.button:
                         nextScreen();
                         break;
@@ -83,12 +82,10 @@ public class SignUpScreen extends AppCompatActivity {
             }
         });
 
-    }
+    }*/
 
 
-    private void nextScreen() {
-        Intent i = new Intent(this, HomeScreenHost.class);
-        startActivity(i);
 
-    }
+
+
 }
