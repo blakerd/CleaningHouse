@@ -71,7 +71,11 @@ public class SignUpScreen extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-
+                fName = fullName.getText().toString();
+                loc = location.getText().toString();
+                reference.child("Users").child(userID).child("Full Name").setValue(fName);
+                reference.child("Users").child(userID).child("Location").setValue(loc);
+                //yet to implement picture storage
                 Intent i = new Intent(SignUpScreen.this, HomeScreenHost.class);
                 startActivity(i);
 
