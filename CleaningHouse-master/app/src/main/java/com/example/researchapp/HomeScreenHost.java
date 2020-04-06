@@ -1,10 +1,7 @@
 package com.example.researchapp;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.*;
 import android.widget.*;
 
@@ -16,8 +13,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.core.view.GravityCompat;
 
-import com.bumptech.glide.Glide;
-import com.example.researchapp.Model.User;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -58,19 +53,19 @@ public class HomeScreenHost extends AppCompatActivity implements View.OnClickLis
         profile_image = (CircleImageView) header.findViewById(R.id.profileImage);
         drawer = findViewById(R.id.drawer_layout);
         fbuser = FirebaseAuth.getInstance().getCurrentUser();
-        username.setText(fbuser.getUid());
         db = FirebaseDatabase.getInstance();
+        username.setText(fbuser.getUid());
         reference = db.getReference("Users").child(fbuser.getUid());
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                User user = dataSnapshot.getValue(User.class);
+                Users user = dataSnapshot.getValue(Users.class);
                 username.setText(fbuser.getDisplayName());
-                if(user.getImageURL().equals("default")) {
+                /*if(user.getImageURL().equals("default")) {
                     profile_image.setImageResource(R.mipmap.ic_launcher);
                 } else {
                     Glide.with(HomeScreenHost.this).load(user.getImageURL()).into(profile_image);
-                }
+                }*/
             }
 
 
