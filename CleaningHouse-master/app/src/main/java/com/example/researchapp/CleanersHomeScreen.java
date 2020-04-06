@@ -123,7 +123,7 @@ public class CleanersHomeScreen extends AppCompatActivity implements View.OnClic
     public void onClick(View v) {
         switch(v.getId()){
             case R.id.currentListings:
-                propertiesPage();
+                cleanersPropertiesPage();
                 break;
             case R.id.viewMessages:
                 messagePage();
@@ -136,8 +136,8 @@ public class CleanersHomeScreen extends AppCompatActivity implements View.OnClic
                 break;
         }
     }
-    public void propertiesPage(){
-        Intent i = new Intent(this, PropertiesScreen.class);
+    public void cleanersPropertiesPage(){
+        Intent i = new Intent(this, CleanersProperties.class);
         startActivity(i);
     }
     public void schedulePage() {

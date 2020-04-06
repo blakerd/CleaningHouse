@@ -33,19 +33,19 @@ public class ChooseRole extends AppCompatActivity implements View.OnClickListene
     }
     private void nextPageHost() {
 
-       Intent i = new Intent(this, SignUpScreen.class);
+       Intent i = new Intent(this, HomeScreenHost.class);
         startActivity(i);
 
     }
     private void nextPageCleaner() {
 
-        Intent i = new Intent(this, SignUpCleanersScreen.class);
+        Intent i = new Intent(this, CleanersHomeScreen.class);
         startActivity(i);
 
     }
     private Intent intentForComparison()
     {
-        Intent i = new Intent(this, SignUpScreen.class);
+        Intent i = new Intent(this, HomeScreenHost.class);
         return i;
     }
 }

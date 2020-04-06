@@ -72,7 +72,7 @@ public class LoginScreen extends AppCompatActivity {
                 FirebaseUser mFirebaseUser = mFirebaseAuth.getCurrentUser();
                 if (mFirebaseUser != null) {
                     Toast.makeText(LoginScreen.this, "You are logged in.", Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(LoginScreen.this, HomeScreenHost.class);
+                    Intent i = new Intent(LoginScreen.this, ChooseRole.class);
                     startActivity(i);
                 } else {
                     Toast.makeText(LoginScreen.this, "Please login.", Toast.LENGTH_SHORT).show();

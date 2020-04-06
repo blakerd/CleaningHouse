@@ -32,7 +32,7 @@
         android:layout_gravity="center_vertical"
         android:layout_marginHorizontal="125dp"
         android:layout_marginVertical="175dp"
-        android:text=" A Cleaner"
+        android:text="A Cleaner"
         android:textSize="20sp"
         android:textStyle="bold"
 
@@ -45,8 +45,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_marginHorizontal="125dp"
-        android:layout_marginVertical="325dp"
-        android:text=" A Host"
+        android:layout_marginVertical="300dp"
+        android:text="A Host"
         android:textSize="20sp"
         android:textStyle="bold"
 
