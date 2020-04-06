@@ -59,7 +59,7 @@ public class OpeningScreen extends AppCompatActivity {
                                     if (!task.isSuccessful()) {
                                         Toast.makeText(OpeningScreen.this, "SignUp Unsuccessful. Please try again", Toast.LENGTH_SHORT).show();
                                     } else {
-                                        startActivity(new Intent(OpeningScreen.this, HomeScreenHost.class));
+                                        startActivity(new Intent(OpeningScreen.this, SignUpScreen.class));
                                     }
                                 }
                             });
