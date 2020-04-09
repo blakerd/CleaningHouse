@@ -75,7 +75,8 @@ public class ScheduleScreen extends AppCompatActivity {
                 startActivity(m);
                 break;
             case R.id.contacts:
-
+                Intent n = new Intent(this,Contacts.class);
+                startActivity(n);
                 break;
             case R.id.termsOfService:
                 Intent o = new Intent(this, terms_and_conditions_page.class);

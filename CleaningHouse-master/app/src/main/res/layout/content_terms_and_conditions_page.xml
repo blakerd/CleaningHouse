@@ -8,4 +8,42 @@
     tools:context=".terms_and_conditions_page"
     tools:showIn="@layout/activity_terms_and_conditions_page">
 
+    <RelativeLayout
+        android:id="@+id/relativelayout"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="19dp"
+        android:text="License:"
+        android:textColor="#000000"
+        android:textSize="50sp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="13dp"
+        android:text="Puro's code and framework is licensed under the MIT licence. https://opensource.org/licenses/MIT tl;dr you can do whatever you want as long as you include the original copyright and license notice in any copy of the software/source."
+        android:textColor="#000000"
+        android:textSize="15sp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/relativelayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:visibility="visible" />
 </androidx.constraintlayout.widget.ConstraintLayout>
