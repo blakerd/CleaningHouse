@@ -7,6 +7,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -15,7 +16,10 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CalendarView;
 import android.widget.LinearLayout;
+
+import java.util.Calendar;
 
 public class ScheduleScreen extends AppCompatActivity {
 
@@ -27,7 +31,15 @@ public class ScheduleScreen extends AppCompatActivity {
         setContentView(R.layout.activity_schedule_screen);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        /*CalendarView calendarView = findViewById(new CalendarView.OnDateChangeListener() {
+          @Override
+          public void onSelectDayChange(@NonNull CalendarView calendarView, int i, int i1, int i2) {
+              String date = i + "/" + i1 + "/" + i2;
 
+
+          }
+                                                 }
+        );*/
         drawer = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
 
