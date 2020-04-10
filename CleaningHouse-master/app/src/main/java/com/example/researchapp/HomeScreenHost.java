@@ -115,6 +115,10 @@ public class HomeScreenHost extends AppCompatActivity implements View.OnClickLis
 
     public void selectDrawerItem(MenuItem menuItem) {
         switch (menuItem.getItemId()) {
+            case R.id.nav_home:
+                Intent g = new Intent(this,HomeScreenHost.class);
+                startActivity(g);
+                break;
             case R.id.nav_profile:
                 Intent h = new Intent(this, Profile.class);
                 startActivity(h);
@@ -128,7 +132,8 @@ public class HomeScreenHost extends AppCompatActivity implements View.OnClickLis
                 startActivity(j);
                 break;
             case R.id.listings:
-
+                Intent k = new Intent(this,Listings.class);
+                startActivity(k);
                 break;
             case R.id.nav_message:
                 Intent l = new Intent(this, MessageScreen.class);
