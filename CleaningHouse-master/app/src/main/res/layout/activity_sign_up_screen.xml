@@ -47,6 +47,10 @@
 
     <Switch
         android:id="@+id/roleToggle"
+        android:showText="true"
+        android:textColor="@android:color/black"
+        android:textOn="Cleaner"
+        android:textOff="Host"
         android:layout_width="wrap_content"
         android:layout_height="79dp"
         android:textColorHighlight="@color/colorPrimary"
