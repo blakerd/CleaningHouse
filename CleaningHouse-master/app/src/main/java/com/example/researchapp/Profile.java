@@ -1,56 +1,153 @@
 package com.example.researchapp;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 public class Profile extends AppCompatActivity {
-    private TextView name, location;
+    FirebaseAuth firebaseAuth;
+    FirebaseUser user;
+    FirebaseDatabase database;
+    DatabaseReference databaseReference;
+    ImageView avatarIv;
+    DrawerLayout drawer;
+    NavigationView navigationView;
 
-    private FirebaseDatabase db;
-    private DatabaseReference myref;
-
-    private final String TAG = this.getClass().getName().toUpperCase();
+    TextView nameTv, emailTv, phoneTv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
-        Intent intent = getIntent();
-        String email = intent.getStringExtra("email");
+        drawer = findViewById(R.id.drawer_layout);
+        navigationView = findViewById(R.id.nav_view);
 
-        name = findViewById(R.id.userName);
-        //location = findViewById(R.id.locationProfile);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
+                R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+        setupDrawerContent(navigationView);
+        firebaseAuth = FirebaseAuth.getInstance();
+        user = firebaseAuth.getCurrentUser();
+        database = FirebaseDatabase.getInstance();
+        databaseReference = database.getReference("Users");
 
-        db = FirebaseDatabase.getInstance();
-        myref = db.getReference("Users");
+        avatarIv = (ImageView) findViewById(R.id.avatarIv);
+        nameTv = (TextView) findViewById(R.id.name);
+        emailTv = (TextView) findViewById(R.id.email);
+        phoneTv = (TextView) findViewById(R.id.phone);
 
-        myref.addValueEventListener(new ValueEventListener() {
-            String fname;
+        Query query = databaseReference.orderByChild("email").equalTo(user.getEmail());
+        query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot ds : dataSnapshot.getChildren()) {
-                    fname = (ds.child("Full Name").getValue(String.class));
+                    String name = "" + ds.child("name").getValue();
+                    String email = "" + ds.child("email").getValue();
+                    String status = "" + ds.child("status").getValue();
+                    String image = "" + ds.child("image").getValue();
+
+                    nameTv.setText(name);
+                    emailTv.setText(email);
+                    phoneTv.setText(status);
+                    try {
+                        Picasso.get().load(image).into(avatarIv);
+                    }
+                    catch (Exception e) {
+                        Picasso.get().load(image).into(avatarIv);
+                    }
                 }
-                name.setText(fname);
             }
-               
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });
+    }
+    private void setupDrawerContent(NavigationView navigationView) {
+        navigationView.setNavigationItemSelectedListener(
+                new NavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(MenuItem menuItem) {
+                        selectDrawerItem(menuItem);
+                        return true;
+                    }
+                });
+    }
 
+    public void selectDrawerItem(MenuItem menuItem) {
+        switch (menuItem.getItemId()) {
+            case R.id.nav_home://TODO: Change this to CleanersHomeScreen if status == cleaner
+                Intent g = new Intent(this,HomeScreenHost.class);
+                startActivity(g);
+                break;
+            case R.id.nav_profile:
+                Intent h = new Intent(this, Profile.class);
+                startActivity(h);
+                break;
+            case R.id.nav_schedule:
+                Intent i = new Intent(this, ScheduleScreen.class);
+                startActivity(i);
+                break;
+            case R.id.property:
+                Intent j = new Intent(this, PropertiesScreen.class);
+                startActivity(j);
+                break;
+            case R.id.listings:
+                Intent k = new Intent(this,Listings.class);
+                startActivity(k);
+                break;
+            case R.id.nav_message:
+                Intent l = new Intent(this, MessageScreen.class);
+                startActivity(l);
+                break;
+            case R.id.transactions:
+                Intent m = new Intent(this, BillingScreen.class);
+                startActivity(m);
+                break;
+            case R.id.contacts:
+                Intent n = new Intent(this,Contacts.class);
+                startActivity(n);
+                break;
+            case R.id.termsOfService:
+                Intent o = new Intent(this, terms_and_conditions_page.class);
+                startActivity(o);
+                break;
+            default:
+
+        }
+        LayoutInflater inflater = getLayoutInflater();
+        LinearLayout container = (LinearLayout) findViewById(R.id.content_frame);
+        inflater.inflate(R.layout.activity_home_screen_host, container);
+        // Highlight the selected item has been done by NavigationView
+        menuItem.setChecked(true);
+        // Set action bar title
+        setTitle(menuItem.getTitle());
+        // Close the navigation drawer
+        drawer.closeDrawers();
     }
 }
