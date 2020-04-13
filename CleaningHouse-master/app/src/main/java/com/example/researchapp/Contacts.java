@@ -10,13 +10,20 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
  public class Contacts extends AppCompatActivity {
      DrawerLayout drawer;
      NavigationView navigationView;
+     FirebaseUser fbuser;
+     TextView username;
+     View header;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +33,16 @@ import com.google.android.material.navigation.NavigationView;
 
         drawer = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
+        header = navigationView.getHeaderView(0);
+        username = header.findViewById(R.id.username);
+        fbuser = FirebaseAuth.getInstance().getCurrentUser();
+        String uName = fbuser.getDisplayName();
+        if(uName == "") {
+            username.setText("No name provided");
+        }
+        else {
+            username.setText(uName);
+        }
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);

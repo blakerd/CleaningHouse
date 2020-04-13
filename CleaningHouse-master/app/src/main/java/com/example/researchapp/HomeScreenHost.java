@@ -49,18 +49,25 @@ public class HomeScreenHost extends AppCompatActivity implements View.OnClickLis
         setSupportActionBar(toolbar);
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         header = navigationView.getHeaderView(0);
-        username = (TextView) header.findViewById(R.id.userName);
+        username = header.findViewById(R.id.username);
         profile_image = (CircleImageView) header.findViewById(R.id.profileImage);
         drawer = findViewById(R.id.drawer_layout);
         fbuser = FirebaseAuth.getInstance().getCurrentUser();
         db = FirebaseDatabase.getInstance();
+
         username.setText(fbuser.getUid());
         reference = db.getReference("Users").child(fbuser.getUid());
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Users user = dataSnapshot.getValue(Users.class);
-                username.setText(fbuser.getDisplayName());
+                if(fbuser.getDisplayName() == "")
+                {
+                    username.setText("No name provided");
+                }
+                else {
+                    username.setText(fbuser.getDisplayName());
+                }
                 /*if(user.getImageURL().equals("default")) {
                     profile_image.setImageResource(R.mipmap.ic_launcher);
                 } else {

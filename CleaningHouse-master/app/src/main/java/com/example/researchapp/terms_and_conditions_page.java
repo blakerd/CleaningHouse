@@ -6,6 +6,8 @@ import android.os.Bundle;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,11 +19,15 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 public class terms_and_conditions_page extends AppCompatActivity {
 
     DrawerLayout drawer;
     NavigationView navigationView;
+    FirebaseUser fbuser;
+    TextView username;
+    View header;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +37,16 @@ public class terms_and_conditions_page extends AppCompatActivity {
 
         drawer = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
+        header = navigationView.getHeaderView(0);
+        username = header.findViewById(R.id.username);
+        fbuser = FirebaseAuth.getInstance().getCurrentUser();
+        String uName = fbuser.getDisplayName();
+        if(uName == "") {
+            username.setText("No name provided");
+        }
+        else {
+            username.setText(uName);
+        }
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);

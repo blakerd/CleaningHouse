@@ -41,6 +41,8 @@ public class PropertiesScreen extends AppCompatActivity implements View.OnClickL
     Button displayPropertyButton;
     DrawerLayout drawer;
     NavigationView navigationView;
+    TextView username;
+    View header;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,6 +66,16 @@ public class PropertiesScreen extends AppCompatActivity implements View.OnClickL
         displayPropertyButton.setOnClickListener(this);
         mFirebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser mFirebaseUser = mFirebaseAuth.getCurrentUser();
+        header = navigationView.getHeaderView(0);
+        username = header.findViewById(R.id.username);
+        mFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        String uName = mFirebaseUser.getDisplayName();
+        if(uName == "") {
+            username.setText("No name provided");
+        }
+        else {
+            username.setText(uName);
+        }
         userID = mFirebaseUser.getUid();
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         myRef = mFirebaseDatabase.getReference();
