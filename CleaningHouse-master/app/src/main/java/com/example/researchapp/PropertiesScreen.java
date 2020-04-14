@@ -52,6 +52,7 @@ public class PropertiesScreen extends AppCompatActivity implements View.OnClickL
         displayPropertyButton = (Button) findViewById(R.id.displayPropertyButton);
         propText = (TextView) findViewById(R.id.Property);
         propNickname = (EditText) findViewById(R.id.propertyNickname);
+        toolbar.setTitle("Properties");
         setSupportActionBar(toolbar);
 
         drawer = findViewById(R.id.drawer_layout);

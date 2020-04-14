@@ -33,6 +33,7 @@ public class terms_and_conditions_page extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_terms_and_conditions_page);
         Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle("Terms of Service");
         setSupportActionBar(toolbar);
 
         drawer = findViewById(R.id.drawer_layout);

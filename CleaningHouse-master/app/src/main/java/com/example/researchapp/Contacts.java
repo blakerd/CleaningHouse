@@ -29,6 +29,7 @@ import com.google.firebase.auth.FirebaseUser;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contacts);
         Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle("Contact Us");
         setSupportActionBar(toolbar);
 
         drawer = findViewById(R.id.drawer_layout);

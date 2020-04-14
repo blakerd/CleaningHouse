@@ -36,6 +36,7 @@ public class MessageScreen extends AppCompatActivity {
 
         setContentView(R.layout.activity_message_screen);
         Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle("Message");
         setSupportActionBar(toolbar);
 
         drawer = findViewById(R.id.drawer_layout);

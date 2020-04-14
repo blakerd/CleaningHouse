@@ -33,6 +33,7 @@ public class BillingScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_billing_screen);
         Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle("Transactions");
         setSupportActionBar(toolbar);
 
         drawer = findViewById(R.id.drawer_layout);

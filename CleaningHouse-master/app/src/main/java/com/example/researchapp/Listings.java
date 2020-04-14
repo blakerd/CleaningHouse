@@ -33,6 +33,7 @@ public class Listings extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listings);
         Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle("Listings");
         setSupportActionBar(toolbar);
 
         drawer = findViewById(R.id.drawer_layout);

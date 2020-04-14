@@ -36,6 +36,7 @@ public class ScheduleScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedule_screen);
         Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle("Schedule");
         setSupportActionBar(toolbar);
         /*CalendarView calendarView = findViewById(new CalendarView.OnDateChangeListener() {
           @Override
