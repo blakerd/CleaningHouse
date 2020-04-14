@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -33,6 +34,8 @@ public class Profile extends AppCompatActivity {
     ImageView avatarIv;
     DrawerLayout drawer;
     NavigationView navigationView;
+    TextView username;
+    View header;
 
     TextView nameTv, emailTv, phoneTv;
     @Override
@@ -44,6 +47,8 @@ public class Profile extends AppCompatActivity {
 
         drawer = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
+        header = navigationView.getHeaderView(0);
+        username = header.findViewById(R.id.username);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -52,6 +57,14 @@ public class Profile extends AppCompatActivity {
         setupDrawerContent(navigationView);
         firebaseAuth = FirebaseAuth.getInstance();
         user = firebaseAuth.getCurrentUser();
+        String uName = user.getDisplayName();
+        if(uName == "") {
+            username.setText("No name provided");
+        }
+        else {
+            username.setText(uName);
+        }
+
         database = FirebaseDatabase.getInstance();
         databaseReference = database.getReference("Users");
 
@@ -101,6 +114,10 @@ public class Profile extends AppCompatActivity {
 
     public void selectDrawerItem(MenuItem menuItem) {
         switch (menuItem.getItemId()) {
+            case R.id.nav_home://TODO: Change this to CleanersHomeScreen if status == cleaner
+                Intent g = new Intent(this,HomeScreenHost.class);
+                startActivity(g);
+                break;
             case R.id.nav_profile:
                 Intent h = new Intent(this, Profile.class);
                 startActivity(h);
@@ -114,7 +131,8 @@ public class Profile extends AppCompatActivity {
                 startActivity(j);
                 break;
             case R.id.listings:
-
+                Intent k = new Intent(this,Listings.class);
+                startActivity(k);
                 break;
             case R.id.nav_message:
                 Intent l = new Intent(this, MessageScreen.class);
@@ -125,7 +143,8 @@ public class Profile extends AppCompatActivity {
                 startActivity(m);
                 break;
             case R.id.contacts:
-
+                Intent n = new Intent(this,Contacts.class);
+                startActivity(n);
                 break;
             case R.id.termsOfService:
                 Intent o = new Intent(this, terms_and_conditions_page.class);

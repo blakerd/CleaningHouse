@@ -68,7 +68,8 @@ public class CleanersHomeScreen extends AppCompatActivity implements View.OnClic
     public void selectDrawerItem(MenuItem menuItem) {
         switch (menuItem.getItemId()) {
             case R.id.nav_profile:
-
+                Intent h = new Intent(this, Profile.class);
+                startActivity(h);
                 break;
             case R.id.nav_schedule:
                 Intent i = new Intent(this, ScheduleScreen.class);
@@ -79,7 +80,8 @@ public class CleanersHomeScreen extends AppCompatActivity implements View.OnClic
                 startActivity(j);
                 break;
             case R.id.listings:
-
+                Intent k = new Intent(this,Listings.class);
+                startActivity(k);
                 break;
             case R.id.nav_message:
                 Intent l = new Intent(this, MessageScreen.class);
@@ -90,7 +92,8 @@ public class CleanersHomeScreen extends AppCompatActivity implements View.OnClic
                 startActivity(m);
                 break;
             case R.id.contacts:
-
+                Intent n = new Intent(this,Contacts.class);
+                startActivity(n);
                 break;
             case R.id.termsOfService:
                 Intent o = new Intent(this, terms_and_conditions_page.class);

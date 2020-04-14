@@ -49,18 +49,25 @@ public class HomeScreenHost extends AppCompatActivity implements View.OnClickLis
         setSupportActionBar(toolbar);
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         header = navigationView.getHeaderView(0);
-        username = (TextView) header.findViewById(R.id.userName);
+        username = header.findViewById(R.id.username);
         profile_image = (CircleImageView) header.findViewById(R.id.profileImage);
         drawer = findViewById(R.id.drawer_layout);
         fbuser = FirebaseAuth.getInstance().getCurrentUser();
         db = FirebaseDatabase.getInstance();
+
         username.setText(fbuser.getUid());
         reference = db.getReference("Users").child(fbuser.getUid());
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Users user = dataSnapshot.getValue(Users.class);
-                username.setText(fbuser.getDisplayName());
+                if(fbuser.getDisplayName() == "")
+                {
+                    username.setText("No name provided");
+                }
+                else {
+                    username.setText(fbuser.getDisplayName());
+                }
                 /*if(user.getImageURL().equals("default")) {
                     profile_image.setImageResource(R.mipmap.ic_launcher);
                 } else {
@@ -115,6 +122,10 @@ public class HomeScreenHost extends AppCompatActivity implements View.OnClickLis
 
     public void selectDrawerItem(MenuItem menuItem) {
         switch (menuItem.getItemId()) {
+            case R.id.nav_home:
+                Intent g = new Intent(this,HomeScreenHost.class);
+                startActivity(g);
+                break;
             case R.id.nav_profile:
                 Intent h = new Intent(this, Profile.class);
                 startActivity(h);
@@ -128,7 +139,8 @@ public class HomeScreenHost extends AppCompatActivity implements View.OnClickLis
                 startActivity(j);
                 break;
             case R.id.listings:
-
+                Intent k = new Intent(this,Listings.class);
+                startActivity(k);
                 break;
             case R.id.nav_message:
                 Intent l = new Intent(this, MessageScreen.class);
@@ -139,7 +151,8 @@ public class HomeScreenHost extends AppCompatActivity implements View.OnClickLis
                 startActivity(m);
                 break;
             case R.id.contacts:
-
+                Intent n = new Intent(this,Contacts.class);
+                startActivity(n);
                 break;
             case R.id.termsOfService:
                 Intent o = new Intent(this, terms_and_conditions_page.class);

@@ -41,6 +41,8 @@ public class PropertiesScreen extends AppCompatActivity implements View.OnClickL
     Button displayPropertyButton;
     DrawerLayout drawer;
     NavigationView navigationView;
+    TextView username;
+    View header;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,6 +66,16 @@ public class PropertiesScreen extends AppCompatActivity implements View.OnClickL
         displayPropertyButton.setOnClickListener(this);
         mFirebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser mFirebaseUser = mFirebaseAuth.getCurrentUser();
+        header = navigationView.getHeaderView(0);
+        username = header.findViewById(R.id.username);
+        mFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        String uName = mFirebaseUser.getDisplayName();
+        if(uName == "") {
+            username.setText("No name provided");
+        }
+        else {
+            username.setText(uName);
+        }
         userID = mFirebaseUser.getUid();
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         myRef = mFirebaseDatabase.getReference();
@@ -118,6 +130,10 @@ public class PropertiesScreen extends AppCompatActivity implements View.OnClickL
 
     public void selectDrawerItem(MenuItem menuItem) {
         switch (menuItem.getItemId()) {
+            case R.id.nav_home://TODO: Change this to CleanersHomeScreen if status == cleaner
+                Intent g = new Intent(this,HomeScreenHost.class);
+                startActivity(g);
+                break;
             case R.id.nav_profile:
                 Intent h = new Intent(this, Profile.class);
                 startActivity(h);
@@ -131,7 +147,8 @@ public class PropertiesScreen extends AppCompatActivity implements View.OnClickL
                 startActivity(j);
                 break;
             case R.id.listings:
-
+                Intent k = new Intent(this,Listings.class);
+                startActivity(k);
                 break;
             case R.id.nav_message:
                 Intent l = new Intent(this, MessageScreen.class);
@@ -142,7 +159,8 @@ public class PropertiesScreen extends AppCompatActivity implements View.OnClickL
                 startActivity(m);
                 break;
             case R.id.contacts:
-
+                Intent n = new Intent(this,Contacts.class);
+                startActivity(n);
                 break;
             case R.id.termsOfService:
                 Intent o = new Intent(this, terms_and_conditions_page.class);
