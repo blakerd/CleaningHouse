@@ -68,10 +68,10 @@ public class Profile extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         databaseReference = database.getReference("Users");
 
-        avatarIv = (ImageView) findViewById(R.id.avatarIv);
+        //avatarIv = (ImageView) findViewById(R.id.avatarIv);
         nameTv = (TextView) findViewById(R.id.name);
         emailTv = (TextView) findViewById(R.id.email);
-        phoneTv = (TextView) findViewById(R.id.phone);
+        //phoneTv = (TextView) findViewById(R.id.phone);
 
         Query query = databaseReference.orderByChild("email").equalTo(user.getEmail());
         query.addValueEventListener(new ValueEventListener() {
