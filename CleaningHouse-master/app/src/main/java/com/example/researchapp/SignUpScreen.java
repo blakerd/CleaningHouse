@@ -18,6 +18,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -126,9 +128,28 @@ public class SignUpScreen extends AppCompatActivity implements View.OnClickListe
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == 101 && resultCode == RESULT_OK && data !=null) {
             Uri uri = data.getData();
-            String path = getURIPath(this, uri);
+            String path = getURIPath(SignUpScreen.this, uri);
             String selectedImage = getFileName(uri);
-           // profilePic.setImageURI(selectedImage);
+            Toast.makeText(SignUpScreen.this, path, Toast.LENGTH_SHORT).show();
+            StorageReference r = mStorageRef.child("images/profilePicture.png");
+            r.putFile(uri)
+                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            // Get a URL to the uploaded content
+                           // Uri downloadUrl = taskSnapshot.getDownloadUrl();
+                            Toast.makeText(SignUpScreen.this,"Profile Picture Successfully Uploaded", Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception exception) {
+                            // Handle unsuccessful uploads
+                            // ...
+                            Toast.makeText(SignUpScreen.this,"Unable to Upload Profile Picture, Please Try Again", Toast.LENGTH_SHORT).show();
+
+                        }
+                    });
         }
     }
 
@@ -160,19 +181,20 @@ public class SignUpScreen extends AppCompatActivity implements View.OnClickListe
         return result;
     }
 
-    private String getURIPath(Context context, Uri uri)
+    private String getURIPath(Context context, Uri contentUri)
     {
+        String res = null;
         String[] proj = {MediaStore.Images.Media.DATA};
-        Cursor cursor = context.getContentResolver().query(uri, proj, null, null, null);
+        Cursor cursor = context.getContentResolver().query(contentUri, proj, null, null, null);
 
         if(cursor != null)
         {
-            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
             cursor.moveToFirst();
-            return cursor.getString(column_index);
+            res = cursor.getString(cursor.getColumnIndex(proj[0]));
+            cursor.close();
 
         }
-        return null;
+        return res;
     }
 
 }
