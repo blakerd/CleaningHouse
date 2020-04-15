@@ -43,7 +43,7 @@
             android:name=".PropertiesScreen"
             android:label="@string/title_activity_properties_screen"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".HomeScreenHost" />
+        <activity android:name=".HomeScreen" />
         <activity android:name=".LoginScreen" />
         <activity android:name=".UploadNewPropertyScreen" />
         <activity android:name=".OpeningScreen">

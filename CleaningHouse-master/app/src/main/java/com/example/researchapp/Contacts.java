@@ -65,7 +65,7 @@ import com.google.firebase.auth.FirebaseUser;
      public void selectDrawerItem(MenuItem menuItem) {
          switch (menuItem.getItemId()) {
              case R.id.nav_home://TODO: Change this to CleanersHomeScreen if status == cleaner
-                 Intent g = new Intent(this,HomeScreenHost.class);
+                 Intent g = new Intent(this, HomeScreen.class);
                  startActivity(g);
                  break;
              case R.id.nav_profile:

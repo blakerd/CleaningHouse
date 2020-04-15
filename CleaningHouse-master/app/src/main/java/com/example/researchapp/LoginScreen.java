@@ -11,7 +11,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.util.Log;
+
 import androidx.annotation.NonNull;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -23,7 +23,6 @@ import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -31,10 +30,6 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-import androidx.appcompat.app.AppCompatActivity;
-import android.view.inputmethod.InputMethodManager;
-import android.app.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -76,7 +71,7 @@ public class LoginScreen extends AppCompatActivity {
                 FirebaseUser mFirebaseUser = mFirebaseAuth.getCurrentUser();
                 if (mFirebaseUser != null) {
                     Toast.makeText(LoginScreen.this, "You are logged in.", Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(LoginScreen.this, HomeScreenHost.class);
+                    Intent i = new Intent(LoginScreen.this, HomeScreen.class);
                     startActivity(i);
                 } else {
                     Toast.makeText(LoginScreen.this, "Please login.", Toast.LENGTH_SHORT).show();
@@ -104,7 +99,7 @@ public class LoginScreen extends AppCompatActivity {
                             if (!task.isSuccessful()) {
                                 Toast.makeText(LoginScreen.this, "Login Un-Successful. Please try again", Toast.LENGTH_SHORT).show();
                             } else {
-                                startActivity(new Intent(LoginScreen.this, HomeScreenHost.class));
+                                startActivity(new Intent(LoginScreen.this, HomeScreen.class));
                             }
 
                         }
@@ -245,7 +240,7 @@ private void signIn() {
 
                             Toast.makeText(LoginScreen.this, ""+user.getEmail(),Toast.LENGTH_SHORT).show();
 
-                            startActivity(new Intent(LoginScreen.this,  HomeScreenHost.class));
+                            startActivity(new Intent(LoginScreen.this,  HomeScreen.class));
                             finish();
                             //updateUI(user);
                         } else {

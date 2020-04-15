@@ -8,12 +8,13 @@ import android.provider.MediaStore;
 import android.provider.OpenableColumns;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.content.Context;
 import android.database.Cursor;
-import android.util.Log;
 
 
+import android.widget.Switch;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -23,11 +24,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.*;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -48,6 +46,8 @@ public class SignUpScreen extends AppCompatActivity implements View.OnClickListe
     Button makeAccBtn;
 
     Users user;
+
+    Switch role;
 
     FirebaseAuth mFirebaseAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
@@ -73,9 +73,19 @@ public class SignUpScreen extends AppCompatActivity implements View.OnClickListe
         location = (EditText) findViewById(R.id.cityState);
         profilePic = (CircleImageView) findViewById(R.id.imageview_account_profile);
         makeAccBtn = (Button) findViewById(R.id.makeAccBtn);
-
+        role = (Switch) findViewById(R.id.roleToggle);
 
         makeAccBtn.setOnClickListener(this);
+        role.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(role.isChecked()) {
+                    reference.child("Users").child(userID).child("Role").setValue("Cleaner");
+                } else {
+                    reference.child("Users").child(userID).child("Role").setValue("Host");
+                }
+            }
+        });
 
         profilePic.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,9 +96,9 @@ public class SignUpScreen extends AppCompatActivity implements View.OnClickListe
                 startActivityForResult(Intent.createChooser(i, "Select Image"), 101);
             }
         });
+
+
     }
-
-
 
 
 
@@ -115,7 +125,7 @@ public class SignUpScreen extends AppCompatActivity implements View.OnClickListe
 
 
                 //yet to implement picture storage
-                Intent i = new Intent(SignUpScreen.this, HomeScreenHost.class);
+                Intent i = new Intent(SignUpScreen.this, HomeScreen.class);
                 startActivity(i);
                 break;
             }
