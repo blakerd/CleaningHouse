@@ -40,6 +40,8 @@ public class SignUpScreen extends AppCompatActivity implements View.OnClickListe
     String fName;
     String loc;
 
+    Boolean Cleaner = false;
+
     EditText fullName;
     EditText location;
 
@@ -78,13 +80,16 @@ public class SignUpScreen extends AppCompatActivity implements View.OnClickListe
         role = (Switch) findViewById(R.id.roleToggle);
 
         makeAccBtn.setOnClickListener(this);
+
         role.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(role.isChecked()) {
-                    reference.child("Users").child(userID).child("Role").setValue("Cleaner");
+                    Cleaner = true;
+
                 } else {
-                    reference.child("Users").child(userID).child("Role").setValue("Host");
+                    Cleaner = false;
+                    
                 }
             }
         });
@@ -123,7 +128,16 @@ public class SignUpScreen extends AppCompatActivity implements View.OnClickListe
                 }
             }
         });
-               reference.child("Users").child(userID).child("Location").setValue(loc);
+                if(Cleaner == true)
+                {
+                    reference.child("Users").child(userID).child("Role").setValue("Cleaner");
+                }
+                else
+                {
+                    reference.child("Users").child(userID).child("Role").setValue("Host");
+                }
+                reference.child("Users").child(userID).child("Full Name").setValue(fName);
+                reference.child("Users").child(userID).child("Location").setValue(loc);
 
 
                 //yet to implement picture storage
