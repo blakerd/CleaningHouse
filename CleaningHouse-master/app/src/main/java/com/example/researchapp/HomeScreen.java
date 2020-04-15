@@ -24,7 +24,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class HomeScreenHost extends AppCompatActivity implements View.OnClickListener {
+public class HomeScreen extends AppCompatActivity implements View.OnClickListener {
     TextView username;
     View header;
     CircleImageView profile_image;
@@ -71,7 +71,7 @@ public class HomeScreenHost extends AppCompatActivity implements View.OnClickLis
                 /*if(user.getImageURL().equals("default")) {
                     profile_image.setImageResource(R.mipmap.ic_launcher);
                 } else {
-                    Glide.with(HomeScreenHost.this).load(user.getImageURL()).into(profile_image);
+                    Glide.with(HomeScreen.this).load(user.getImageURL()).into(profile_image);
                 }*/
             }
 
@@ -97,13 +97,13 @@ public class HomeScreenHost extends AppCompatActivity implements View.OnClickLis
         upcomingCleanings.setOnClickListener(this);
         billsReceipts.setOnClickListener(this);
       
-        Toast.makeText(HomeScreenHost.this, "Welcome" , Toast.LENGTH_SHORT).show();
+        Toast.makeText(HomeScreen.this, "Welcome" , Toast.LENGTH_SHORT).show();
 
         logOutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mFirebaseAuth.getInstance().signOut();
-                Intent backToHome = new Intent(HomeScreenHost.this, OpeningScreen.class);
+                Intent backToHome = new Intent(HomeScreen.this, OpeningScreen.class);
                 startActivity(backToHome);
             }
         });
@@ -123,7 +123,7 @@ public class HomeScreenHost extends AppCompatActivity implements View.OnClickLis
     public void selectDrawerItem(MenuItem menuItem) {
         switch (menuItem.getItemId()) {
             case R.id.nav_home:
-                Intent g = new Intent(this,HomeScreenHost.class);
+                Intent g = new Intent(this, HomeScreen.class);
                 startActivity(g);
                 break;
             case R.id.nav_profile:

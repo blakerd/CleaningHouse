@@ -29,6 +29,7 @@ import com.google.firebase.auth.FirebaseUser;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contacts);
         Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle("Contact Us");
         setSupportActionBar(toolbar);
 
         drawer = findViewById(R.id.drawer_layout);
@@ -64,7 +65,7 @@ import com.google.firebase.auth.FirebaseUser;
      public void selectDrawerItem(MenuItem menuItem) {
          switch (menuItem.getItemId()) {
              case R.id.nav_home://TODO: Change this to CleanersHomeScreen if status == cleaner
-                 Intent g = new Intent(this,HomeScreenHost.class);
+                 Intent g = new Intent(this, HomeScreen.class);
                  startActivity(g);
                  break;
              case R.id.nav_profile:

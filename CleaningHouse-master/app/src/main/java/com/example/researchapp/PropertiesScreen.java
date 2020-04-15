@@ -3,9 +3,7 @@ package com.example.researchapp;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ValueEventListener;
@@ -52,6 +50,7 @@ public class PropertiesScreen extends AppCompatActivity implements View.OnClickL
         displayPropertyButton = (Button) findViewById(R.id.displayPropertyButton);
         propText = (TextView) findViewById(R.id.Property);
         propNickname = (EditText) findViewById(R.id.propertyNickname);
+        toolbar.setTitle("Properties");
         setSupportActionBar(toolbar);
 
         drawer = findViewById(R.id.drawer_layout);
@@ -131,7 +130,7 @@ public class PropertiesScreen extends AppCompatActivity implements View.OnClickL
     public void selectDrawerItem(MenuItem menuItem) {
         switch (menuItem.getItemId()) {
             case R.id.nav_home://TODO: Change this to CleanersHomeScreen if status == cleaner
-                Intent g = new Intent(this,HomeScreenHost.class);
+                Intent g = new Intent(this, HomeScreen.class);
                 startActivity(g);
                 break;
             case R.id.nav_profile:

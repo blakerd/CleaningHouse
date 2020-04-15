@@ -3,9 +3,7 @@ package com.example.researchapp;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -33,6 +31,7 @@ public class terms_and_conditions_page extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_terms_and_conditions_page);
         Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle("Terms of Service");
         setSupportActionBar(toolbar);
 
         drawer = findViewById(R.id.drawer_layout);
@@ -69,7 +68,7 @@ public class terms_and_conditions_page extends AppCompatActivity {
     public void selectDrawerItem(MenuItem menuItem) {
         switch (menuItem.getItemId()) {
             case R.id.nav_home://TODO: Change this to CleanersHomeScreen if status == cleaner
-                Intent g = new Intent(this,HomeScreenHost.class);
+                Intent g = new Intent(this, HomeScreen.class);
                 startActivity(g);
                 break;
             case R.id.nav_profile:

@@ -68,10 +68,10 @@ public class Profile extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         databaseReference = database.getReference("Users");
 
-        avatarIv = (ImageView) findViewById(R.id.avatarIv);
+        //avatarIv = (ImageView) findViewById(R.id.avatarIv);
         nameTv = (TextView) findViewById(R.id.name);
         emailTv = (TextView) findViewById(R.id.email);
-        phoneTv = (TextView) findViewById(R.id.phone);
+        //phoneTv = (TextView) findViewById(R.id.phone);
 
         Query query = databaseReference.orderByChild("email").equalTo(user.getEmail());
         query.addValueEventListener(new ValueEventListener() {
@@ -115,7 +115,7 @@ public class Profile extends AppCompatActivity {
     public void selectDrawerItem(MenuItem menuItem) {
         switch (menuItem.getItemId()) {
             case R.id.nav_home://TODO: Change this to CleanersHomeScreen if status == cleaner
-                Intent g = new Intent(this,HomeScreenHost.class);
+                Intent g = new Intent(this, HomeScreen.class);
                 startActivity(g);
                 break;
             case R.id.nav_profile:

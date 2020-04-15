@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:id="@+id/drawer_layout"
     android:fitsSystemWindows="true"
-    tools:context="com.example.researchapp.HomeScreenHost"
+    tools:context="com.example.researchapp.HomeScreen"
     tools:openDrawer="start">
     <RelativeLayout
         android:id="@+id/relativelayout"

@@ -51,6 +51,8 @@ public class OpeningScreen extends AppCompatActivity {
                     password.requestFocus();
                 } else if (email.isEmpty() && paw.isEmpty()) {
                     Toast.makeText(OpeningScreen.this, "Fields are empty.", Toast.LENGTH_SHORT).show();
+                } else if (!(email.isEmpty() && paw.isEmpty()) && (paw.length() < 8)) {
+                    Toast.makeText(OpeningScreen.this, "Password must be at-least 8 characters log!", Toast.LENGTH_SHORT).show();
                 } else if (!(email.isEmpty() && paw.isEmpty())) {
                     mFirebaseAuth.createUserWithEmailAndPassword(email, paw).addOnCompleteListener(OpeningScreen.this,
                             new OnCompleteListener<AuthResult>() {
