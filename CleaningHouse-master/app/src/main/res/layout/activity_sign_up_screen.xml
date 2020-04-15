@@ -44,19 +44,18 @@
         android:inputType="textPostalAddress"
         />
 
-
     <Switch
         android:id="@+id/roleToggle"
-        android:showText="true"
-        android:textColor="@android:color/black"
-        android:textOn="Cleaner"
-        android:textOff="Host"
+        android:theme="@style/BrandedSwitch.control"
         android:layout_width="wrap_content"
         android:layout_height="79dp"
-        android:textColorHighlight="@color/colorPrimary"
         android:layout_gravity="center"
-        />
-
+        android:outlineSpotShadowColor="@color/colorPrimary"
+        android:showText="true"
+        android:textColor="@android:color/black"
+        android:textColorHighlight="@color/colorPrimary"
+        android:textOff="Host"
+        android:textOn="Cleaner" />
 
     <Button
         android:id="@+id/makeAccBtn"
