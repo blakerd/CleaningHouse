@@ -42,6 +42,8 @@ public class SignUpScreen extends AppCompatActivity implements View.OnClickListe
     String fName;
     String loc;
 
+    Boolean Cleaner = false;
+
     EditText fullName;
     EditText location;
 
@@ -78,6 +80,21 @@ public class SignUpScreen extends AppCompatActivity implements View.OnClickListe
 
 
         makeAccBtn.setOnClickListener(this);
+<<<<<<< Updated upstream
+=======
+        role.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(role.isChecked()) {
+                    Cleaner = true;
+
+                } else {
+                    Cleaner = false;
+                    
+                }
+            }
+        });
+>>>>>>> Stashed changes
 
         profilePic.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,7 +130,16 @@ public class SignUpScreen extends AppCompatActivity implements View.OnClickListe
                 }
             }
         });
-               reference.child("Users").child(userID).child("Location").setValue(loc);
+                if(Cleaner == true)
+                {
+                    reference.child("Users").child(userID).child("Role").setValue("Cleaner");
+                }
+                else
+                {
+                    reference.child("Users").child(userID).child("Role").setValue("Host");
+                }
+                reference.child("Users").child(userID).child("Full Name").setValue(fName);
+                reference.child("Users").child(userID).child("Location").setValue(loc);
 
 
                 //yet to implement picture storage
