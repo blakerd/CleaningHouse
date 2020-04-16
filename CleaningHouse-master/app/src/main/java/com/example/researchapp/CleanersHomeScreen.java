@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -21,6 +22,13 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.core.view.GravityCompat;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class CleanersHomeScreen extends AppCompatActivity implements View.OnClickListener {
     Button currentProperties;
@@ -28,6 +36,12 @@ public class CleanersHomeScreen extends AppCompatActivity implements View.OnClic
     Button upcomingCleanings;
     Button billsReceipts;
     DrawerLayout drawer;
+    TextView username;
+    TextView status;
+    View header;
+    FirebaseUser fbuser;
+    FirebaseDatabase db;
+    DatabaseReference reference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,11 +53,37 @@ public class CleanersHomeScreen extends AppCompatActivity implements View.OnClic
         drawer = findViewById(R.id.drawer_layout);
 
         NavigationView navigationView = findViewById(R.id.nav_view);
+        header = navigationView.getHeaderView(0);
+        username = header.findViewById(R.id.username);
+        status = header.findViewById(R.id.status);
+        fbuser = FirebaseAuth.getInstance().getCurrentUser();
+        db = FirebaseDatabase.getInstance();
         setupDrawerContent(navigationView);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
+        reference = db.getReference("Users").child(fbuser.getUid());
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Users user = dataSnapshot.getValue(Users.class);
+                if(fbuser.getDisplayName() == "")
+                {
+                    username.setText("No name provided");
+                }
+                else {
+                    username.setText(fbuser.getDisplayName());
+                }
+                status.setText(dataSnapshot.child("Role").getValue(String.class));
+            }
+
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
         currentProperties = (Button) findViewById(R.id.currentListings);
         viewMessages = (Button) findViewById(R.id.viewMessages);
@@ -67,6 +107,10 @@ public class CleanersHomeScreen extends AppCompatActivity implements View.OnClic
     }
     public void selectDrawerItem(MenuItem menuItem) {
         switch (menuItem.getItemId()) {
+            case R.id.nav_home:
+                Intent g = new Intent(this,CleanersHomeScreen.class);
+                startActivity(g);
+                break;
             case R.id.nav_profile:
                 Intent h = new Intent(this, Profile.class);
                 startActivity(h);

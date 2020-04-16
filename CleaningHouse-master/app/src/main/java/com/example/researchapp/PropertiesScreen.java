@@ -12,6 +12,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -32,6 +33,7 @@ public class PropertiesScreen extends AppCompatActivity implements View.OnClickL
     TextView propText;
     EditText propNickname;
     FirebaseAuth mFirebaseAuth;
+    FirebaseUser mFirebaseUser;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference myRef;
@@ -40,6 +42,7 @@ public class PropertiesScreen extends AppCompatActivity implements View.OnClickL
     DrawerLayout drawer;
     NavigationView navigationView;
     TextView username;
+    TextView status;
     View header;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,9 +67,9 @@ public class PropertiesScreen extends AppCompatActivity implements View.OnClickL
         uploadNewPropertyButton.setOnClickListener(this);
         displayPropertyButton.setOnClickListener(this);
         mFirebaseAuth = FirebaseAuth.getInstance();
-        FirebaseUser mFirebaseUser = mFirebaseAuth.getCurrentUser();
         header = navigationView.getHeaderView(0);
         username = header.findViewById(R.id.username);
+        status = header.findViewById(R.id.status);
         mFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         String uName = mFirebaseUser.getDisplayName();
         if(uName == "") {
@@ -78,6 +81,19 @@ public class PropertiesScreen extends AppCompatActivity implements View.OnClickL
         userID = mFirebaseUser.getUid();
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         myRef = mFirebaseDatabase.getReference();
+
+        DatabaseReference ref = mFirebaseDatabase.getReference("Users").child(userID);
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Users user = dataSnapshot.getValue(Users.class);
+                status.setText(dataSnapshot.child("Role").getValue(String.class));
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
     }
     @Override

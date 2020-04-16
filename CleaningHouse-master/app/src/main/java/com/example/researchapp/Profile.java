@@ -34,8 +34,9 @@ public class Profile extends AppCompatActivity {
     ImageView avatarIv;
     DrawerLayout drawer;
     NavigationView navigationView;
-    TextView username;
     View header;
+    TextView username;
+    TextView status;
 
     TextView nameTv, emailTv, phoneTv;
     @Override
@@ -49,30 +50,31 @@ public class Profile extends AppCompatActivity {
         navigationView = findViewById(R.id.nav_view);
         header = navigationView.getHeaderView(0);
         username = header.findViewById(R.id.username);
-
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
-                R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
-        setupDrawerContent(navigationView);
+        status = header.findViewById(R.id.status);
         firebaseAuth = FirebaseAuth.getInstance();
         user = firebaseAuth.getCurrentUser();
         String uName = user.getDisplayName();
-        if(uName == "") {
-            username.setText("No name provided");
-        }
-        else {
-            username.setText(uName);
-        }
-
-        database = FirebaseDatabase.getInstance();
-        databaseReference = database.getReference("Users");
 
         //avatarIv = (ImageView) findViewById(R.id.avatarIv);
         nameTv = (TextView) findViewById(R.id.name);
         emailTv = (TextView) findViewById(R.id.email);
         //phoneTv = (TextView) findViewById(R.id.phone);
+        database = FirebaseDatabase.getInstance();
+        databaseReference = database.getReference("Users").child(user.getUid());
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Users user = dataSnapshot.getValue(Users.class);
+                status.setText(dataSnapshot.child("Role").getValue(String.class));
+            }
 
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        databaseReference = database.getReference("Users");
         Query query = databaseReference.orderByChild("email").equalTo(user.getEmail());
         query.addValueEventListener(new ValueEventListener() {
             @Override
@@ -100,6 +102,18 @@ public class Profile extends AppCompatActivity {
 
             }
         });
+        if(uName == "") {
+            username.setText("No name provided");
+        }
+        else {
+            username.setText(uName);
+        }
+
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
+                R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+        setupDrawerContent(navigationView);
     }
     private void setupDrawerContent(NavigationView navigationView) {
         navigationView.setNavigationItemSelectedListener(

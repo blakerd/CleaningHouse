@@ -2,6 +2,7 @@ package com.example.researchapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.renderscript.Sampler;
 import android.view.*;
 import android.widget.*;
 
@@ -26,13 +27,14 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class HomeScreen extends AppCompatActivity implements View.OnClickListener {
     TextView username;
+    TextView status;
     View header;
     CircleImageView profile_image;
     Button logOutBtn;
     FirebaseAuth mFirebaseAuth;
     FirebaseUser fbuser;
     FirebaseDatabase db;
-    DatabaseReference reference;
+    DatabaseReference ref;
     Button currentProperties;
     Button viewMessages;
     Button upcomingCleanings;
@@ -50,14 +52,15 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         header = navigationView.getHeaderView(0);
         username = header.findViewById(R.id.username);
+        status = header.findViewById(R.id.status);
         profile_image = (CircleImageView) header.findViewById(R.id.profileImage);
         drawer = findViewById(R.id.drawer_layout);
         fbuser = FirebaseAuth.getInstance().getCurrentUser();
         db = FirebaseDatabase.getInstance();
 
-        username.setText(fbuser.getUid());
-        reference = db.getReference("Users").child(fbuser.getUid());
-        reference.addValueEventListener(new ValueEventListener() {
+        //username.setText(fbuser.getUid()); we set the username below
+        ref = db.getReference("Users").child(fbuser.getUid());
+        ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Users user = dataSnapshot.getValue(Users.class);
@@ -68,11 +71,7 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
                 else {
                     username.setText(fbuser.getDisplayName());
                 }
-                /*if(user.getImageURL().equals("default")) {
-                    profile_image.setImageResource(R.mipmap.ic_launcher);
-                } else {
-                    Glide.with(HomeScreen.this).load(user.getImageURL()).into(profile_image);
-                }*/
+                status.setText(dataSnapshot.child("Role").getValue(String.class));
             }
 
 
