@@ -48,6 +48,7 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen_host);
         Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle("Host Home Screen");
         setSupportActionBar(toolbar);
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         header = navigationView.getHeaderView(0);
@@ -71,7 +72,12 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
                 else {
                     username.setText(fbuser.getDisplayName());
                 }
-                status.setText(dataSnapshot.child("Role").getValue(String.class));
+                String stat = dataSnapshot.child("Role").getValue(String.class);
+                if(stat == "Host")
+                    status.setText(stat);
+                else
+                    cleanerCheck();
+
             }
 
 
@@ -107,7 +113,11 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
             }
         });
     }
-
+    private void cleanerCheck()
+    {
+        Intent f = new Intent(this,CleanersHomeScreen.class);
+        startActivity(f);
+    }
     private void setupDrawerContent(NavigationView navigationView) {
         navigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
@@ -160,15 +170,6 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
                 default:
 
         }
-        LayoutInflater inflater = getLayoutInflater();
-        LinearLayout container = (LinearLayout) findViewById(R.id.content_frame);
-        inflater.inflate(R.layout.activity_home_screen_host, container);
-        // Highlight the selected item has been done by NavigationView
-        menuItem.setChecked(true);
-        // Set action bar title
-        setTitle(menuItem.getTitle());
-        // Close the navigation drawer
-        drawer.closeDrawers();
     }
 
     @Override

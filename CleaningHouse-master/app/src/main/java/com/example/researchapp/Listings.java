@@ -128,15 +128,6 @@ public class Listings extends AppCompatActivity {
             default:
 
         }
-        LayoutInflater inflater = getLayoutInflater();
-        LinearLayout container = (LinearLayout) findViewById(R.id.content_frame);
-        inflater.inflate(R.layout.activity_home_screen_host, container);
-        // Highlight the selected item has been done by NavigationView
-        menuItem.setChecked(true);
-        // Set action bar title
-        setTitle(menuItem.getTitle());
-        // Close the navigation drawer
-        drawer.closeDrawers();
     }
     public void onBackPressed(){
         if (drawer.isDrawerOpen(GravityCompat.START)){

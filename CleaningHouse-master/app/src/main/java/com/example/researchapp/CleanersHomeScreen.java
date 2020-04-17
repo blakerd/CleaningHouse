@@ -35,12 +35,14 @@ public class CleanersHomeScreen extends AppCompatActivity implements View.OnClic
     Button viewMessages;
     Button upcomingCleanings;
     Button billsReceipts;
+    Button logOutBtn;
     DrawerLayout drawer;
     TextView username;
     TextView status;
     View header;
     FirebaseUser fbuser;
     FirebaseDatabase db;
+    FirebaseAuth mFirebaseAuth;
     DatabaseReference reference;
 
     @Override
@@ -48,6 +50,7 @@ public class CleanersHomeScreen extends AppCompatActivity implements View.OnClic
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cleaners_home_screen);
         Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle("Cleaner Home Screen");
         setSupportActionBar(toolbar);
 
         drawer = findViewById(R.id.drawer_layout);
@@ -85,14 +88,24 @@ public class CleanersHomeScreen extends AppCompatActivity implements View.OnClic
             }
         });
 
-        currentProperties = (Button) findViewById(R.id.currentListings);
+        currentProperties = (Button) findViewById(R.id.currentProperties);
         viewMessages = (Button) findViewById(R.id.viewMessages);
         upcomingCleanings = (Button) findViewById(R.id.upcomingCleanings);
         billsReceipts = (Button) findViewById(R.id.billsReceipts);
+        logOutBtn = findViewById(R.id.logOut);
         currentProperties.setOnClickListener(this);
         viewMessages.setOnClickListener(this);
         upcomingCleanings.setOnClickListener(this);
         billsReceipts.setOnClickListener(this);
+
+        logOutBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mFirebaseAuth.getInstance().signOut();
+                Intent backToHome = new Intent(CleanersHomeScreen.this, OpeningScreen.class);
+                startActivity(backToHome);
+            }
+        });
 
     }
     private void setupDrawerContent(NavigationView navigationView) {
@@ -146,15 +159,6 @@ public class CleanersHomeScreen extends AppCompatActivity implements View.OnClic
             default:
 
         }
-        LayoutInflater inflater = getLayoutInflater();
-        LinearLayout container = (LinearLayout) findViewById(R.id.content_frame);
-        inflater.inflate(R.layout.activity_cleaners_home_screen, container);
-        // Highlight the selected item has been done by NavigationView
-        menuItem.setChecked(true);
-        // Set action bar title
-        setTitle(menuItem.getTitle());
-        // Close the navigation drawer
-        drawer.closeDrawers();
     }
 
     @Override
@@ -169,7 +173,7 @@ public class CleanersHomeScreen extends AppCompatActivity implements View.OnClic
     }
     public void onClick(View v) {
         switch(v.getId()){
-            case R.id.currentListings:
+            case R.id.currentProperties:
                 propertiesPage();
                 break;
             case R.id.viewMessages:

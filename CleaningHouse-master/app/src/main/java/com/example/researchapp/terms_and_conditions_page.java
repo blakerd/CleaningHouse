@@ -24,6 +24,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class terms_and_conditions_page extends AppCompatActivity {
 
@@ -69,7 +70,6 @@ public class terms_and_conditions_page extends AppCompatActivity {
 
             }
         });
-
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -90,8 +90,8 @@ public class terms_and_conditions_page extends AppCompatActivity {
     public void selectDrawerItem(MenuItem menuItem) {
         switch (menuItem.getItemId()) {
             case R.id.nav_home://TODO: Change this to CleanersHomeScreen if status == cleaner
-                Intent g = new Intent(this, HomeScreen.class);
-                startActivity(g);
+                    Intent g = new Intent(this,HomeScreen.class);
+                    startActivity(g);
                 break;
             case R.id.nav_profile:
                 Intent h = new Intent(this, Profile.class);
