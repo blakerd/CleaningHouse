@@ -188,7 +188,7 @@ public class CleanersHomeScreen extends AppCompatActivity implements View.OnClic
         }
     }
     public void propertiesPage(){
-        Intent i = new Intent(this, PropertiesScreen.class);
+        Intent i = new Intent(this, CleanersProperties.class);
         startActivity(i);
     }
     public void schedulePage() {
