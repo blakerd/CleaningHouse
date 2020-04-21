@@ -11,7 +11,7 @@ body {
 	font-family:Verdana, Arial, Helvetica, sans-serif;
 	font-size: 13px;
 	color: #000000;
-	background-image:url(background.png);
+	background-image:url(images/png's/background.png);
 	background-repeat:repeat-x;
 }
 
@@ -23,7 +23,7 @@ body {
 
 #header
 {
-background-image:url(tab.png);
+background-image:url(images/png's/tab.png);
 background-repeat:no-repeat;
 height:100px;
 width:427px;
@@ -36,7 +36,7 @@ padding-top:18px;
 {
 height:72px;
 width:72px;
-background-image:url(logo1.png);  //there are 5 different logos (logo1.png, logo2.png ...)
+background-image:url(images/png's/logo1.png);  //there are 5 different logos (logo1.png, logo2.png ...)
 background-repeat:no-repeat;
 float:left;
 margin-left:23px;
@@ -87,7 +87,7 @@ width:1250px;
 {
 margin-left:0px;
 width:419px;
-background-image:url(repeatBackNavAlpha.png);
+background-image:url(images/png's/repeatBackNavAlpha.png);
 background-repeat:repeat-y;
 float:left;
 }
@@ -110,14 +110,14 @@ height:65px;
 line-height:65px;
 font:Arial, Helvetica, sans-serif;
 font-size:20px;
-background-image:url(arrow_link_background.png);
+background-image:url(images/png's/arrow_link_background.png);
 background-repeat:no-repeat;
 padding-left:50px;
 }
 
 #bottomContent .navColumn .link:hover
 {
-background-image:url(rollover_back65.png);
+background-image:url(images/png's/rollover_back65.png);
 background-repeat:no-repeat;
 }
 
@@ -148,7 +148,7 @@ width:550px;
 width:519px;
 height:29px;
 background-repeat:no-repeat;
-background-image:url(contentBoxTop.png);
+background-image:url(images/png's/contentBoxTop.png);
 }
 
 .contentBottom
@@ -156,7 +156,7 @@ background-image:url(contentBoxTop.png);
 width:519px;
 height:29px;
 background-repeat:no-repeat;
-background-image:url(contentBoxBottom.png);
+background-image:url(images/png's/contentBoxBottom.png);
 margin-bottom:15px;
 }
 
@@ -166,7 +166,7 @@ margin-bottom:15px;
 width:489px;
 height:auto;
 background-repeat:no-repeat;
-background-image:url(contentBoxBack.png);
+background-image:url(images/png's/contentBoxBack.png);
 background-repeat:repeat-y;
 padding-left:18px;
 padding-right:12px;
@@ -196,7 +196,7 @@ margin-left:25px;
 clear:both;
 width:419px;
 height:20px;
-background-image:url(tab_bottom.png);
+background-image:url(images/png's/tab_bottom.png);
 background-repeat:no-repeat;
 float:left;
 }
@@ -208,7 +208,7 @@ height:44px;
 margin-top:20px;
 margin-left:25px;
 margin-right:25px;
-background-image:url(tab_back.png);
+background-image:url(images/png's/tab_back.png);
 background-repeat:no-repeat;
 }
 
@@ -236,7 +236,7 @@ line-height:30px;
 #footer {
 width: 750px;
 height:49px;
-background: url(footer.png) no-repeat;
+background: url(images/png's/footer.png) no-repeat;
 text-align:center;
 font-size:9px;
 color:#223F8D;
