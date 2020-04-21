@@ -6,6 +6,8 @@ import android.renderscript.Sampler;
 import android.view.*;
 import android.widget.*;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.widget.Toolbar;
@@ -26,6 +28,7 @@ import com.google.firebase.database.ValueEventListener;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class HomeScreen extends AppCompatActivity implements View.OnClickListener {
+    private static final String TAG = "HomeScreenTag";
     TextView username;
     TextView status;
     View header;
@@ -61,9 +64,11 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
 
         //username.setText(fbuser.getUid()); we set the username below
         ref = db.getReference("Users").child(fbuser.getUid());
-        ref.addValueEventListener(new ValueEventListener() {
+
+        ref.child("Role").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
                 if(fbuser.getDisplayName() == "")
                 {
                     username.setText("No name provided");
@@ -71,8 +76,8 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
                 else {
                     username.setText(fbuser.getDisplayName());
                 }
-                String stat = dataSnapshot.child("Role").getValue(String.class);
-                if(stat == "Host")
+                String stat = dataSnapshot.getValue(String.class);
+                if(stat.equals("Host"))
                     status.setText(stat);
                 else
                     cleanerCheck();
