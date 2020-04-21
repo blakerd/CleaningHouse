@@ -116,7 +116,11 @@ public class UploadNewPropertyScreen extends AppCompatActivity implements View.O
                 myRef.child("Users").child(userID).child("Properties").child(propertyName).child("Street Address").setValue(propertyAddress);
                 myRef.child("Users").child(userID).child("Properties").child(propertyName).child("City").setValue(city);
                 myRef.child("Users").child(userID).child("Properties").child(propertyName).child("Cleaning Price").setValue(cleaningPrice);
+
+                Toast.makeText(UploadNewPropertyScreen.this, "Property Successfully Uploaded", Toast.LENGTH_SHORT).show();
+
                 myRef.child("Users").child(userID).child("Properties").child(propertyName).child("List Status").setValue(listStatus);
+
                 Intent i = new Intent(this, PropertiesScreen.class);
                 startActivity(i);
 
