@@ -2,6 +2,7 @@ package com.example.researchapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.renderscript.Sampler;
 import android.view.*;
 import android.widget.*;
 
@@ -26,13 +27,14 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class HomeScreen extends AppCompatActivity implements View.OnClickListener {
     TextView username;
+    TextView status;
     View header;
     CircleImageView profile_image;
     Button logOutBtn;
     FirebaseAuth mFirebaseAuth;
     FirebaseUser fbuser;
     FirebaseDatabase db;
-    DatabaseReference reference;
+    DatabaseReference ref;
     Button currentProperties;
     Button viewMessages;
     Button upcomingCleanings;
@@ -46,21 +48,22 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen_host);
         Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle("Host Home Screen");
         setSupportActionBar(toolbar);
-        navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView = findViewById(R.id.nav_view);
         header = navigationView.getHeaderView(0);
         username = header.findViewById(R.id.username);
-        profile_image = (CircleImageView) header.findViewById(R.id.profileImage);
+        status = header.findViewById(R.id.status);
+        profile_image = header.findViewById(R.id.profileImage);
         drawer = findViewById(R.id.drawer_layout);
         fbuser = FirebaseAuth.getInstance().getCurrentUser();
         db = FirebaseDatabase.getInstance();
 
-        username.setText(fbuser.getUid());
-        reference = db.getReference("Users").child(fbuser.getUid());
-        reference.addValueEventListener(new ValueEventListener() {
+        //username.setText(fbuser.getUid()); we set the username below
+        ref = db.getReference("Users").child(fbuser.getUid());
+        ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Users user = dataSnapshot.getValue(Users.class);
                 if(fbuser.getDisplayName() == "")
                 {
                     username.setText("No name provided");
@@ -68,11 +71,12 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
                 else {
                     username.setText(fbuser.getDisplayName());
                 }
-                /*if(user.getImageURL().equals("default")) {
-                    profile_image.setImageResource(R.mipmap.ic_launcher);
-                } else {
-                    Glide.with(HomeScreen.this).load(user.getImageURL()).into(profile_image);
-                }*/
+                String stat = dataSnapshot.child("Role").getValue(String.class);
+                if(stat == "Host")
+                    status.setText(stat);
+                else
+                    cleanerCheck();
+
             }
 
 
@@ -82,16 +86,11 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
             }
         });
 
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
-                R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
-        setupDrawerContent(navigationView);
         logOutBtn = findViewById(R.id.logOut);
-        currentProperties = (Button) findViewById(R.id.currentProperties);
-        viewMessages = (Button) findViewById(R.id.viewMessages);
-        upcomingCleanings = (Button) findViewById(R.id.upcomingCleanings);
-        billsReceipts = (Button) findViewById(R.id.billsReceipts);
+        currentProperties = findViewById(R.id.currentProperties);
+        viewMessages = findViewById(R.id.viewMessages);
+        upcomingCleanings = findViewById(R.id.upcomingCleanings);
+        billsReceipts = findViewById(R.id.billsReceipts);
         currentProperties.setOnClickListener(this);
         viewMessages.setOnClickListener(this);
         upcomingCleanings.setOnClickListener(this);
@@ -107,8 +106,17 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
                 startActivity(backToHome);
             }
         });
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
+                R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+        setupDrawerContent(navigationView);
     }
-
+    private void cleanerCheck()
+    {
+        Intent f = new Intent(this,CleanersHomeScreen.class);
+        startActivity(f);
+    }
     private void setupDrawerContent(NavigationView navigationView) {
         navigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
@@ -161,15 +169,6 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
                 default:
 
         }
-        LayoutInflater inflater = getLayoutInflater();
-        LinearLayout container = (LinearLayout) findViewById(R.id.content_frame);
-        inflater.inflate(R.layout.activity_home_screen_host, container);
-        // Highlight the selected item has been done by NavigationView
-        menuItem.setChecked(true);
-        // Set action bar title
-        setTitle(menuItem.getTitle());
-        // Close the navigation drawer
-        drawer.closeDrawers();
     }
 
     @Override
@@ -214,11 +213,6 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
     public void messagePage(){
         Intent i = new Intent(this, MessageScreen.class);
         startActivity(i);
-
-    }
-
-    @Override
-    public void onPointerCaptureChanged(boolean hasCapture) {
 
     }
 }

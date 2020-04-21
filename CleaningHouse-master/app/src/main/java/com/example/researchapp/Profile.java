@@ -34,45 +34,44 @@ public class Profile extends AppCompatActivity {
     ImageView avatarIv;
     DrawerLayout drawer;
     NavigationView navigationView;
-    TextView username;
     View header;
-
+    TextView username;
+    TextView status;
     TextView nameTv, emailTv, phoneTv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle("Profile");
         setSupportActionBar(toolbar);
 
         drawer = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
         header = navigationView.getHeaderView(0);
         username = header.findViewById(R.id.username);
-
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
-                R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
-        setupDrawerContent(navigationView);
+        status = header.findViewById(R.id.status);
         firebaseAuth = FirebaseAuth.getInstance();
         user = firebaseAuth.getCurrentUser();
         String uName = user.getDisplayName();
-        if(uName == "") {
-            username.setText("No name provided");
-        }
-        else {
-            username.setText(uName);
-        }
-
-        database = FirebaseDatabase.getInstance();
-        databaseReference = database.getReference("Users");
 
         //avatarIv = (ImageView) findViewById(R.id.avatarIv);
-        nameTv = (TextView) findViewById(R.id.name);
-        emailTv = (TextView) findViewById(R.id.email);
+        nameTv = findViewById(R.id.name);
+        emailTv = findViewById(R.id.email);
         //phoneTv = (TextView) findViewById(R.id.phone);
+        database = FirebaseDatabase.getInstance();
+        databaseReference = database.getReference("Users").child(user.getUid());
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                status.setText(dataSnapshot.child("Role").getValue(String.class));
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
+            }
+        });
+        databaseReference = database.getReference("Users");
         Query query = databaseReference.orderByChild("email").equalTo(user.getEmail());
         query.addValueEventListener(new ValueEventListener() {
             @Override
@@ -100,6 +99,18 @@ public class Profile extends AppCompatActivity {
 
             }
         });
+        if(uName == "") {
+            username.setText("No name provided");
+        }
+        else {
+            username.setText(uName);
+        }
+
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
+                R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+        setupDrawerContent(navigationView);
     }
     private void setupDrawerContent(NavigationView navigationView) {
         navigationView.setNavigationItemSelectedListener(
@@ -111,10 +122,9 @@ public class Profile extends AppCompatActivity {
                     }
                 });
     }
-
     public void selectDrawerItem(MenuItem menuItem) {
         switch (menuItem.getItemId()) {
-            case R.id.nav_home://TODO: Change this to CleanersHomeScreen if status == cleaner
+            case R.id.nav_home:
                 Intent g = new Intent(this, HomeScreen.class);
                 startActivity(g);
                 break;
@@ -131,7 +141,7 @@ public class Profile extends AppCompatActivity {
                 startActivity(j);
                 break;
             case R.id.listings:
-                Intent k = new Intent(this,Listings.class);
+                Intent k = new Intent(this, Listings.class);
                 startActivity(k);
                 break;
             case R.id.nav_message:
@@ -143,7 +153,7 @@ public class Profile extends AppCompatActivity {
                 startActivity(m);
                 break;
             case R.id.contacts:
-                Intent n = new Intent(this,Contacts.class);
+                Intent n = new Intent(this, Contacts.class);
                 startActivity(n);
                 break;
             case R.id.termsOfService:
@@ -153,14 +163,5 @@ public class Profile extends AppCompatActivity {
             default:
 
         }
-        LayoutInflater inflater = getLayoutInflater();
-        LinearLayout container = (LinearLayout) findViewById(R.id.content_frame);
-        inflater.inflate(R.layout.activity_home_screen_host, container);
-        // Highlight the selected item has been done by NavigationView
-        menuItem.setChecked(true);
-        // Set action bar title
-        setTitle(menuItem.getTitle());
-        // Close the navigation drawer
-        drawer.closeDrawers();
     }
 }

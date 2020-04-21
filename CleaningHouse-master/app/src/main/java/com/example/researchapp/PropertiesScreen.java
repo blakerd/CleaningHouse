@@ -45,6 +45,7 @@ public class PropertiesScreen extends AppCompatActivity implements View.OnClickL
     TextView propText5;
     EditText propNickname;
     FirebaseAuth mFirebaseAuth;
+    FirebaseUser mFirebaseUser;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference myRef;
@@ -54,12 +55,14 @@ public class PropertiesScreen extends AppCompatActivity implements View.OnClickL
     DrawerLayout drawer;
     NavigationView navigationView;
     TextView username;
+    TextView status;
     View header;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_properties_screen);
         Toolbar toolbar = findViewById(R.id.toolbar);
+
         uploadNewPropertyButton = (Button) findViewById(R.id.uploadNewPropertyButton);
         //displayPropertyButton = (Button) findViewById(R.id.displayPropertyButton);
 
@@ -72,17 +75,12 @@ public class PropertiesScreen extends AppCompatActivity implements View.OnClickL
         drawer = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
 
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
-                R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
-        setupDrawerContent(navigationView);
         uploadNewPropertyButton.setOnClickListener(this);
         //displayPropertyButton.setOnClickListener(this);
         mFirebaseAuth = FirebaseAuth.getInstance();
-        FirebaseUser mFirebaseUser = mFirebaseAuth.getCurrentUser();
         header = navigationView.getHeaderView(0);
         username = header.findViewById(R.id.username);
+        status = header.findViewById(R.id.status);
         mFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         String uName = mFirebaseUser.getDisplayName();
         if(uName == "") {
@@ -97,6 +95,22 @@ public class PropertiesScreen extends AppCompatActivity implements View.OnClickL
         myRef = mFirebaseDatabase.getReference();
         displayProperties();
 
+        DatabaseReference ref = mFirebaseDatabase.getReference("Users").child(userID);
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                status.setText(dataSnapshot.child("Role").getValue(String.class));
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
+                R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+        setupDrawerContent(navigationView);
     }
     @Override
     public void onClick(View v) {
@@ -197,7 +211,7 @@ public class PropertiesScreen extends AppCompatActivity implements View.OnClickL
 
     public void selectDrawerItem(MenuItem menuItem) {
         switch (menuItem.getItemId()) {
-            case R.id.nav_home://TODO: Change this to CleanersHomeScreen if status == cleaner
+            case R.id.nav_home:
                 Intent g = new Intent(this, HomeScreen.class);
                 startActivity(g);
                 break;
@@ -236,15 +250,6 @@ public class PropertiesScreen extends AppCompatActivity implements View.OnClickL
             default:
 
         }
-        LayoutInflater inflater = getLayoutInflater();
-        LinearLayout container = (LinearLayout) findViewById(R.id.content_frame);
-        inflater.inflate(R.layout.activity_home_screen_host, container);
-        // Highlight the selected item has been done by NavigationView
-        menuItem.setChecked(true);
-        // Set action bar title
-        setTitle(menuItem.getTitle());
-        // Close the navigation drawer
-        drawer.closeDrawers();
     }
     public void onBackPressed(){
         if (drawer.isDrawerOpen(GravityCompat.START)){
@@ -255,11 +260,5 @@ public class PropertiesScreen extends AppCompatActivity implements View.OnClickL
             super.onBackPressed();
         }
     }
-  /*  protected void onStart() {
-        super.onStart();
-        mFirebaseAuth.addAuthStateListener(mAuthStateListener);
 
-    }
-
-   */
 }

@@ -6,7 +6,13 @@ import android.os.Bundle;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -23,7 +29,10 @@ public class ScheduleScreen extends AppCompatActivity {
     DrawerLayout drawer;
     NavigationView navigationView;
     FirebaseUser fbuser;
+    FirebaseDatabase db;
+    DatabaseReference ref;
     TextView username;
+    TextView status;
     View header;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,20 +41,15 @@ public class ScheduleScreen extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("Schedule");
         setSupportActionBar(toolbar);
-        /*CalendarView calendarView = findViewById(new CalendarView.OnDateChangeListener() {
-          @Override
-          public void onSelectDayChange(@NonNull CalendarView calendarView, int i, int i1, int i2) {
-              String date = i + "/" + i1 + "/" + i2;
 
-
-          }
-                                                 }
-        );*/
         drawer = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
         header = navigationView.getHeaderView(0);
         username = header.findViewById(R.id.username);
+        status = header.findViewById(R.id.status);
         fbuser = FirebaseAuth.getInstance().getCurrentUser();
+        db = FirebaseDatabase.getInstance();
+        ref = db.getReference("Users").child(fbuser.getUid());
         String uName = fbuser.getDisplayName();
         if(uName == "") {
             username.setText("No name provided");
@@ -53,6 +57,16 @@ public class ScheduleScreen extends AppCompatActivity {
         else {
             username.setText(uName);
         }
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                status.setText(dataSnapshot.child("Role").getValue(String.class));
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -74,7 +88,7 @@ public class ScheduleScreen extends AppCompatActivity {
 
     public void selectDrawerItem(MenuItem menuItem) {
         switch (menuItem.getItemId()) {
-            case R.id.nav_home://TODO: Change this to CleanersHomeScreen if status == cleaner
+            case R.id.nav_home:
                 Intent g = new Intent(this, HomeScreen.class);
                 startActivity(g);
                 break;
@@ -113,15 +127,6 @@ public class ScheduleScreen extends AppCompatActivity {
             default:
 
         }
-        LayoutInflater inflater = getLayoutInflater();
-        LinearLayout container = (LinearLayout) findViewById(R.id.content_frame);
-        inflater.inflate(R.layout.activity_home_screen_host, container);
-        // Highlight the selected item has been done by NavigationView
-        menuItem.setChecked(true);
-        // Set action bar title
-        setTitle(menuItem.getTitle());
-        // Close the navigation drawer
-        drawer.closeDrawers();
     }
 
 }

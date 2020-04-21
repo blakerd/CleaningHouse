@@ -6,7 +6,13 @@ import android.os.Bundle;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -18,13 +24,17 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class terms_and_conditions_page extends AppCompatActivity {
 
     DrawerLayout drawer;
     NavigationView navigationView;
     FirebaseUser fbuser;
+    FirebaseDatabase db;
+    DatabaseReference ref;
     TextView username;
+    TextView status;
     View header;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +48,8 @@ public class terms_and_conditions_page extends AppCompatActivity {
         navigationView = findViewById(R.id.nav_view);
         header = navigationView.getHeaderView(0);
         username = header.findViewById(R.id.username);
+        status = header.findViewById(R.id.status);
+        db = FirebaseDatabase.getInstance();
         fbuser = FirebaseAuth.getInstance().getCurrentUser();
         String uName = fbuser.getDisplayName();
         if(uName == "") {
@@ -46,13 +58,22 @@ public class terms_and_conditions_page extends AppCompatActivity {
         else {
             username.setText(uName);
         }
+        ref= db.getReference("Users").child(fbuser.getUid());
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                status.setText(dataSnapshot.child("Role").getValue(String.class));
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
+            }
+        });
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         setupDrawerContent(navigationView);
-
     }
     private void setupDrawerContent(NavigationView navigationView) {
         navigationView.setNavigationItemSelectedListener(
@@ -67,9 +88,9 @@ public class terms_and_conditions_page extends AppCompatActivity {
 
     public void selectDrawerItem(MenuItem menuItem) {
         switch (menuItem.getItemId()) {
-            case R.id.nav_home://TODO: Change this to CleanersHomeScreen if status == cleaner
-                Intent g = new Intent(this, HomeScreen.class);
-                startActivity(g);
+            case R.id.nav_home:
+                    Intent g = new Intent(this,HomeScreen.class);
+                    startActivity(g);
                 break;
             case R.id.nav_profile:
                 Intent h = new Intent(this, Profile.class);
@@ -106,15 +127,6 @@ public class terms_and_conditions_page extends AppCompatActivity {
             default:
 
         }
-        LayoutInflater inflater = getLayoutInflater();
-        LinearLayout container = (LinearLayout) findViewById(R.id.content_frame);
-        inflater.inflate(R.layout.activity_home_screen_host, container);
-        // Highlight the selected item has been done by NavigationView
-        menuItem.setChecked(true);
-        // Set action bar title
-        setTitle(menuItem.getTitle());
-        // Close the navigation drawer
-        drawer.closeDrawers();
     }
     public void onBackPressed(){
         if (drawer.isDrawerOpen(GravityCompat.START)){
