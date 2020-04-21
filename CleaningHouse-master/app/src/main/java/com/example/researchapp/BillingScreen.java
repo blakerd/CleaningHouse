@@ -60,7 +60,6 @@ public class BillingScreen extends AppCompatActivity {
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Users user = dataSnapshot.getValue(Users.class);
                 status.setText(dataSnapshot.child("Role").getValue(String.class));
             }
             @Override
@@ -84,10 +83,9 @@ public class BillingScreen extends AppCompatActivity {
                     }
                 });
     }
-
     public void selectDrawerItem(MenuItem menuItem) {
         switch (menuItem.getItemId()) {
-            case R.id.nav_home://TODO: Change this to CleanersHomeScreen if status == cleaner
+            case R.id.nav_home:
                 Intent g = new Intent(this, HomeScreen.class);
                 startActivity(g);
                 break;

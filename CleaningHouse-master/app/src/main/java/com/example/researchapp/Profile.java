@@ -37,7 +37,6 @@ public class Profile extends AppCompatActivity {
     View header;
     TextView username;
     TextView status;
-
     TextView nameTv, emailTv, phoneTv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,19 +56,16 @@ public class Profile extends AppCompatActivity {
         String uName = user.getDisplayName();
 
         //avatarIv = (ImageView) findViewById(R.id.avatarIv);
-        nameTv = (TextView) findViewById(R.id.name);
-        emailTv = (TextView) findViewById(R.id.email);
+        nameTv = findViewById(R.id.name);
+        emailTv = findViewById(R.id.email);
         //phoneTv = (TextView) findViewById(R.id.phone);
         database = FirebaseDatabase.getInstance();
         databaseReference = database.getReference("Users").child(user.getUid());
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Users user = dataSnapshot.getValue(Users.class);
                 status.setText(dataSnapshot.child("Role").getValue(String.class));
             }
-
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
@@ -126,10 +122,9 @@ public class Profile extends AppCompatActivity {
                     }
                 });
     }
-
     public void selectDrawerItem(MenuItem menuItem) {
         switch (menuItem.getItemId()) {
-            case R.id.nav_home://TODO: Change this to CleanersHomeScreen if status == cleaner
+            case R.id.nav_home:
                 Intent g = new Intent(this, HomeScreen.class);
                 startActivity(g);
                 break;
@@ -146,7 +141,7 @@ public class Profile extends AppCompatActivity {
                 startActivity(j);
                 break;
             case R.id.listings:
-                Intent k = new Intent(this,Listings.class);
+                Intent k = new Intent(this, Listings.class);
                 startActivity(k);
                 break;
             case R.id.nav_message:
@@ -158,7 +153,7 @@ public class Profile extends AppCompatActivity {
                 startActivity(m);
                 break;
             case R.id.contacts:
-                Intent n = new Intent(this,Contacts.class);
+                Intent n = new Intent(this, Contacts.class);
                 startActivity(n);
                 break;
             case R.id.termsOfService:
@@ -168,14 +163,5 @@ public class Profile extends AppCompatActivity {
             default:
 
         }
-        LayoutInflater inflater = getLayoutInflater();
-        LinearLayout container = (LinearLayout) findViewById(R.id.content_frame);
-        inflater.inflate(R.layout.activity_home_screen_host, container);
-        // Highlight the selected item has been done by NavigationView
-        menuItem.setChecked(true);
-        // Set action bar title
-        setTitle(menuItem.getTitle());
-        // Close the navigation drawer
-        drawer.closeDrawers();
     }
 }

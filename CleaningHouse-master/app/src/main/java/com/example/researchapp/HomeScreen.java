@@ -50,11 +50,11 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("Host Home Screen");
         setSupportActionBar(toolbar);
-        navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView = findViewById(R.id.nav_view);
         header = navigationView.getHeaderView(0);
         username = header.findViewById(R.id.username);
         status = header.findViewById(R.id.status);
-        profile_image = (CircleImageView) header.findViewById(R.id.profileImage);
+        profile_image = header.findViewById(R.id.profileImage);
         drawer = findViewById(R.id.drawer_layout);
         fbuser = FirebaseAuth.getInstance().getCurrentUser();
         db = FirebaseDatabase.getInstance();
@@ -64,7 +64,6 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Users user = dataSnapshot.getValue(Users.class);
                 if(fbuser.getDisplayName() == "")
                 {
                     username.setText("No name provided");
@@ -87,16 +86,11 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
             }
         });
 
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
-                R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
-        setupDrawerContent(navigationView);
         logOutBtn = findViewById(R.id.logOut);
-        currentProperties = (Button) findViewById(R.id.currentProperties);
-        viewMessages = (Button) findViewById(R.id.viewMessages);
-        upcomingCleanings = (Button) findViewById(R.id.upcomingCleanings);
-        billsReceipts = (Button) findViewById(R.id.billsReceipts);
+        currentProperties = findViewById(R.id.currentProperties);
+        viewMessages = findViewById(R.id.viewMessages);
+        upcomingCleanings = findViewById(R.id.upcomingCleanings);
+        billsReceipts = findViewById(R.id.billsReceipts);
         currentProperties.setOnClickListener(this);
         viewMessages.setOnClickListener(this);
         upcomingCleanings.setOnClickListener(this);
@@ -112,6 +106,11 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
                 startActivity(backToHome);
             }
         });
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
+                R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+        setupDrawerContent(navigationView);
     }
     private void cleanerCheck()
     {
@@ -214,11 +213,6 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
     public void messagePage(){
         Intent i = new Intent(this, MessageScreen.class);
         startActivity(i);
-
-    }
-
-    @Override
-    public void onPointerCaptureChanged(boolean hasCapture) {
 
     }
 }

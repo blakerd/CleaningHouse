@@ -41,15 +41,7 @@ public class ScheduleScreen extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("Schedule");
         setSupportActionBar(toolbar);
-        /*CalendarView calendarView = findViewById(new CalendarView.OnDateChangeListener() {
-          @Override
-          public void onSelectDayChange(@NonNull CalendarView calendarView, int i, int i1, int i2) {
-              String date = i + "/" + i1 + "/" + i2;
 
-
-          }
-                                                 }
-        );*/
         drawer = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
         header = navigationView.getHeaderView(0);
@@ -70,8 +62,6 @@ public class ScheduleScreen extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 status.setText(dataSnapshot.child("Role").getValue(String.class));
             }
-
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
@@ -98,7 +88,7 @@ public class ScheduleScreen extends AppCompatActivity {
 
     public void selectDrawerItem(MenuItem menuItem) {
         switch (menuItem.getItemId()) {
-            case R.id.nav_home://TODO: Change this to CleanersHomeScreen if status == cleaner
+            case R.id.nav_home:
                 Intent g = new Intent(this, HomeScreen.class);
                 startActivity(g);
                 break;

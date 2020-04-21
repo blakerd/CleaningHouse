@@ -69,7 +69,6 @@ public class Listings extends AppCompatActivity {
 
             }
         });
-
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -86,10 +85,9 @@ public class Listings extends AppCompatActivity {
                     }
                 });
     }
-
     public void selectDrawerItem(MenuItem menuItem) {
         switch (menuItem.getItemId()) {
-            case R.id.nav_home://TODO: Change this to CleanersHomeScreen if status == cleaner
+            case R.id.nav_home:
                 Intent g = new Intent(this, HomeScreen.class);
                 startActivity(g);
                 break;

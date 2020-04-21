@@ -49,21 +49,16 @@ public class PropertiesScreen extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_properties_screen);
         Toolbar toolbar = findViewById(R.id.toolbar);
-        uploadNewPropertyButton = (Button) findViewById(R.id.uploadNewPropertyButton);
-        displayPropertyButton = (Button) findViewById(R.id.displayPropertyButton);
-        propText = (TextView) findViewById(R.id.Property);
-        propNickname = (EditText) findViewById(R.id.propertyNickname);
+        uploadNewPropertyButton = findViewById(R.id.uploadNewPropertyButton);
+        displayPropertyButton = findViewById(R.id.displayPropertyButton);
+        propText = findViewById(R.id.Property);
+        propNickname = findViewById(R.id.propertyNickname);
         toolbar.setTitle("Properties");
         setSupportActionBar(toolbar);
 
         drawer = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
 
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
-                R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
-        setupDrawerContent(navigationView);
         uploadNewPropertyButton.setOnClickListener(this);
         displayPropertyButton.setOnClickListener(this);
         mFirebaseAuth = FirebaseAuth.getInstance();
@@ -86,7 +81,6 @@ public class PropertiesScreen extends AppCompatActivity implements View.OnClickL
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Users user = dataSnapshot.getValue(Users.class);
                 status.setText(dataSnapshot.child("Role").getValue(String.class));
             }
             @Override
@@ -94,7 +88,11 @@ public class PropertiesScreen extends AppCompatActivity implements View.OnClickL
 
             }
         });
-
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
+                R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+        setupDrawerContent(navigationView);
     }
     @Override
     public void onClick(View v) {
@@ -145,7 +143,7 @@ public class PropertiesScreen extends AppCompatActivity implements View.OnClickL
 
     public void selectDrawerItem(MenuItem menuItem) {
         switch (menuItem.getItemId()) {
-            case R.id.nav_home://TODO: Change this to CleanersHomeScreen if status == cleaner
+            case R.id.nav_home:
                 Intent g = new Intent(this, HomeScreen.class);
                 startActivity(g);
                 break;
@@ -194,11 +192,5 @@ public class PropertiesScreen extends AppCompatActivity implements View.OnClickL
             super.onBackPressed();
         }
     }
-  /*  protected void onStart() {
-        super.onStart();
-        mFirebaseAuth.addAuthStateListener(mAuthStateListener);
 
-    }
-
-   */
 }
