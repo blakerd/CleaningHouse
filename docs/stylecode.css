@@ -1,7 +1,7 @@
 html, body {
 text-align: center;
 }
-p {text-align: left;}
+p {text-align: center;}
 
 body {
 	margin: 0;
@@ -18,7 +18,7 @@ body {
 *
 {
   margin: 0 auto 0 auto;
- text-align:left;}
+ text-align:center;}
 
 
 #header
@@ -63,7 +63,7 @@ position: relative;
 margin-left:10px;
 margin-top:2px;
 float:left;
-color:#CCCF76;
+color:#339933;
 text-align:left;
 font-size:14px;
 width:311px;
