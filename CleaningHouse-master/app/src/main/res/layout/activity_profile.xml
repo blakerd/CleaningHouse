@@ -41,7 +41,7 @@
                 android:layout_height="670dp">
 
                 <TextView
-                    android:id="@+id/roleTextView"
+                    android:id="@+id/emailTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="179dp"
@@ -50,13 +50,13 @@
                     android:layout_marginEnd="174dp"
                     android:layout_marginRight="174dp"
                     android:layout_marginBottom="452dp"
-                    android:text="Role of User"
+                    android:text="Contact"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.578"
+                    app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0" />
+                    app:layout_constraintVertical_bias="1.0" />
 
                 <TextView
                     android:id="@+id/locationTextView"
@@ -65,21 +65,23 @@
                     android:text="Location"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.498"
+                    app:layout_constraintHorizontal_bias="0.518"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.394" />
+                    app:layout_constraintVertical_bias="0.393" />
 
                 <TextView
-                    android:id="@+id/dateJoinedTextView"
+                    android:id="@+id/roleTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Data Joined:"
+                    android:text="Role of User"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.221" />
+
+
             </androidx.constraintlayout.widget.ConstraintLayout>
         </FrameLayout>
     </LinearLayout>
@@ -133,13 +135,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
     </RelativeLayout>
 
-    <com.google.android.material.navigation.NavigationView
-    android:id="@+id/nav_view"
-    android:layout_width="wrap_content"
-    android:layout_height="match_parent"
-    android:layout_gravity="start"
-    app:headerLayout="@layout/nav_header"
-    app:menu="@menu/drawer_menu" />
+
 
 
 

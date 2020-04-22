@@ -37,7 +37,7 @@ public class Profile extends AppCompatActivity {
     View header;
     TextView username;
     TextView status;
-    TextView nameTv, emailTv, phoneTv;
+    TextView nameTv, emailTv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,8 +56,8 @@ public class Profile extends AppCompatActivity {
         String uName = user.getDisplayName();
 
         //avatarIv = (ImageView) findViewById(R.id.avatarIv);
-        nameTv = findViewById(R.id.name);
-        emailTv = findViewById(R.id.email);
+        nameTv = findViewById(R.id.userName);
+        emailTv = findViewById(R.id.emailTextView);
         //phoneTv = (TextView) findViewById(R.id.phone);
         database = FirebaseDatabase.getInstance();
         databaseReference = database.getReference("Users").child(user.getUid());
@@ -81,10 +81,9 @@ public class Profile extends AppCompatActivity {
                     String email = "" + ds.child("email").getValue();
                     String status = "" + ds.child("status").getValue();
                     String image = "" + ds.child("image").getValue();
-
                     nameTv.setText(name);
                     emailTv.setText(email);
-                    phoneTv.setText(status);
+                    // phoneTv.setText(status);
                     try {
                         Picasso.get().load(image).into(avatarIv);
                     }
