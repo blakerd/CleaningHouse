@@ -61,7 +61,6 @@ public class Listings extends AppCompatActivity {
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Users user = dataSnapshot.getValue(Users.class);
                 status.setText(dataSnapshot.child("Role").getValue(String.class));
             }
             @Override
@@ -69,6 +68,7 @@ public class Listings extends AppCompatActivity {
 
             }
         });
+        displayListings();
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -135,6 +135,30 @@ public class Listings extends AppCompatActivity {
         {
             super.onBackPressed();
         }
+    }
+    public void displayListings()
+    {
+        ref.child("Users").child(fbuser.getUid()).child("Properties").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot data : dataSnapshot.getChildren())
+                {
+                    if(data.child("List Status").getValue(Boolean.class) == true)
+                    {
+                        //print on screen
+                    }
+                    else
+                    {
+                        //print "property not up for listing"
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                //Toast.makeText(PropertiesScreen.this, "outer loop fail", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 }
