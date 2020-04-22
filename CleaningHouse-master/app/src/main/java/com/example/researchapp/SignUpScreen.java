@@ -6,12 +6,14 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 
 import android.provider.OpenableColumns;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.content.Context;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 
 
 import android.widget.Switch;
@@ -32,10 +34,13 @@ import com.google.firebase.storage.*;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.IOException;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class SignUpScreen extends AppCompatActivity implements View.OnClickListener {
     private static final int IMAGE = 1;
+    private static final String TAG = "SignUpTag";
     String userID;
     String fName;
     String loc;
@@ -54,23 +59,28 @@ public class SignUpScreen extends AppCompatActivity implements View.OnClickListe
     Switch role;
 
     FirebaseAuth mFirebaseAuth;
+    private FirebaseUser mFirebaseUser;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference reference;
+    private FirebaseStorage mFirebaseStorage;
     private StorageReference mStorageRef;
+    public Uri uri;
+    public Bitmap photo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up_screen);
 
         mFirebaseAuth = FirebaseAuth.getInstance();
-        FirebaseUser mFirebaseUser = mFirebaseAuth.getCurrentUser();
+        mFirebaseUser = mFirebaseAuth.getCurrentUser();
 
         userID = mFirebaseUser.getUid();
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         reference = mFirebaseDatabase.getReference();
 
-        mStorageRef = FirebaseStorage.getInstance().getReference();
+         mFirebaseStorage = FirebaseStorage.getInstance();
+         mStorageRef = mFirebaseStorage.getReference();
 
 
         fullName =  (EditText) findViewById(R.id.name);
@@ -117,10 +127,10 @@ public class SignUpScreen extends AppCompatActivity implements View.OnClickListe
                 loc = location.getText().toString();
 
                // reference.child("Users").child(userID).child("Full Name").setValue(fName);
-                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                //FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
         UserProfileChangeRequest profUpdate = new UserProfileChangeRequest.Builder().setDisplayName(fName).build();
-        user.updateProfile(profUpdate).addOnCompleteListener(new OnCompleteListener<Void>() {
+        mFirebaseUser.updateProfile(profUpdate).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful()){
@@ -139,10 +149,18 @@ public class SignUpScreen extends AppCompatActivity implements View.OnClickListe
                 reference.child("Users").child(userID).child("Full Name").setValue(fName);
                 reference.child("Users").child(userID).child("Location").setValue(loc);
 
+                uploadPicture();
+                    if(Cleaner == true)
+                    {
+                        Intent i = new Intent(SignUpScreen.this, CleanersHomeScreen.class);
+                        startActivity(i);
+                    }
+                    else
+                    {
+                        Intent i = new Intent(SignUpScreen.this, HomeScreen.class);
+                        startActivity(i);
+                    }
 
-                //yet to implement picture storage
-                Intent i = new Intent(SignUpScreen.this, HomeScreen.class);
-                startActivity(i);
                 break;
             }
 
@@ -151,30 +169,38 @@ public class SignUpScreen extends AppCompatActivity implements View.OnClickListe
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == 101 && resultCode == RESULT_OK && data !=null) {
-            Uri uri = data.getData();
-            String path = getURIPath(SignUpScreen.this, uri);
-            String selectedImage = getFileName(uri);
-            Toast.makeText(SignUpScreen.this, path, Toast.LENGTH_SHORT).show();
-            StorageReference r = mStorageRef.child("images/profilePicture.png");
-            r.putFile(uri)
-                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            // Get a URL to the uploaded content
-                           // Uri downloadUrl = taskSnapshot.getDownloadUrl();
-                            Toast.makeText(SignUpScreen.this,"Profile Picture Successfully Uploaded", Toast.LENGTH_SHORT).show();
-                        }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception exception) {
-                            // Handle unsuccessful uploads
-                            // ...
-                            Toast.makeText(SignUpScreen.this,"Unable to Upload Profile Picture, Please Try Again", Toast.LENGTH_SHORT).show();
-
-                        }
-                    });
+            uri = data.getData();
+            Bitmap photo;
+            try {
+                photo = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
+                profilePic.setImageBitmap(photo);
+            }
+            catch(IOException e) {
+                e.printStackTrace();
+            }
+            // String path = getURIPath(SignUpScreen.this, uri);
+          //  String selectedImage = getFileName(uri);
         }
+    }
+
+    private void uploadPicture()
+    {
+        Log.println(Log.INFO,TAG,uri.toString());
+        mStorageRef.child("Images").child("Profile Pictures").child(userID).putFile(uri)
+                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        // Get a URL to the uploaded content
+                        //Uri downloadUrl = taskSnapshot.getDownloadUrl();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception exception) {
+                        Toast.makeText(SignUpScreen.this, "Failed to upload picture", Toast.LENGTH_SHORT).show();
+
+                    }
+                });
     }
 
     private String getFileName(Uri uri)
