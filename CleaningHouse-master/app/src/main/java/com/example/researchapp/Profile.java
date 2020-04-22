@@ -26,6 +26,8 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class Profile extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     FirebaseUser user;
@@ -37,7 +39,8 @@ public class Profile extends AppCompatActivity {
     View header;
     TextView username;
     TextView status;
-    TextView nameTv, emailTv;
+    CircleImageView profilePic;
+    TextView nameTv, emailTv, location, role;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,9 +58,12 @@ public class Profile extends AppCompatActivity {
         user = firebaseAuth.getCurrentUser();
         String uName = user.getDisplayName();
 
-        //avatarIv = (ImageView) findViewById(R.id.avatarIv);
+        profilePic = (CircleImageView) findViewById(R.id.imageProfile);
+        role = findViewById(R.id.roleTextView);
+        location = findViewById(R.id.locationTextView);
         nameTv = findViewById(R.id.userName);
         emailTv = findViewById(R.id.emailTextView);
+
         //phoneTv = (TextView) findViewById(R.id.phone);
         database = FirebaseDatabase.getInstance();
         databaseReference = database.getReference("Users").child(user.getUid());
