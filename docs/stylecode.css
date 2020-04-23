@@ -103,10 +103,11 @@ border-bottom:dotted 1px;
 }
 
 .article {
+  position: relative;
   float: right;
   padding: 20px;
   width: 70%;
-  background-color: #ffffff;
+  background:#ffffff;
   height: 300px; 
 }
 
