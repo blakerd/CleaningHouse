@@ -54,18 +54,16 @@ position: relative;
 {
 clear:both;
 position:relative;
-height:95%;
-margin-top:70px;
-margin-left:50px;
-width:1250px;
+height:300px;
+float:left;
+padding:20px;
+width:30px;
 }
 
 #bottomContent .navColumn
 {
 margin-left:0px;
-width:419px;
-background-image:url(images/repeatBackNavAlpha.png);
-background-repeat:repeat-y;
+width:430px;
 float:left;
 }
 
@@ -78,7 +76,6 @@ height:65px;
 line-height:65px;
 font:Arial, Helvetica, sans-serif;
 font-size:20px;
-background-image:url(images/arrow_link_background.png);
 background-repeat:no-repeat;
 padding-left:50px;
 }
@@ -91,16 +88,27 @@ background-repeat:no-repeat;
 
 a
 {
-color:#777B2B;
+color:#000000;
 text-decoration:none;
 }
 
 a:hover
 {
-color:#CACE73;
+color:#000000;
 text-decoration:none;
 border-bottom:dotted 1px;
 }
+
+.article {
+  margin-left:480px;
+  position: relative;
+  float: right;
+  padding: 20px;
+  width: 70%;
+  background:#ffffff;
+  height: 250px; 
+}
+
 
 
 #bottomContent .contentColumn
@@ -133,6 +141,7 @@ margin-bottom:15px;
 {
 width:489px;
 height:auto;
+float:left;
 background-repeat:no-repeat;
 background-image:url(images/contentBoxBack.png);
 background-repeat:repeat-y;
