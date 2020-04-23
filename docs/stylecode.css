@@ -133,6 +133,7 @@ margin-bottom:15px;
 {
 width:489px;
 height:auto;
+float:left;
 background-repeat:no-repeat;
 background-image:url(images/contentBoxBack.png);
 background-repeat:repeat-y;
