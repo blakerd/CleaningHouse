@@ -149,7 +149,6 @@ margin-bottom:15px;
 {
 width:489px;
 height:auto;
-float:left;
 background-repeat:no-repeat;
 background-image:url(images/contentBoxBack.png);
 background-repeat:repeat-y;
@@ -159,7 +158,7 @@ padding-right:12px;
 
 .contentMain h1
 {
-margin-left:30px;
+margin-left:21px;
 font-size:21px;
 line-height:normal;
 margin-bottom:10px;
@@ -181,7 +180,6 @@ margin-left:25px;
 clear:both;
 width:419px;
 height:20px;
-
 background-repeat:no-repeat;
 float:left;
 }
@@ -193,6 +191,7 @@ height:44px;
 margin-top:20px;
 margin-left:25px;
 margin-right:25px;
+background-image:url(images/tab_back.png);
 background-repeat:no-repeat;
 }
 
@@ -220,7 +219,7 @@ line-height:30px;
 #footer {
 width: 750px;
 height:49px;
-background: #ffffff;
+background: url(images/footer.png) no-repeat;
 text-align:center;
 font-size:9px;
 color:#223F8D;
