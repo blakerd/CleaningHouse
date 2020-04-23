@@ -104,7 +104,7 @@ border-bottom:dotted 1px;
 }
 
 .article {
-  right: 200px
+  right: 0px;
   position: absolute;
   padding: 20px;
   width: 70%;
