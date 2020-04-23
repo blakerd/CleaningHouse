@@ -11,6 +11,8 @@ body {
 	font-family:Verdana, Arial, Helvetica, sans-serif;
 	font-size: 13px;
 	color: #000000;
+	background-image: url("ivybackground.jpg");
+	background-color: #cccccc;
 	
 }
 
