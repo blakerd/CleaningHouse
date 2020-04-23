@@ -8,14 +8,24 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.widget.Toast;
+
+
+import java.io.File;
+import java.io.IOException;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -24,23 +34,29 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.FileDownloadTask;
 import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Profile extends AppCompatActivity {
+    String userID;
     FirebaseAuth firebaseAuth;
     FirebaseUser user;
     FirebaseDatabase database;
     DatabaseReference databaseReference;
-    ImageView avatarIv;
+    private FirebaseStorage mFirebaseStorage;
+    private StorageReference mStorageRef;
+    CircleImageView avatarIv;
     DrawerLayout drawer;
     NavigationView navigationView;
     View header;
     TextView username;
     TextView status;
-    CircleImageView profilePic;
-    TextView nameTv, emailTv, location, role;
+    TextView nameTv, emailTv, locationTv, roleTv;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,46 +73,36 @@ public class Profile extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         user = firebaseAuth.getCurrentUser();
         String uName = user.getDisplayName();
+        userID = user.getUid();
 
-        profilePic = (CircleImageView) findViewById(R.id.imageProfile);
-        role = findViewById(R.id.roleTextView);
-        location = findViewById(R.id.locationTextView);
-        nameTv = findViewById(R.id.userName);
-        emailTv = findViewById(R.id.emailTextView);
+        avatarIv = (CircleImageView) findViewById(R.id.imageProfile);
 
-        //phoneTv = (TextView) findViewById(R.id.phone);
+
+        nameTv = (TextView)findViewById(R.id.userName);
+        emailTv = (TextView)findViewById(R.id.emailTextView);
+        roleTv= (TextView) findViewById(R.id.roleTextView);
+        locationTv= (TextView) findViewById(R.id.locationTextView);
+
+        mFirebaseStorage = FirebaseStorage.getInstance();
+        mStorageRef = mFirebaseStorage.getReference();
+
         database = FirebaseDatabase.getInstance();
-        databaseReference = database.getReference("Users").child(user.getUid());
+
+        databaseReference = database.getReference("Users").child(userID);
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                status.setText(dataSnapshot.child("Role").getValue(String.class));
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+                    String name = "" + dataSnapshot.child("Full Name").getValue(String.class);
+                   // String email = "" + ds.child("email").getValue();
+                    String role = "" + dataSnapshot.child("Role").getValue(String.class);
+                    String location = "" + dataSnapshot.child("Location").getValue(String.class);
 
-            }
-        });
-        databaseReference = database.getReference("Users");
-        Query query = databaseReference.orderByChild("email").equalTo(user.getEmail());
-        query.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for(DataSnapshot ds : dataSnapshot.getChildren()) {
-                    String name = "" + ds.child("name").getValue();
-                    String email = "" + ds.child("email").getValue();
-                    String status = "" + ds.child("status").getValue();
-                    String image = "" + ds.child("image").getValue();
                     nameTv.setText(name);
-                    emailTv.setText(email);
-                    // phoneTv.setText(status);
-                    try {
-                        Picasso.get().load(image).into(avatarIv);
-                    }
-                    catch (Exception e) {
-                        Picasso.get().load(image).into(avatarIv);
-                    }
-                }
+                    //emailTv.setText(email);
+                    roleTv.setText(role);
+                    locationTv.setText(location);
+
+
             }
 
             @Override
@@ -104,6 +110,64 @@ public class Profile extends AppCompatActivity {
 
             }
         });
+
+        /*
+
+        try {
+            File tempFile = File.createTempFile("ProfilePic",".jpg");
+            StorageReference r = mStorageRef.child("Images");//.child("Profile Pictures").child("testing");
+            String l = r.toString();
+
+            Log.println(Log.INFO,"profTag", l);
+            r.getFile(tempFile)
+                    .addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                            Log.println(Log.INFO,"profTag", "Download success");
+                            Toast.makeText(Profile.this, "success", Toast.LENGTH_SHORT).show();
+
+
+
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception exception) {
+                    Log.println(Log.INFO,"profTag", "Failed to download pic");
+                    Toast.makeText(Profile.this, "Failed to grab pic", Toast.LENGTH_SHORT).show();
+
+
+                }
+            });
+            String absolutePath = tempFile.getAbsolutePath();
+            String tempFilePath = absolutePath.
+                    substring(0,absolutePath.lastIndexOf(File.separator));
+            tempFilePath = tempFilePath + "/";
+            String photoPath;
+            photoPath = tempFile.getAbsolutePath();
+            Log.println(Log.INFO,"profTag", photoPath);
+            Log.println(Log.INFO,"profTag", tempFilePath);
+            Bitmap photo;
+            photo = BitmapFactory.decodeFile(tempFile.getAbsolutePath());
+            avatarIv.setImageBitmap(photo);
+
+            String photoPath;
+            photoPath = tempFile.getPath();
+            Log.println(Log.INFO,"profTag", photoPath);
+            Bitmap photo;
+            photo = BitmapFactory.decodeFile(photoPath);
+            Log.println(Log.INFO,"profTag", photo.toString());
+            avatarIv.setImageBitmap(photo);
+
+
+
+
+
+            //gs://chauthentication.appspot.com/Images/Profile Pictures/lf8TMNGCCrcEwcUiefeIpHlnJZC3
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        */
+
         if(uName == "") {
             username.setText("No name provided");
         }
