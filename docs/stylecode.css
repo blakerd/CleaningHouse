@@ -43,7 +43,7 @@ margin-left:15px;
 margin-top:10px;
 position: relative;
 float:center;
-color:#339933;
+color:#000000;
 text-align:left;
 font-size:34px;
 width:302px;
@@ -67,7 +67,9 @@ font-family:Arial, Helvetica, sans-serif;
 }
 
 
-
+#header .boxed {
+  border: 1px solid white;
+}
 #bottomContent
 {
 clear:both;
