@@ -135,14 +135,6 @@ background-image:url(images/contentBoxBottom.png);
 margin-bottom:15px;
 }
 
-#article {
-  position: relative;
-  padding: 20px;
-  width: 70px;
-  font-weight:bold;
-  background:#ffffff;
-  height: 230px; 
-}
 
 
 .contentMain
