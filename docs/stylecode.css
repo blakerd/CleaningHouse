@@ -90,13 +90,13 @@ background-repeat:no-repeat;
 
 a
 {
-color:#777B2B;
+color:#000000;
 text-decoration:none;
 }
 
 a:hover
 {
-color:#CACE73;
+color:#000000;
 text-decoration:none;
 border-bottom:dotted 1px;
 }
