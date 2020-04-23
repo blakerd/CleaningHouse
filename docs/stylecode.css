@@ -103,10 +103,10 @@ font-weight:bold;
 border-bottom:dotted 1px;
 }
 
-.article {
+#article {
   position: relative;
   padding: 20px;
-  width: 70ox;
+  width: 70px;
   background:#ffffff;
   height: 250px; 
 }
