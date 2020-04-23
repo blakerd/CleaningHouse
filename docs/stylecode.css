@@ -187,7 +187,6 @@ height:44px;
 margin-top:20px;
 margin-left:25px;
 margin-right:25px;
-background-image:url(images/tab_back.png);
 background-repeat:no-repeat;
 }
 
@@ -215,7 +214,7 @@ line-height:30px;
 #footer {
 width: 750px;
 height:49px;
-background: url(images/footer.png) no-repeat;
+background: #ffffff;
 text-align:center;
 font-size:9px;
 color:#223F8D;
