@@ -55,7 +55,7 @@ position: relative;
 clear:both;
 position:relative;
 height:300px;
-float:left;
+float:center;
 padding:20px;
 width:30px;
 }
@@ -64,7 +64,7 @@ width:30px;
 {
 margin-left:0px;
 width:430px;
-float:center;
+float:left;
 }
 
 
