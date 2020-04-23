@@ -54,19 +54,28 @@ position: relative;
 {
 clear:both;
 position:relative;
-height:300px;
-float:left;
-padding:20px;
-width:30px;
+height:95%;
+margin-top:70px;
+margin-left:50px;
+width:1250px;
 }
 
 #bottomContent .navColumn
 {
 margin-left:0px;
-width:430px;
+width:419px;
+background-image:url(images/repeatBackNavAlpha.png);
+background-repeat:repeat-y;
 float:left;
 }
 
+#bottomContent .navColumn .overview
+{
+width:350px;
+padding:5px;
+margin-top:10px;
+background: #41E18C;
+}
 
 
 #bottomContent .navColumn .link
@@ -75,43 +84,30 @@ width:369px;
 height:65px;
 line-height:65px;
 font:Arial, Helvetica, sans-serif;
-font-size:30px;
-background:#ffffff;
+font-size:20px;
+background-image:url(images/arrow_link_background.png);
+background-repeat:no-repeat;
 padding-left:50px;
 }
 
 #bottomContent .navColumn .link:hover
 {
-background:#ffffff;
+background-image:url(images/rollover_back65.png);
 background-repeat:no-repeat;
 }
 
 a
 {
-
-color:#000000;
-font-weight:bold;
+color:#777B2B;
 text-decoration:none;
 }
 
 a:hover
 {
-background:#ffffff;
-color:#000000;
+color:#CACE73;
 text-decoration:none;
-font-weight:bold;
 border-bottom:dotted 1px;
 }
-
-#article {
-  position: relative;
-  padding: 20px;
-  width: 70px;
-  font-weight:bold;
-  background:#ffffff;
-  height: 230px; 
-}
-
 
 
 #bottomContent .contentColumn
@@ -127,7 +123,7 @@ width:550px;
 width:519px;
 height:29px;
 background-repeat:no-repeat;
-background-image:url
+background-image:url(images/contentBoxTop.png);
 }
 
 .contentBottom
@@ -135,7 +131,17 @@ background-image:url
 width:519px;
 height:29px;
 background-repeat:no-repeat;
+background-image:url(images/contentBoxBottom.png);
 margin-bottom:15px;
+}
+
+#article {
+  position: relative;
+  padding: 20px;
+  width: 70px;
+  font-weight:bold;
+  background:#ffffff;
+  height: 230px; 
 }
 
 
