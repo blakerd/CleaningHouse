@@ -93,12 +93,12 @@ public class Profile extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     String name = "" + dataSnapshot.child("Full Name").getValue(String.class);
-                   // String email = "" + ds.child("email").getValue();
+                   String email = "" + dataSnapshot.child("Email").getValue();
                     String role = "" + dataSnapshot.child("Role").getValue(String.class);
                     String location = "" + dataSnapshot.child("Location").getValue(String.class);
 
                     nameTv.setText(name);
-                    //emailTv.setText(email);
+                    emailTv.setText(email);
                     roleTv.setText(role);
                     locationTv.setText(location);
 
