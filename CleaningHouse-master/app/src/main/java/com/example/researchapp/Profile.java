@@ -56,6 +56,7 @@ public class Profile extends AppCompatActivity {
     TextView username;
     TextView status;
     TextView nameTv, emailTv, locationTv, roleTv;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,13 +77,15 @@ public class Profile extends AppCompatActivity {
 
         avatarIv = (CircleImageView) findViewById(R.id.imageProfile);
 
-        nameTv = (TextView)findViewById(R.id.profileUserName);
-        emailTv = (TextView)findViewById(R.id.profileEmail);
+
+        nameTv = (TextView)findViewById(R.id.userName);
+        emailTv = (TextView)findViewById(R.id.emailTextView);
         roleTv= (TextView) findViewById(R.id.roleTextView);
         locationTv= (TextView) findViewById(R.id.locationTextView);
 
         mFirebaseStorage = FirebaseStorage.getInstance();
         mStorageRef = mFirebaseStorage.getReference();
+
         database = FirebaseDatabase.getInstance();
 
         databaseReference = database.getReference("Users").child(userID);
@@ -107,6 +110,7 @@ public class Profile extends AppCompatActivity {
 
             }
         });
+
         /*
 
         try {
@@ -130,6 +134,7 @@ public class Profile extends AppCompatActivity {
                 public void onFailure(@NonNull Exception exception) {
                     Log.println(Log.INFO,"profTag", "Failed to download pic");
                     Toast.makeText(Profile.this, "Failed to grab pic", Toast.LENGTH_SHORT).show();
+
 
                 }
             });

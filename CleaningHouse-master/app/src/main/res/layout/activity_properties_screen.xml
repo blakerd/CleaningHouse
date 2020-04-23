@@ -37,12 +37,12 @@
         <Button
             android:id="@+id/uploadNewPropertyButton"
             android:layout_width="137dp"
-            android:layout_height="100dp"
+            android:layout_height="75dp"
             android:layout_gravity="center_vertical"
             android:layout_marginHorizontal="125dp"
             android:layout_marginVertical="100dp"
             android:text="Upload New Property"
-            android:textSize="20sp"
+            android:textSize="15sp"
             android:textStyle="bold"
             />
         <!--
@@ -71,6 +71,35 @@
                     android:textColor="#000000" />
         -->
         <TextView
+            android:id="@+id/PropertiesHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="125dp"
+            android:layout_marginVertical="0dp"
+            android:text="Properties:"
+            android:textAllCaps="true"
+            android:textColor="#000000"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <ScrollView
+            android:id="@+id/scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_below="@+id/PropertiesHeader">
+
+            <RelativeLayout
+                android:id="@+id/rLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center">
+
+            </RelativeLayout>
+        </ScrollView>
+
+        <!--<TextView
             android:id="@+id/PropertiesHeader"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -146,7 +175,7 @@
             android:textAllCaps="true"
             android:textColor="#000000"
             android:textSize="15sp"
-            android:textStyle="bold" />
+            android:textStyle="bold" />-->
 
 
     </LinearLayout>

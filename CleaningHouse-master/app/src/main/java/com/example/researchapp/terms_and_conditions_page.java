@@ -69,6 +69,19 @@ public class terms_and_conditions_page extends AppCompatActivity {
 
             }
         });
+
+        TextView mMessageWindow = (TextView) findViewById(R.id.messageWindow);
+        StringBuilder stringBuilder = new StringBuilder();
+        String [] someMessages = {"These terms and conditions (\"Terms\", \"Agreement\") are an agreement between Mobile Application Developer (\"Mobile Application Developer\", \"us\", \"we\" or \"our\") and you (\"User\", \"you\" or \"your\"). " +
+                "This Agreement sets forth the general terms and conditions of your use of the Puro mobile application and any of its products or services (collectively, \"Mobile Application\" or \"Services\").",
+                "If you create an account in the Mobile Application, you are responsible for maintaining the security of your account and you are fully responsible for all activities that occur under the account and any other actions taken in connection with it. We may, but have no obligation to, monitor and review new accounts before you may sign in and use our Services.",
+        "We do not own any data, information or material (\"Content\") that you submit in the Mobile Application in the course of using the Service. You shall have sole responsibility for the accuracy, quality, integrity, legality, reliability, appropriateness, and intellectual property ownership or right to use of all submitted Content. ",
+        "We reserve the right to modify this Agreement or its policies relating to the Mobile Application or Services at any time, effective upon posting of an updated version of this Agreement in the Mobile Application. ", "You acknowledge that you have read this Agreement and agree to all its terms and conditions. By using the Mobile Application or its Services you agree to be bound by this Agreement. "};
+        for(int i = 0; i < 5; ++i)
+        {
+            stringBuilder.append(someMessages[i]);
+        }
+        mMessageWindow.setText(stringBuilder.toString());
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
