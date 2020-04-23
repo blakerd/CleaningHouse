@@ -37,18 +37,19 @@ float:center;
 margin-left:23px;
 }
 
-#header .boxed 
+#header .boxed .h1
 {
 position: relative;
 color:#000000;
 float:center;
 font-size:34px;
-width:50%;
+width:100%;
 background:#ffffff;
 line-height:normal;
 font-weight:bold;
 font-family:Arial, Helvetica, sans-serif;
 text-align: center;
+
 
 }
 #bottomContent
