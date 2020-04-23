@@ -24,9 +24,7 @@ body {
 #header
 {
 background:#339933
-width:50%;
-margin-left:auto;
-margin-right:auto;
+text-align:center;
 }
 
 #header .logo
