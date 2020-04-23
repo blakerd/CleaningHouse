@@ -5,6 +5,8 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
+import android.net.Uri;
+
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -23,6 +25,7 @@ import android.widget.Toast;
 import java.io.File;
 import java.io.IOException;
 
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -37,6 +40,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -56,6 +60,7 @@ public class Profile extends AppCompatActivity {
     TextView username;
     TextView status;
     TextView nameTv, emailTv, locationTv, roleTv;
+    public File tempFile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,10 +79,6 @@ public class Profile extends AppCompatActivity {
         user = firebaseAuth.getCurrentUser();
         String uName = user.getDisplayName();
         userID = user.getUid();
-
-        avatarIv = (CircleImageView) findViewById(R.id.imageProfile);
-
-
         nameTv = (TextView)findViewById(R.id.userName);
         emailTv = (TextView)findViewById(R.id.emailTextView);
         roleTv= (TextView) findViewById(R.id.roleTextView);
@@ -111,13 +112,12 @@ public class Profile extends AppCompatActivity {
             }
         });
 
-        /*
+
 
         try {
-            File tempFile = File.createTempFile("ProfilePic",".jpg");
-            StorageReference r = mStorageRef.child("Images");//.child("Profile Pictures").child("testing");
+            tempFile = File.createTempFile("ProfilePic",".jpg");
+            StorageReference r = mStorageRef.child("Images").child("Profile Pictures").child(userID);
             String l = r.toString();
-
             Log.println(Log.INFO,"profTag", l);
             r.getFile(tempFile)
                     .addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
@@ -125,48 +125,27 @@ public class Profile extends AppCompatActivity {
                         public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
                             Log.println(Log.INFO,"profTag", "Download success");
                             Toast.makeText(Profile.this, "success", Toast.LENGTH_SHORT).show();
-
-
-
+                            if(tempFile.exists()) {
+                                Log.println(Log.INFO,"profTag", "File exists");
+                                Bitmap photo;
+                                photo = BitmapFactory.decodeFile(tempFile.getAbsolutePath());
+                                avatarIv = (CircleImageView) findViewById(R.id.imageProfile);
+                                avatarIv.setImageBitmap(photo);
+                            }
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception exception) {
                     Log.println(Log.INFO,"profTag", "Failed to download pic");
                     Toast.makeText(Profile.this, "Failed to grab pic", Toast.LENGTH_SHORT).show();
-
-
                 }
             });
-            String absolutePath = tempFile.getAbsolutePath();
-            String tempFilePath = absolutePath.
-                    substring(0,absolutePath.lastIndexOf(File.separator));
-            tempFilePath = tempFilePath + "/";
-            String photoPath;
-            photoPath = tempFile.getAbsolutePath();
-            Log.println(Log.INFO,"profTag", photoPath);
-            Log.println(Log.INFO,"profTag", tempFilePath);
-            Bitmap photo;
-            photo = BitmapFactory.decodeFile(tempFile.getAbsolutePath());
-            avatarIv.setImageBitmap(photo);
-
-            String photoPath;
-            photoPath = tempFile.getPath();
-            Log.println(Log.INFO,"profTag", photoPath);
-            Bitmap photo;
-            photo = BitmapFactory.decodeFile(photoPath);
-            Log.println(Log.INFO,"profTag", photo.toString());
-            avatarIv.setImageBitmap(photo);
 
 
-
-
-
-            //gs://chauthentication.appspot.com/Images/Profile Pictures/lf8TMNGCCrcEwcUiefeIpHlnJZC3
         } catch (IOException e) {
             e.printStackTrace();
         }
-        */
+
 
         if(uName == "") {
             username.setText("No name provided");
