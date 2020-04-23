@@ -104,10 +104,9 @@ border-bottom:dotted 1px;
 }
 
 .article {
-  right: 0px;
-  position: absolute;
+  position: relative;
   padding: 20px;
-  width: 70%;
+  width: 70ox;
   background:#ffffff;
   height: 250px; 
 }
