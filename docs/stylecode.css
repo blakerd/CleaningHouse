@@ -58,7 +58,6 @@ height:300px;
 float:left;
 padding:20px;
 width:30px;
-background:#ffffff;
 }
 
 #bottomContent .navColumn
@@ -89,7 +88,7 @@ background-repeat:no-repeat;
 
 a
 {
-background:#ffffff;
+
 color:#000000;
 font-weight:bold;
 text-decoration:none;
