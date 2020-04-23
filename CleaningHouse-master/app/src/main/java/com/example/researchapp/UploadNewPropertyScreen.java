@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.widget.Button;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.Toast;
@@ -36,7 +37,7 @@ public class UploadNewPropertyScreen extends AppCompatActivity implements View.O
     Button uploadButton;
 
     Switch listing;
-    Boolean listStatus = false;
+    String listStatus;
 
     FirebaseAuth mFirebaseAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
@@ -76,19 +77,17 @@ public class UploadNewPropertyScreen extends AppCompatActivity implements View.O
         cleaningPriceInput = (EditText) findViewById(R.id.cleaningPrice);
         listing = (Switch) findViewById(R.id.listingToggle);
 
-        listing.setOnClickListener(new View.OnClickListener() {
+        listing.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View v) {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(listing.isChecked()) {
-                   listStatus = true;
+                    listStatus = "Listed";
 
                 } else {
-                    listStatus = false;
-
+                    listStatus = "Not Listed";
                 }
             }
         });
-
        // selectImageButton = (Button) findViewById(R.id.selectImageButton);
         uploadButton = (Button) findViewById(R.id.uploadButton);
       //  selectImageButton.setOnClickListener(this);
@@ -116,10 +115,10 @@ public class UploadNewPropertyScreen extends AppCompatActivity implements View.O
                 myRef.child("Users").child(userID).child("Properties").child(propertyName).child("Street Address").setValue(propertyAddress);
                 myRef.child("Users").child(userID).child("Properties").child(propertyName).child("City").setValue(city);
                 myRef.child("Users").child(userID).child("Properties").child(propertyName).child("Cleaning Price").setValue(cleaningPrice);
+                myRef.child("Users").child(userID).child("Properties").child(propertyName).child("List Status").setValue(listStatus);
+
 
                 Toast.makeText(UploadNewPropertyScreen.this, "Property Successfully Uploaded", Toast.LENGTH_SHORT).show();
-
-                myRef.child("Users").child(userID).child("Properties").child(propertyName).child("List Status").setValue(listStatus);
 
                 Intent i = new Intent(this, PropertiesScreen.class);
                 startActivity(i);
