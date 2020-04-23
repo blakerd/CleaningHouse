@@ -54,10 +54,10 @@ position: relative;
 {
 clear:both;
 position:relative;
-height:95%;
-margin-top:70px;
-margin-left:50px;
-width:1250px;
+height:300px;
+float:left;
+padding:20px;
+width:30px;
 }
 
 #bottomContent .navColumn
