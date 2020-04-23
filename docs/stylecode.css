@@ -102,12 +102,12 @@ text-decoration:none;
 border-bottom:dotted 1px;
 }
 
-#bottomContent .article {
+.article {
   float: left;
   padding: 20px;
   width: 70%;
   background-color: #f1f1f1;
-  height: 300px; /* only for demonstration, should be removed */
+  height: 300px; 
 }
 
 
