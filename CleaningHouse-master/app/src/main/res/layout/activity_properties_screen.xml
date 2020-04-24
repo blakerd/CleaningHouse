@@ -45,31 +45,19 @@
             android:textSize="15sp"
             android:textStyle="bold"
             />
-        <!--
-                <Button
-                    android:id="@+id/displayPropertyButton"
-                    android:layout_width="250dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginHorizontal="125dp"
-                    android:layout_marginVertical="0dp"
-                    android:text="Display Street Address"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
 
-                <EditText
-                    android:id="@+id/propertyNickname"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="40dp"
-                    android:layout_marginHorizontal="0dp"
-                    android:layout_marginVertical="0dp"
-                    android:ems="10"
-                    android:hint="Enter your property nickname"
-                    android:inputType="textPersonName"
-                    android:textColor="#000000" />
-        -->
+        <Button
+            android:id="@+id/deletePropertyButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginHorizontal="125dp"
+            android:layout_marginVertical="0dp"
+            android:text="Delete a property"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+
         <TextView
             android:id="@+id/PropertiesHeader"
             android:layout_width="match_parent"

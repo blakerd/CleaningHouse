@@ -57,7 +57,7 @@ public class PropertiesScreen extends AppCompatActivity implements View.OnClickL
     private DatabaseReference myRef;
     private DatabaseReference Ref2;
     Button uploadNewPropertyButton;
-    //Button displayPropertyButton;
+    Button deletePropertyButton;
     DrawerLayout drawer;
     NavigationView navigationView;
     TextView username;
@@ -70,7 +70,7 @@ public class PropertiesScreen extends AppCompatActivity implements View.OnClickL
         Toolbar toolbar = findViewById(R.id.toolbar);
 
         uploadNewPropertyButton = (Button) findViewById(R.id.uploadNewPropertyButton);
-        //displayPropertyButton = (Button) findViewById(R.id.displayPropertyButton);
+        deletePropertyButton = (Button) findViewById(R.id.deletePropertyButton);
 
         propTextHeader = (TextView) findViewById(R.id.PropertiesHeader);
 
@@ -82,7 +82,7 @@ public class PropertiesScreen extends AppCompatActivity implements View.OnClickL
         navigationView = findViewById(R.id.nav_view);
 
         uploadNewPropertyButton.setOnClickListener(this);
-        //displayPropertyButton.setOnClickListener(this);
+        deletePropertyButton.setOnClickListener(this);
         mFirebaseAuth = FirebaseAuth.getInstance();
         header = navigationView.getHeaderView(0);
         username = header.findViewById(R.id.username);
@@ -124,15 +124,21 @@ public class PropertiesScreen extends AppCompatActivity implements View.OnClickL
             case R.id.uploadNewPropertyButton:
                 nextScreen();
                 break;
-          /*  case R.id.displayPropertyButton:
-
+            case R.id.deletePropertyButton:
+                goToDeletePropertyScreen();
                 break;
-            */
+
         }
     }
     private void nextScreen() {
 
         Intent i = new Intent(this, UploadNewPropertyScreen.class);
+        startActivity(i);
+
+    }
+    private void goToDeletePropertyScreen() {
+
+        Intent i = new Intent(this, DeletePropertyScreen.class);
         startActivity(i);
 
     }
