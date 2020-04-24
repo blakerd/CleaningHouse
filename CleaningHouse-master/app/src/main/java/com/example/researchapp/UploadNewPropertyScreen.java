@@ -107,6 +107,7 @@ public class UploadNewPropertyScreen extends AppCompatActivity implements View.O
             case R.id.uploadButton:
                 propertyName = propertyNameInput.getText().toString();
                 propertyAddress = propertyAddressInput.getText().toString();
+                propertyAddress = propertyAddress.toUpperCase();
                 city = cityInput.getText().toString();
                 cleaningPrice = cleaningPriceInput.getText().toString();
 
