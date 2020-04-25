@@ -41,7 +41,7 @@
             android:orientation="horizontal"
             tools:ignore="NegativeMargin">
             <EditText
-                android:="@+id/cardDateEditText"
+                android:id="@+id/cardDateEditText"
                 android:layout_width="0dp"
                 android:layout_height="48dp"
                 android:layout_marginRight="-0.25dp"
