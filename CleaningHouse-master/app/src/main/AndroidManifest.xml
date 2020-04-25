@@ -8,24 +8,30 @@
         android:smallScreens="true"
         android:xlargeScreens="true" />
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/app_icon"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/app_icon_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".DeletePropertyScreen"></activity>
+        <activity android:name=".Listings" />
+        <activity android:name=".MessageScreen" />
         <activity
             android:name=".terms_and_conditions_page"
             android:label="@string/title_activity_terms_and_conditions_page"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".PropertyListAdapter" />
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".CleanersHomeScreen" />
-        <activity android:name=".SignUpCleanersScreen" />
+        <activity android:name=".CleanersProperties" />
+        <activity android:name=".Contacts" />
         <activity android:name=".SignUpScreen" />
         <activity
-            android:name=".MessageScreen"
-            android:label="@string/title_activity_message_screen"
+            android:name=".Profile"
+            android:label="Profile"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".BillingScreen"
@@ -39,10 +45,8 @@
             android:name=".PropertiesScreen"
             android:label="@string/title_activity_properties_screen"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".HomeScreenHost" />
-        <activity android:name=".ChooseRole" />
+        <activity android:name=".HomeScreen" />
         <activity android:name=".LoginScreen" />
-        <activity android:name=".Main2Activity" />
         <activity android:name=".UploadNewPropertyScreen" />
         <activity android:name=".OpeningScreen">
             <intent-filter>

@@ -17,6 +17,9 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class OpeningScreen extends AppCompatActivity {
     //blake changed the code here in two different branches
@@ -24,6 +27,12 @@ public class OpeningScreen extends AppCompatActivity {
    EditText emailId, password;
    TextView tvSignUp;
    FirebaseAuth mFirebaseAuth;
+    private FirebaseDatabase mFirebaseDatabase;
+    private DatabaseReference reference;
+    private FirebaseUser mFirebaseUser;
+    private String userID;
+    public String email;
+
 
 
     @Override
@@ -32,6 +41,8 @@ public class OpeningScreen extends AppCompatActivity {
         setContentView(R.layout.activity_opening_screen);
 
         mFirebaseAuth = FirebaseAuth.getInstance();
+        mFirebaseDatabase = FirebaseDatabase.getInstance();
+        reference = mFirebaseDatabase.getReference();
         signUpBtn = (Button) findViewById(R.id.signUpButton);
         emailId = (EditText) findViewById(R.id.emailButton);
         password = (EditText) findViewById(R.id.passWordButton);
@@ -40,7 +51,7 @@ public class OpeningScreen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String email = emailId.getText().toString().trim();
+                email = emailId.getText().toString().trim();
                 String paw = password.getText().toString().trim();
                 if (email.isEmpty()) {
                     emailId.setError("Please enter an email-id.");
@@ -51,15 +62,20 @@ public class OpeningScreen extends AppCompatActivity {
                     password.requestFocus();
                 } else if (email.isEmpty() && paw.isEmpty()) {
                     Toast.makeText(OpeningScreen.this, "Fields are empty.", Toast.LENGTH_SHORT).show();
+                } else if (!(email.isEmpty() && paw.isEmpty()) && (paw.length() < 8)) {
+                    Toast.makeText(OpeningScreen.this, "Password must be at-least 8 characters log!", Toast.LENGTH_SHORT).show();
                 } else if (!(email.isEmpty() && paw.isEmpty())) {
                     mFirebaseAuth.createUserWithEmailAndPassword(email, paw).addOnCompleteListener(OpeningScreen.this,
                             new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (!task.isSuccessful()) {
-                                        Toast.makeText(OpeningScreen.this, "SignUp Un-Successful. Please try again", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(OpeningScreen.this, "SignUp Unsuccessful. Please try again with a different longer, password. You may already have an account under that email", Toast.LENGTH_SHORT).show();
                                     } else {
-                                        startActivity(new Intent(OpeningScreen.this, HomeScreenHost.class));
+                                        mFirebaseUser = mFirebaseAuth.getCurrentUser();
+                                        userID = mFirebaseUser.getUid();
+                                        reference.child("Users").child(userID).child("Email").setValue(email);
+                                        startActivity(new Intent(OpeningScreen.this, SignUpScreen.class));
                                     }
                                 }
                             });
@@ -82,6 +98,7 @@ public class OpeningScreen extends AppCompatActivity {
                 //Intent openFrom = new Intent(OpeningScreen.this, LoginScreen.class);
                 //startActivity(openFrom);
                 startActivity(new Intent(OpeningScreen.this, LoginScreen.class));
+                finish();
             }
         });
     }

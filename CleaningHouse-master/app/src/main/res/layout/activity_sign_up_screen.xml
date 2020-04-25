@@ -4,60 +4,82 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="10dp"
     android:orientation="vertical"
     tools:context=".OpeningScreen">
 
 
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imageview_account_profile"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:src="@drawable/plus"
+        app:civ_border_color="@android:color/black"
+        app:civ_border_width="1dp"
+        app:layout_constraintBottom_toTopOf="@id/name" />
 
     <EditText
-        android:id="@+id/userName"
+        android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:layout_marginTop="40dp"
         android:textColor="#000000"
         android:layout_gravity = "center"
-        android:hint="Username:"
+        android:hint="Name:"
         android:inputType="textPersonName" />
     <EditText
-        android:id="@+id/email"
+        android:id="@+id/cityState"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:layout_marginTop="40dp"
         android:textColor="#000000"
         android:layout_gravity = "center"
-        android:hint="Email Address:"
-        android:inputType="textPersonName" />
+        android:hint="City, State:"
+        android:inputType="textPostalAddress"
+        />
 
-    <EditText
-        android:id="@+id/passWord"
+    <Switch
+        android:id="@+id/roleToggle"
+        android:theme="@style/BrandedSwitch.control"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:textColor="#000000"
-        android:layout_marginTop="68dp"
-        android:layout_gravity = "center"
-        android:hint="Password"
-        android:inputType="textPassword" />
-
-    <EditText
-        android:id="@+id/confirmpassWord"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:textColor="#000000"
-        android:layout_marginTop="68dp"
-        android:layout_gravity = "center"
-        android:hint="Confirm Password"
-        android:inputType="textPassword" />
+        android:layout_height="79dp"
+        android:layout_gravity="center"
+        android:outlineSpotShadowColor="@color/colorPrimary"
+        android:showText="true"
+        android:textColor="@android:color/black"
+        android:textColorHighlight="@color/colorPrimary"
+        android:textOff="Host"
+        android:textOn="Cleaner" />
 
     <Button
-        android:id="@+id/button"
-        android:layout_width="match_parent"
+        android:id="@+id/makeAccBtn"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="68dp"
-        android:background="@color/colorPrimary"
-        android:text="MAKE ACCOUNT" /><![CDATA[/>
+        android:layout_gravity="center"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="20dp"
+        android:background="@android:color/transparent"
+        android:layout_marginEnd="8dp"
+        android:text="Create"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <![CDATA[
+
+
+
+    />
+
+
 ]]>
 </LinearLayout>

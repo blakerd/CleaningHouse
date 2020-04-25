@@ -22,18 +22,18 @@
         android:layout_gravity="center"
         android:layout_marginTop="40dp"
         android:ems="10"
-        android:hint="Property Address:"
+        android:hint="Street Address:"
         android:inputType="textPersonName"
         android:textColor="#000000" />
 
     <EditText
-        android:id="@+id/squareFootage"
+        android:id="@+id/city"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="68dp"
         android:ems="10"
-        android:hint="Square Footage:"
+        android:hint="City:"
         android:inputType="textPersonName"
         android:textColor="#000000" />
 
@@ -47,22 +47,44 @@
         android:hint="Cleaning Price:"
         android:inputType="textPersonName"
         android:textColor="#000000" />
-<!--
-    <Button
-        android:id="@+id/selectImageButton"
-        android:layout_width="match_parent"
+
+    <TextView
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="68dp"
-        android:background="@color/colorPrimary"
-        android:text="Select Image" />
-    -->
+        android:layout_marginHorizontal="100dp"
+        android:layout_marginVertical="20dp"
+        android:text="List this property?"
+        android:textColor="#000000"
+        android:textSize="15sp" />
+
+    <Switch
+        android:id="@+id/listingToggle"
+        android:theme="@style/BrandedSwitch.control"
+        android:layout_width="wrap_content"
+        android:layout_height="79dp"
+        android:layout_gravity="center"
+        android:outlineSpotShadowColor="@color/colorPrimary"
+        android:showText="true"
+        android:textColor="@android:color/black"
+        android:textColorHighlight="@color/colorPrimary"
+        android:textOff="No"
+        android:textOn="Yes" />
+
+    <!--
+        <Button
+            android:id="@+id/selectImageButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="68dp"
+            android:background="@color/colorPrimary"
+            android:text="Select Image" />
+        -->
     <Button
         android:id="@+id/uploadButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="68dp"
+        android:layout_marginTop="0dp"
         android:background="@color/colorPrimary"
-        android:text="Upload" /><![CDATA[/>
-]]>
+        android:text="Upload" />
 
 </LinearLayout>
