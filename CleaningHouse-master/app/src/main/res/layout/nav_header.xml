@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:paddingTop="8dp"
         android:textColor="@color/cardview_light_background"
-        android:text="@string/username"
+        android:text="User's Name"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
     <TextView
@@ -31,6 +31,6 @@
         android:layout_marginLeft="25dp"
         android:textStyle="bold"
         android:textColor="#fff"
-        android:text="status" />
+        android:text="Host" />
 
 </LinearLayout>
