@@ -1,6 +1,8 @@
 package com.example.researchapp;
 
+import android.app.ActionBar;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import com.google.android.material.navigation.NavigationView;
@@ -22,14 +24,18 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import android.util.Log;
 
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -51,7 +57,7 @@ public class PropertiesScreen extends AppCompatActivity implements View.OnClickL
     private DatabaseReference myRef;
     private DatabaseReference Ref2;
     Button uploadNewPropertyButton;
-    //Button displayPropertyButton;
+    Button deletePropertyButton;
     DrawerLayout drawer;
     NavigationView navigationView;
     TextView username;
@@ -64,7 +70,7 @@ public class PropertiesScreen extends AppCompatActivity implements View.OnClickL
         Toolbar toolbar = findViewById(R.id.toolbar);
 
         uploadNewPropertyButton = (Button) findViewById(R.id.uploadNewPropertyButton);
-        //displayPropertyButton = (Button) findViewById(R.id.displayPropertyButton);
+        deletePropertyButton = (Button) findViewById(R.id.deletePropertyButton);
 
         propTextHeader = (TextView) findViewById(R.id.PropertiesHeader);
 
@@ -76,7 +82,7 @@ public class PropertiesScreen extends AppCompatActivity implements View.OnClickL
         navigationView = findViewById(R.id.nav_view);
 
         uploadNewPropertyButton.setOnClickListener(this);
-        //displayPropertyButton.setOnClickListener(this);
+        deletePropertyButton.setOnClickListener(this);
         mFirebaseAuth = FirebaseAuth.getInstance();
         header = navigationView.getHeaderView(0);
         username = header.findViewById(R.id.username);
@@ -118,10 +124,10 @@ public class PropertiesScreen extends AppCompatActivity implements View.OnClickL
             case R.id.uploadNewPropertyButton:
                 nextScreen();
                 break;
-          /*  case R.id.displayPropertyButton:
-
+            case R.id.deletePropertyButton:
+                goToDeletePropertyScreen();
                 break;
-            */
+
         }
     }
     private void nextScreen() {
@@ -130,64 +136,97 @@ public class PropertiesScreen extends AppCompatActivity implements View.OnClickL
         startActivity(i);
 
     }
+    private void goToDeletePropertyScreen() {
 
-    //get property by specific name
-    private void displayProperty() {
-       String a = propNickname.getText().toString();
+        Intent i = new Intent(this, DeletePropertyScreen.class);
+        startActivity(i);
 
-        myRef.child("Users").child(userID).child("Properties").child(a).child("Street Address").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                 String value = dataSnapshot.getValue(String.class);
-               // propText.setText(value);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError error) {
-
-            }
-        });
     }
 
     //display up to five properties
     public void displayProperties() {
+
         myRef.child("Users").child(userID).child("Properties").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                int i = 0;
-                propText1 = (TextView) findViewById(R.id.Property1);
-                propText2 = (TextView) findViewById(R.id.Property2);
-                propText3 = (TextView) findViewById(R.id.Property3);
-                propText4 = (TextView) findViewById(R.id.Property4);
-                propText5 = (TextView) findViewById(R.id.Property5);
-                for (DataSnapshot data : dataSnapshot.getChildren()) {
-                    String value = data.child("Street Address").getValue(String.class);
-                    i++;
-                    if(i == 1)
-                    {
-                        propText1.setText(value);
-                    }
-                    else if(i == 2)
-                    {
-                        propText2.setText(value);
-                    }
-                    else if(i == 3)
-                    {
-                        propText3.setText(value);
-                    }
-                    else if(i == 4)
-                    {
-                        propText4.setText(value);
-                    }
-                    else if(i == 5)
-                    {
-                        propText5.setText(value);
-                    }
-                    //propList.add(value);
+                long lngNumProps = dataSnapshot.getChildrenCount();
+                int intNumProps = (int) lngNumProps;
+                String numPString = new String();
+                numPString = numPString.valueOf(lngNumProps);
+                Log.println(Log.INFO,"PropScreenLog",numPString);
+                TextView[] textViews = new TextView[intNumProps];
+                TextView temp;
 
+                TextView tv = (TextView) findViewById(R.id.PropertiesHeader);
+
+
+                int i = 0;
+
+                int left = 0;
+                int top = 0;
+                int right = 0;
+                int bottom = 0;
+                for (DataSnapshot data : dataSnapshot.getChildren())
+                {
+                    String strStreetAddress = data.child("Street Address").getValue(String.class);
+                    temp = new TextView(PropertiesScreen.this);
+                    temp.setPaddingRelative(left, top+=60, right, bottom);
+                    temp.setGravity(Gravity.CENTER);
+                    temp.setAllCaps(true);
+                    temp.setTextColor(Color.parseColor("#000000"));
+                    temp.setText(strStreetAddress);
+
+                    Log.println(Log.INFO,"dataLog", strStreetAddress);
+
+                    //add the textview to the relativelayout
+                    RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.rLayout);
+
+                    relativeLayout.addView(temp);
+
+                    textViews[i] = temp;
+                    ++i;
                 }
+
+//                int j = 0;
+//                for ( DataSnapshot data : dataSnapshot.getChildren())
+//                {
+//                    ++j;
+//                    String strStreetAddress = data.child("Street Address").getValue(String.class);
+//                    textViews[j].setText(strStreetAddress);
+//                }
+
+//                int i = 0;
+//                propText1 = (TextView) findViewById(R.id.Property1);
+//                propText2 = (TextView) findViewById(R.id.Property2);
+//                propText3 = (TextView) findViewById(R.id.Property3);
+//                propText4 = (TextView) findViewById(R.id.Property4);
+//                propText5 = (TextView) findViewById(R.id.Property5);
+//                for (DataSnapshot data : dataSnapshot.getChildren()) {
+//                    String value = data.child("Street Address").getValue(String.class);
+//                    i++;
+//                    if(i == 1)
+//                    {
+//                        propText1.setText(value);
+//                    }
+//                    else if(i == 2)
+//                    {
+//                        propText2.setText(value);
+//                    }
+//                    else if(i == 3)
+//                    {
+//                        propText3.setText(value);
+//                    }
+//                    else if(i == 4)
+//                    {
+//                        propText4.setText(value);
+//                    }
+//                    else if(i == 5)
+//                    {
+//                        propText5.setText(value);
+//                    }
+//                    //propList.add(value);
+//
+//                }
 
             }
 

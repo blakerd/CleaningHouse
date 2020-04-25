@@ -32,8 +32,10 @@ public class Listings extends AppCompatActivity {
     FirebaseUser fbuser;
     FirebaseDatabase db;
     DatabaseReference ref;
+    String userID;
     TextView username;
     TextView status;
+    TextView listText1, listText2, listText3, listText4, listText5;
     View header;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,12 +45,13 @@ public class Listings extends AppCompatActivity {
         toolbar.setTitle("Listings");
         setSupportActionBar(toolbar);
 
+
         drawer = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
         header = navigationView.getHeaderView(0);
         username = header.findViewById(R.id.username);
         status = header.findViewById(R.id.status);
-        db = FirebaseDatabase.getInstance();
+
         fbuser = FirebaseAuth.getInstance().getCurrentUser();
         String uName = fbuser.getDisplayName();
         if(uName == "") {
@@ -57,7 +60,11 @@ public class Listings extends AppCompatActivity {
         else {
             username.setText(uName);
         }
-        ref= db.getReference("Users").child(fbuser.getUid());
+        userID = fbuser.getUid();
+        db = FirebaseDatabase.getInstance();
+        ref = db.getReference("Users").child(userID);
+        displayListings();
+
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -68,7 +75,6 @@ public class Listings extends AppCompatActivity {
 
             }
         });
-        displayListings();
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -138,20 +144,44 @@ public class Listings extends AppCompatActivity {
     }
     public void displayListings()
     {
-        ref.child("Users").child(fbuser.getUid()).child("Properties").addValueEventListener(new ValueEventListener() {
+        ref.child("Properties").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot data : dataSnapshot.getChildren())
-                {
-                    if(data.child("List Status").getValue(Boolean.class) == true)
+                int i = 0;
+                listText1 = (TextView) findViewById(R.id.Listing1);
+                listText2 = (TextView) findViewById(R.id.Listing2);
+                listText3 = (TextView) findViewById(R.id.Listing3);
+                listText4 = (TextView) findViewById(R.id.Listing4);
+                listText5 = (TextView) findViewById(R.id.Listing5);
+                for (DataSnapshot data : dataSnapshot.getChildren()) {
+                    String value = data.child("Street Address").getValue(String.class);
+                    String listStat = data.child("List Status").getValue(String.class);
+                    if(listStat == null)
+                        listStat = "Not Listed";
+                    value += " "+ listStat;
+                    i++;
+                    if(i == 1 )
                     {
-                        //print on screen
+                        listText1.setText(value);
                     }
-                    else
+                    else if(i == 2)
                     {
-                        //print "property not up for listing"
+                        listText2.setText(value);
+                    }
+                    else if(i == 3)
+                    {
+                        listText3.setText(value);
+                    }
+                    else if(i == 4)
+                    {
+                        listText4.setText(value);
+                    }
+                    else if(i == 5)
+                    {
+                        listText5.setText(value);
                     }
                 }
+
             }
 
             @Override
