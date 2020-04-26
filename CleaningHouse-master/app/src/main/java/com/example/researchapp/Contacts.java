@@ -106,10 +106,10 @@ import com.google.firebase.database.ValueEventListener;
                  Intent k = new Intent(this,Listings.class);
                  startActivity(k);
                  break;
-             case R.id.nav_message:
+             /*case R.id.nav_message:
                  Intent l = new Intent(this, MessageScreen.class);
                  startActivity(l);
-                 break;
+                 break;*/
              case R.id.transactions:
                  Intent m = new Intent(this, BillingScreen.class);
                  startActivity(m);

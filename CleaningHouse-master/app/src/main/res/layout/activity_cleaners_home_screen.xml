@@ -71,36 +71,21 @@
             android:layout_marginHorizontal="2dp"
             android:layout_marginTop="-50dp"
             android:background="@android:color/transparent"
-            android:text="View Properties"
+            android:text="View Listings"
             android:textColor="#000000"
             android:textSize="20sp"
             android:textStyle="bold" />
 
+
+
         <Button
-            android:id="@+id/viewMessages"
+            android:id="@+id/upcomingCleanings"
             android:layout_width="236dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_centerHorizontal="true"
             android:layout_marginHorizontal="70dp"
             android:layout_marginVertical="180dp"
-            android:background="@android:color/transparent"
-            android:text="View Messages"
-            android:textColor="#000000"
-            android:textSize="20sp"
-            android:textStyle="bold"
-
-
-            />
-
-        <Button
-            android:id="@+id/upcomingCleanings"
-            android:layout_width="234dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_centerHorizontal="true"
-            android:layout_marginHorizontal="70dp"
-            android:layout_marginVertical="240dp"
             android:background="@android:color/transparent"
             android:text="View Schedule"
             android:textColor="#000000"
@@ -117,7 +102,7 @@
             android:layout_gravity="center"
             android:layout_centerHorizontal="true"
             android:layout_marginHorizontal="70dp"
-            android:layout_marginVertical="300dp"
+            android:layout_marginVertical="240dp"
             android:background="@android:color/transparent"
             android:text="View Transactions"
             android:textColor="#000000"

@@ -32,7 +32,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class CleanersHomeScreen extends AppCompatActivity implements View.OnClickListener {
     Button currentProperties;
-    Button viewMessages;
+    //Button viewMessages;
     Button upcomingCleanings;
     Button billsReceipts;
     Button logOutBtn;
@@ -89,12 +89,12 @@ public class CleanersHomeScreen extends AppCompatActivity implements View.OnClic
         });
 
         currentProperties = (Button) findViewById(R.id.currentProperties);
-        viewMessages = (Button) findViewById(R.id.viewMessages);
+        //viewMessages = (Button) findViewById(R.id.viewMessages);
         upcomingCleanings = (Button) findViewById(R.id.upcomingCleanings);
         billsReceipts = (Button) findViewById(R.id.billsReceipts);
         logOutBtn = findViewById(R.id.logOut);
         currentProperties.setOnClickListener(this);
-        viewMessages.setOnClickListener(this);
+        //viewMessages.setOnClickListener(this);
         upcomingCleanings.setOnClickListener(this);
         billsReceipts.setOnClickListener(this);
 
@@ -140,10 +140,10 @@ public class CleanersHomeScreen extends AppCompatActivity implements View.OnClic
                 Intent k = new Intent(this,Listings.class);
                 startActivity(k);
                 break;
-            case R.id.nav_message:
+            /*case R.id.nav_message:
                 Intent l = new Intent(this, MessageScreen.class);
                 startActivity(l);
-                break;
+                break;*/
             case R.id.transactions:
                 Intent m = new Intent(this, BillingScreen.class);
                 startActivity(m);
@@ -174,11 +174,11 @@ public class CleanersHomeScreen extends AppCompatActivity implements View.OnClic
     public void onClick(View v) {
         switch(v.getId()){
             case R.id.currentProperties:
-                propertiesPage();
+                listings();
                 break;
-            case R.id.viewMessages:
+            /*case R.id.viewMessages:
                 messagePage();
-                break;
+                break;*/
             case R.id.upcomingCleanings:
                 schedulePage();
                 break;
@@ -187,8 +187,8 @@ public class CleanersHomeScreen extends AppCompatActivity implements View.OnClic
                 break;
         }
     }
-    public void propertiesPage(){
-        Intent i = new Intent(this, CleanersProperties.class);
+    public void listings(){
+        Intent i = new Intent(this, Listings.class);
         startActivity(i);
     }
     public void schedulePage() {
@@ -200,11 +200,11 @@ public class CleanersHomeScreen extends AppCompatActivity implements View.OnClic
         startActivity(i);
 
     }
-    public void messagePage(){
+    /*public void messagePage(){
         Intent i = new Intent(this, MessageScreen.class);
         startActivity(i);
 
-    }
+    }*/
 
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {

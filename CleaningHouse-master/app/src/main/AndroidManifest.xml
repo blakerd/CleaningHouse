@@ -20,7 +20,6 @@
         android:theme="@style/AppTheme">
         <activity android:name=".DeletePropertyScreen"></activity>
         <activity android:name=".Listings" />
-        <activity android:name=".MessageScreen" />
         <activity
             android:name=".terms_and_conditions_page"
             android:label="@string/title_activity_terms_and_conditions_page"
