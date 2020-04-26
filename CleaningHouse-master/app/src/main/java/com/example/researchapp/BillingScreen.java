@@ -36,7 +36,9 @@ public class BillingScreen extends AppCompatActivity {
     FirebaseUser fbuser;
     TextView username;
     TextView status;
+    TextView cardNum;
     View header;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +52,7 @@ public class BillingScreen extends AppCompatActivity {
         header = navigationView.getHeaderView(0);
         username = header.findViewById(R.id.username);
         status = header.findViewById(R.id.status);
+        cardNum = findViewById(R.id.cardNumberEditText);
         db = FirebaseDatabase.getInstance();
         fbuser = FirebaseAuth.getInstance().getCurrentUser();
         String uName = fbuser.getDisplayName();
@@ -70,7 +73,43 @@ public class BillingScreen extends AppCompatActivity {
 
             }
         });
+        cardNum.addTextChangedListener(new TextWatcher() {
+            private static final char space = ' ';
 
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                // Remove all spacing char
+                int pos = 0;
+                while (true) {
+                    if (pos >= s.length()) break;
+                    if (space == s.charAt(pos) && (((pos + 1) % 5) != 0 || pos + 1 == s.length())) {
+                        s.delete(pos, pos + 1);
+                    } else {
+                        pos++;
+                    }
+                }
+
+                // Insert char where needed.
+                pos = 4;
+                while (true) {
+                    if (pos >= s.length()) break;
+                    final char c = s.charAt(pos);
+                    // Only if its a digit where there should be a space we insert a space
+                    if ("0123456789".indexOf(c) >= 0) {
+                        s.insert(pos, "" + space);
+                    }
+                    pos += 5;
+                }
+            }
+        });
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -136,32 +175,6 @@ public class BillingScreen extends AppCompatActivity {
         else
         {
             super.onBackPressed();
-        }
-    }
-    public static class FourDigitCardFormatWatcher implements TextWatcher{
-        private static final char space = ' ';
-        @Override
-        public void onTextChanged(CharSequence s, int start, int before, int count){
-
-        }
-        @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after){
-
-        }
-        @Override
-        public void afterTextChanged(Editable s){
-            if(s.length() > 0 && (s.length() % 5) == 0){
-                final char c = s.charAt(s.length() - 1);
-                if(space == c)
-                    s.delete(s.length() - 1, s.length());
-            }
-            if(s.length() > 0 && (s.length() % 5) == 0){
-                char c = s.charAt(s.length() - 1);
-                if(Character.isDigit(c) && TextUtils.split(s.toString(), String.valueOf(space)).length <= 3) {
-                    s.insert(s.length() - 1, String.valueOf(space));
-                }
-            }
-
         }
     }
 
