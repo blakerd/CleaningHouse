@@ -77,11 +77,18 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
                     username.setText(fbuser.getDisplayName());
                 }
                 String stat = dataSnapshot.getValue(String.class);
-                if(stat.equals("Host"))
-                    status.setText(stat);
+                if(!(stat == null)) {
+                    if (stat.equals("Host"))
+                        status.setText(stat);
+                    else
+                        cleanerCheck();
+                }
                 else
-                    cleanerCheck();
-
+                {
+                    mFirebaseAuth.getInstance().signOut();
+                    Intent backToHome = new Intent(HomeScreen.this, OpeningScreen.class);
+                    startActivity(backToHome);
+                }
             }
 
 
