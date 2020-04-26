@@ -46,6 +46,7 @@ public class SignUpScreen extends AppCompatActivity implements View.OnClickListe
     String loc;
 
     Boolean Cleaner = false;
+    Boolean pictureSelected = false;
 
     EditText fullName;
     EditText location;
@@ -111,6 +112,7 @@ public class SignUpScreen extends AppCompatActivity implements View.OnClickListe
                 i.setType("image/*");
                 i.setAction(Intent.ACTION_GET_CONTENT);
                 startActivityForResult(Intent.createChooser(i, "Select Image"), 101);
+                pictureSelected = true;
             }
         });
 
@@ -149,7 +151,10 @@ public class SignUpScreen extends AppCompatActivity implements View.OnClickListe
                 reference.child("Users").child(userID).child("Full Name").setValue(fName);
                 reference.child("Users").child(userID).child("Location").setValue(loc);
 
-                uploadPicture();
+                if(pictureSelected == true)
+                {
+                    uploadPicture();
+                }
                     if(Cleaner == true)
                     {
                         Intent i = new Intent(SignUpScreen.this, CleanersHomeScreen.class);
