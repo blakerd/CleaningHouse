@@ -3,6 +3,7 @@ package com.example.researchapp;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.google.android.gms.common.api.internal.DataHolderNotifier;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -19,14 +20,17 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.renderscript.Sampler;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class BillingScreen extends AppCompatActivity {
 
@@ -37,7 +41,14 @@ public class BillingScreen extends AppCompatActivity {
     TextView username;
     TextView status;
     TextView cardNum;
+    TextView cvc;
+    TextView date;
+    String cardNumber;
+    String cvcNum;
+    String cardDate;
+    Button uploadButton;
     View header;
+    DatabaseReference myRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,8 +64,11 @@ public class BillingScreen extends AppCompatActivity {
         username = header.findViewById(R.id.username);
         status = header.findViewById(R.id.status);
         cardNum = findViewById(R.id.cardNumberEditText);
+        cvc = findViewById(R.id.CVCEditText);
+        date = findViewById(R.id.dateEditText);
         db = FirebaseDatabase.getInstance();
         fbuser = FirebaseAuth.getInstance().getCurrentUser();
+        myRef = db.getReference();
         String uName = fbuser.getDisplayName();
         if(uName == "") {
             username.setText("No name provided");
@@ -110,6 +124,24 @@ public class BillingScreen extends AppCompatActivity {
                 }
             }
         });
+        displayInfo();
+        uploadButton = (Button) findViewById(R.id.uploadButton);
+        //  selectImageButton.setOnClickListener(this);
+        View.OnClickListener l = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+              switch(v.getId()){
+                  case R.id.uploadButton:
+                      cardNumber = cardNum.getText().toString();
+                      cvcNum = cvc.getText().toString();
+                      cardDate = date.getText().toString();
+                      myRef.child("Users").child(fbuser.getUid()).child("Payment").child("Card Number:").setValue(cardNumber);
+                      myRef.child("Users").child(fbuser.getUid()).child("Payment").child("CVC:").setValue(cvcNum);
+                      myRef.child("Users").child(fbuser.getUid()).child("Payment").child("Exp Date:").setValue(cardDate);
+              }
+            }
+        };
+        uploadButton.setOnClickListener(l);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -176,6 +208,35 @@ public class BillingScreen extends AppCompatActivity {
         {
             super.onBackPressed();
         }
+    }
+    public void displayInfo()
+    {
+        myRef.child("Users").child(fbuser.getUid()).child("Payment").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                TextView cardNumb = findViewById(R.id.cardNumView);
+                TextView cvcNumb = findViewById(R.id.CVCView);
+                TextView dateNumb = findViewById(R.id.dateView);
+                String cardValue = dataSnapshot.child("Card Number:").getValue(String.class);
+                String cvcValue = dataSnapshot.child("CVC:").getValue(String.class);
+                String dateValue = dataSnapshot.child("Exp Date:").getValue(String.class);
+                if(cardValue == null || cvcValue == null || dateValue == null){
+                    cardNumb.setText("None found");
+                    cvcNumb.setText("N/A");
+                    dateNumb.setText("N/A");
+                }
+                else{
+                    cardNumb.setText(cardValue);
+                    cvcNumb.setText(cvcValue);
+                    dateNumb.setText(dateValue);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
 }
