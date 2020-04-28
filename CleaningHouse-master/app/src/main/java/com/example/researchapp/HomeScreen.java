@@ -39,7 +39,7 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
     FirebaseDatabase db;
     DatabaseReference ref;
     Button currentProperties;
-    Button viewMessages;
+    //Button viewMessages;
     Button upcomingCleanings;
     Button billsReceipts;
     DrawerLayout drawer;
@@ -100,11 +100,11 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
 
         logOutBtn = findViewById(R.id.logOut);
         currentProperties = findViewById(R.id.currentProperties);
-        viewMessages = findViewById(R.id.viewMessages);
+        //viewMessages = findViewById(R.id.viewMessages);
         upcomingCleanings = findViewById(R.id.upcomingCleanings);
         billsReceipts = findViewById(R.id.billsReceipts);
         currentProperties.setOnClickListener(this);
-        viewMessages.setOnClickListener(this);
+        //viewMessages.setOnClickListener(this);
         upcomingCleanings.setOnClickListener(this);
         billsReceipts.setOnClickListener(this);
       
@@ -162,10 +162,10 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
                 Intent k = new Intent(this,Listings.class);
                 startActivity(k);
                 break;
-            case R.id.nav_message:
+            /*case R.id.nav_message:
                 Intent l = new Intent(this, MessageScreen.class);
                 startActivity(l);
-                break;
+                break;*/
             case R.id.transactions:
                 Intent m = new Intent(this, BillingScreen.class);
                 startActivity(m);
@@ -198,9 +198,9 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
             case R.id.currentProperties:
                 propertiesPage();
                 break;
-            case R.id.viewMessages:
+            /*case R.id.viewMessages:
                 messagePage();
-                break;
+                break;*/
             case R.id.upcomingCleanings:
                 schedulePage();
                 break;
@@ -222,9 +222,9 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
         startActivity(i);
 
     }
-    public void messagePage(){
+    /*public void messagePage(){
         Intent i = new Intent(this, MessageScreen.class);
         startActivity(i);
 
-    }
+    }*/
 }

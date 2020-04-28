@@ -31,32 +31,35 @@ import static org.hamcrest.Matchers.allOf;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class OpeningScreenTest {
+public class CleanersHomeScreenTest {
 
     @Rule
-    public ActivityTestRule<OpeningScreen> mActivityTestRule = new ActivityTestRule<>(OpeningScreen.class);
+    public ActivityTestRule<CleanersHomeScreen> mActivityTestRule = new ActivityTestRule<>(CleanersHomeScreen.class);
 
 
     // final EditText nameEditText =
     // (EditText) activity.findViewById(R.id.emailButton);
     @Test
-    public void openingScreenTest() {
+    public void cleanersHomeScreenTest() {
 
         //OpeningScreen activity = new OpeningScreen();
         //EditText emailInputTest = activity.findViewById(R.id.emailButton);
         //emailInputTest.typeText("Test@email.sc.edu");
 
-        onView(withId(R.id.puroPicture)).check(matches(isDisplayed()));
-        onView(withId(R.id.puroPicture)).check(matches(isEnabled()));
-        onView(withId(R.id.emailButton)).check(matches(isDisplayed()));
-        onView(withId(R.id.emailButton)).check(matches(isEnabled()));
-        onView(withId(R.id.passWordButton)).check(matches(isDisplayed()));
-        onView(withId(R.id.passWordButton)).check(matches(isEnabled()));
-        onView(withId(R.id.signUpButton)).check(matches(isClickable()));
-        onView(withId(R.id.signUpButton)).check(matches(isEnabled()));
-        onView(withId(R.id.textView)).check(matches(isClickable()));
-        onView(withId(R.id.textView)).check(matches(withText("Already have an account? Sign-in here.")));
-        onView(withId(R.id.textView)).check(matches(isEnabled()));
+        onView(withId(R.id.flowerImg)).check(matches(isDisplayed()));
+        onView(withId(R.id.flowerImg)).check(matches(isEnabled()));
+        onView(withId(R.id.logOut)).check(matches(isDisplayed()));
+        onView(withId(R.id.logOut)).check(matches(isEnabled()));
+        onView(withId(R.id.logOut)).check(matches(isClickable()));
+        onView(withId(R.id.currentProperties)).check(matches(isDisplayed()));
+        onView(withId(R.id.currentProperties)).check(matches(isEnabled()));
+        onView(withId(R.id.currentProperties)).check(matches(isClickable()));
+        onView(withId(R.id.upcomingCleanings)).check(matches(isDisplayed()));
+        onView(withId(R.id.upcomingCleanings)).check(matches(isEnabled()));
+        onView(withId(R.id.upcomingCleanings)).check(matches(isClickable()));
+        onView(withId(R.id.billsReceipts)).check(matches(isDisplayed()));
+        onView(withId(R.id.billsReceipts)).check(matches(isEnabled()));
+        onView(withId(R.id.billsReceipts)).check(matches(isClickable()));
 
 
     }
@@ -64,4 +67,3 @@ public class OpeningScreenTest {
 
 
 }
-

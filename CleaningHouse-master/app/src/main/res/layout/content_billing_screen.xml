@@ -19,4 +19,35 @@
             android:inputType="number"
             android:maxLength="19"
             android:textColor="#000000" />
+    <EditText
+        android:id="@+id/CVCEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="68dp"
+        android:ems="10"
+        android:hint="CVC"
+        android:digits="01234 56789"
+        android:inputType="number"
+        android:maxLength="3"
+        android:textColor="#000000" />
+    <EditText
+        android:id="@+id/dateEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="68dp"
+        android:ems="10"
+        android:hint="Date (MMYY)"
+        android:digits="01234 56789"
+        android:inputType="number"
+        android:maxLength="4"
+        android:textColor="#000000" />
+    <Button
+        android:id="@+id/uploadButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        android:background="@color/colorPrimary"
+        android:text="Upload" />
 </LinearLayout>
