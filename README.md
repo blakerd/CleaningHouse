@@ -11,11 +11,10 @@ To install the app in the emulator in debug mode click on "Run -> Debug Mode" in
 To run this app on a phone simply connect any Android phone via a USB or USB-C cable to your laptop and then click on "Run" in Android Studio. Make sure the phone is in Developer Mode and that you have enabled USB-debugging.
 Alternatively, download our release .apk file and transfer it to any Android device.
 ## Testing
-Behavior Test is located at test/java/com/examples/researchapp/OpeningScreenTest.java (androidTest)  
-The Behavior Test tests the location of the buttons of the login screen and can be run by "Run -> OpeningScreenTest" and ensuring that espresso is up to date.    
-Unit Tests are located at test/java/com/examples/researchapp/OpeningScreenTest.java (test)  
-and test/java/com/examples/researchapp/LoginScreenTest.java (test)  
-The unit tests currently are trivial. As development goes further, then the tests will be used to ensure the number of properties and messages match.  
+Path To UI Tests: CleaningHouse/CleaningHouse-master/app/src/androidTest/java/com/example/researchapp    
+In Android Studio, right click 'com.example.researchapp' and click Run 'Tests in 'com.example.researchapp' '  
+  
+Path To Unit Tests: CleaningHouse/CleaningHouse-master/app/src/test/java/com/example/researchapp    
 ## Authors
 Lydia Ahrens - lahrens@email.sc.edu  
 Tony Bonadio - fbonadio@email.sc.edu  
