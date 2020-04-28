@@ -140,17 +140,19 @@ public class ScheduleScreen extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     Calendar cal = Calendar.getInstance();
-                     cal.add(Calendar.DATE, 7);
+                    cal.add(Calendar.DATE, 7);
                     Date greenDate = cal.getTime();
                     HashMap<String,String> map = (HashMap)dataSnapshot.getValue();
                     ColorDrawable green = new ColorDrawable(getResources().getColor(R.color.colorPrimary));
-                    for(Map.Entry<String,String> entry: map.entrySet()) {
-                        if (entry.getValue() == null) {
-                            Toast.makeText(getApplicationContext(), "No dates added", Toast.LENGTH_LONG).show();
-                        } else {
-                            caldroidFragment.setBackgroundDrawableForDate(green,greenDate);
-                            caldroidFragment.refreshView();
-                            Toast.makeText(getApplicationContext(), "Property date added", Toast.LENGTH_SHORT).show();
+                    if(!(map == null)) {
+                        for (Map.Entry<String, String> entry : map.entrySet()) {
+                            if (entry.getValue() == null) {
+                                Toast.makeText(getApplicationContext(), "No dates added", Toast.LENGTH_LONG).show();
+                            } else {
+                                caldroidFragment.setBackgroundDrawableForDate(green, greenDate);
+                                caldroidFragment.refreshView();
+                                Toast.makeText(getApplicationContext(), "Property date added", Toast.LENGTH_SHORT).show();
+                            }
                         }
                     }
 
