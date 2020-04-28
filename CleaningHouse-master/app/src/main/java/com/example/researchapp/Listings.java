@@ -10,6 +10,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import androidx.annotation.NonNull;
@@ -37,6 +38,7 @@ public class Listings extends AppCompatActivity {
     TextView status;
     TextView listText1, listText2, listText3, listText4, listText5;
     View header;
+    DatabaseReference rootRef;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +65,7 @@ public class Listings extends AppCompatActivity {
         userID = fbuser.getUid();
         db = FirebaseDatabase.getInstance();
         ref = db.getReference("Users").child(userID);
+        rootRef = db.getReference();
         displayListings();
 
         ref.addValueEventListener(new ValueEventListener() {
@@ -144,7 +147,7 @@ public class Listings extends AppCompatActivity {
     }
     public void displayListings()
     {
-        ref.child("Properties").addValueEventListener(new ValueEventListener() {
+        rootRef.child("Users").orderByKey().addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 int i = 0;
@@ -154,8 +157,8 @@ public class Listings extends AppCompatActivity {
                 listText4 = (TextView) findViewById(R.id.Listing4);
                 listText5 = (TextView) findViewById(R.id.Listing5);
                 for (DataSnapshot data : dataSnapshot.getChildren()) {
-                    String value = data.child("Street Address").getValue(String.class);
-                    String listStat = data.child("List Status").getValue(String.class);
+                    String value = data.child("Properties").child("Street Address").getValue(String.class);
+                    String listStat = data.child("Properties").child("List Status").getValue(String.class);
                     if(listStat == null)
                         listStat = "Not Listed";
                     value += " "+ listStat;
