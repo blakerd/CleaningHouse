@@ -62,7 +62,7 @@ public class LoginScreen extends AppCompatActivity {
         emailId = (EditText) findViewById(R.id.emailButton);
         pswRecover = (TextView) findViewById(R.id.pswRecovery);
         password = (EditText) findViewById(R.id.passWordButton);
-        tvSignIn = (TextView) findViewById(R.id.textView);
+        tvSignIn = (TextView) findViewById(R.id.textViewLogin);
 
         mAuthStateListener = new FirebaseAuth.AuthStateListener() {
             @Override

@@ -66,7 +66,12 @@ public class CleanersHomeScreen extends AppCompatActivity implements View.OnClic
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-        reference = db.getReference("Users").child(fbuser.getUid());
+        if(fbuser == null)
+            reference = db.getReference("Users").child("");
+            //username.setText(fbuser.getUid()); we set the username below
+        else
+            reference = db.getReference("Users").child(fbuser.getUid());
+
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
