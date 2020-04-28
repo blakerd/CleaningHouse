@@ -11,10 +11,10 @@ To install the app in the emulator in debug mode click on "Run -> Debug Mode" in
 To run this app on a phone simply connect any Android phone via a USB or USB-C cable to your laptop and then click on "Run" in Android Studio. Make sure the phone is in Developer Mode and that you have enabled USB-debugging.
 Alternatively, download our release .apk file and transfer it to any Android device.
 ## Testing
-Path To UI Tests: CleaningHouse/CleaningHouse-master/app/src/androidTest/java/com/example/researchapp    
-In Android Studio, right click 'com.example.researchapp' and click Run 'Tests in 'com.example.researchapp' '  
-  
-Path To Unit Tests: CleaningHouse/CleaningHouse-master/app/src/test/java/com/example/researchapp    
+Path To UI Tests: CleaningHouse/CleaningHouse-master/app/src/androidTest/java/com/example/researchapp      
+In Android Studio, under androidTest, under java, right click 'com.example.researchapp' and click Run 'Tests in 'com.example.researchapp' '.    
+Path To Unit Tests: CleaningHouse/CleaningHouse-master/app/src/test/java/com/example/researchapp
+In Android Studio, under test, under jave, right click 'com.example.researchapp' and click 'Run Tests in 'researchapp' '.    
 ## Authors
 Lydia Ahrens - lahrens@email.sc.edu  
 Tony Bonadio - fbonadio@email.sc.edu  
