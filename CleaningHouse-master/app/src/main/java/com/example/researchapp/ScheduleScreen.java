@@ -40,7 +40,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ScheduleScreen extends AppCompatActivity {
 
@@ -134,6 +136,31 @@ public class ScheduleScreen extends AppCompatActivity {
 
             }
         });
+        ref.child("Properties").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    Calendar cal = Calendar.getInstance();
+                     cal.add(Calendar.DATE, 7);
+                    Date greenDate = cal.getTime();
+                    HashMap<String,String> map = (HashMap)dataSnapshot.getValue();
+                    ColorDrawable green = new ColorDrawable(getResources().getColor(R.color.colorPrimary));
+                    for(Map.Entry<String,String> entry: map.entrySet()) {
+                        if (entry.getValue() == null) {
+                            Toast.makeText(getApplicationContext(), "No dates added", Toast.LENGTH_LONG).show();
+                        } else {
+                            caldroidFragment.setBackgroundDrawableForDate(green,greenDate);
+                            caldroidFragment.refreshView();
+                            Toast.makeText(getApplicationContext(), "Property date added", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
         final CaldroidListener listener = new CaldroidListener() {
 
             @Override
@@ -158,7 +185,7 @@ public class ScheduleScreen extends AppCompatActivity {
 
             @Override
             public void onCaldroidViewCreated() {
-           
+
             }
 
         };
@@ -203,17 +230,6 @@ public class ScheduleScreen extends AppCompatActivity {
                 cal.add(Calendar.DATE, 14);
                 Date maxDate = cal.getTime();
 
-                // Set selected dates
-                // From Date
-                cal = Calendar.getInstance();
-                cal.add(Calendar.DATE, 2);
-                Date fromDate = cal.getTime();
-
-                // To Date
-                cal = Calendar.getInstance();
-                cal.add(Calendar.DATE, 3);
-                Date toDate = cal.getTime();
-
                 // Set disabled dates
                 ArrayList<Date> disabledDates = new ArrayList<Date>();
                 for (int i = 5; i < 8; i++) {
@@ -226,30 +242,22 @@ public class ScheduleScreen extends AppCompatActivity {
                 caldroidFragment.setMinDate(minDate);
                 caldroidFragment.setMaxDate(maxDate);
                 caldroidFragment.setDisableDates(disabledDates);
-                caldroidFragment.setSelectedDates(fromDate, toDate);
                 caldroidFragment.setShowNavigationArrows(false);
                 caldroidFragment.setEnableSwipe(false);
 
+
                 caldroidFragment.refreshView();
-
                 // Move to date
-                cal = Calendar.getInstance();
-                cal.add(Calendar.MONTH, 12);
-                caldroidFragment.moveToDate(cal.getTime());
+               // cal = Calendar.getInstance();
+               // cal.add(Calendar.MONTH, 12);
+                // caldroidFragment.moveToDate(cal.getTime());
 
-                String text = "Today: " + formatter.format(new Date()) + "\n";
-                text += "Min Date: " + formatter.format(minDate) + "\n";
-                text += "Max Date: " + formatter.format(maxDate) + "\n";
-                text += "Select From Date: " + formatter.format(fromDate)
-                        + "\n";
-                text += "Select To Date: " + formatter.format(toDate) + "\n";
-                for (Date date : disabledDates) {
-                    text += "Disabled Date: " + formatter.format(date) + "\n";
-                }
-
+                String text = "";
                 textView.setText(text);
             }
         });
+
+
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
