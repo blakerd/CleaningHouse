@@ -37,8 +37,8 @@ public class OpeningScreenTest {
     public ActivityTestRule<OpeningScreen> mActivityTestRule = new ActivityTestRule<>(OpeningScreen.class);
 
 
-   // final EditText nameEditText =
-           // (EditText) activity.findViewById(R.id.emailButton);
+    // final EditText nameEditText =
+    // (EditText) activity.findViewById(R.id.emailButton);
     @Test
     public void openingScreenTest() {
 
