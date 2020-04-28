@@ -102,6 +102,10 @@ public class OpeningScreen extends AppCompatActivity {
             }
         });
     }
+    public String isSuccessful() {
+        String success = "This Screen is a great success!";
+        return success;
+    }
     @Override
     public void onBackPressed(){ }
 
