@@ -62,8 +62,12 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
         fbuser = FirebaseAuth.getInstance().getCurrentUser();
         db = FirebaseDatabase.getInstance();
 
-        //username.setText(fbuser.getUid()); we set the username below
-        ref = db.getReference("Users").child(fbuser.getUid());
+
+            if(fbuser == null)
+                ref = db.getReference("Users").child("");
+            //username.setText(fbuser.getUid()); we set the username below
+        else
+            ref = db.getReference("Users").child(fbuser.getUid());
 
         ref.child("Role").addValueEventListener(new ValueEventListener() {
             @Override

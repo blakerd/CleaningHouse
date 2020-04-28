@@ -70,7 +70,8 @@ public class BillingScreen extends AppCompatActivity {
         fbuser = FirebaseAuth.getInstance().getCurrentUser();
         myRef = db.getReference();
         String uName = fbuser.getDisplayName();
-        if(uName == "") {
+
+        if(uName == "" ) {
             username.setText("No name provided");
         }
         else {
